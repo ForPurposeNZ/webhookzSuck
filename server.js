@@ -20,8 +20,6 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
   console.log('Connected to postgres!');
 });
 
-app.use(logger('dev'));
-app.use(cookieParser());
 
 
 app.post('/addContact', function (req, res) {
