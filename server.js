@@ -13,9 +13,12 @@ var knexConfig = require('./knexfile.js')
 var knex = knex(knexConfig[process.env.NODE_ENV || 'development'])
 
 
-app.post( '/addContact', function (req, res) {
+app.post('/addContact', function (req, res) {
 
-knex('contacts').insert({ contact_name: 'firstnamehere' })
+  console.log('payload: ', payload)
+  console.log('firs name: ', payload.first_name)
+
+knex('contacts').insert({ contact_name: payload.first_name })
 .then(function(data, err){
   if(err){
     console.log('error message: ', err)
