@@ -15,6 +15,8 @@ var knex = knex(knexConfig[process.env.NODE_ENV || 'development'])
 
 app.post('/addContact', function (req, res) {
 
+  payload = req.body.payload.person
+
   console.log('payload: ', payload)
   console.log('firs name: ', payload.first_name)
 
