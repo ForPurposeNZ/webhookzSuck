@@ -25,7 +25,7 @@ module.exports = {
     }
   },
 
-  production: {
+  production: process.env.DATABASE_URL + "sslmode=require"  || {
     client: 'postgresql',
     connection: {
       database: 'my_db',
