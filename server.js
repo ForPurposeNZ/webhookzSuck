@@ -3,6 +3,10 @@ var app = express()
 var bodyParser = require('body-parser');
 var knex = require('knex')
 
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.get('/', function (req, res) {
   res.send('Hello World')
 })
