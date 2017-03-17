@@ -5,7 +5,10 @@ exports.up = function(knex, Promise) {
 
   table.timestamps()
   table.integer('contact_id')
+  table.integer('unite_id')
   table.string('contact_name')
+  table.string('employer')
+  table.string('occupation')
   table.string('position')
   table.string('email')
   table.integer('phone')

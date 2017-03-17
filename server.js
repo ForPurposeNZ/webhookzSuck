@@ -36,7 +36,7 @@ app.post('/addContact', function (req, res) {
   console.log('first name: ', payload.first_name)
 
 knex('contacts').insert({
-  contact_name: payload.first_name,
+  contact_name: payload.full_name,
 
 })
 .then(function(data, err){
