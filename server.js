@@ -58,7 +58,8 @@ app.post("/updatePerson", function(req, res) {
 
   knex('contacts').where({contact_id: payload.id}).update({
       updated_at: payload.updated_at,
-      contact_name: payload.first_name,
+      contact_name: payload.full_name,
+      employer: payload.employer,
       email: payload.email,
       phone: payload.phone,
       fax: payload.fax_number,
