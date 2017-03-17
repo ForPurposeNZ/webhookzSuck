@@ -32,10 +32,13 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  //console.log('payload: ', payload)
+  console.log('payload: ', payload)
   console.log('first name: ', payload.first_name)
 
-knex('contacts').insert({ contact_name: payload.first_name })
+knex('contacts').insert({
+  contact_name: payload.first_name,
+
+})
 .then(function(data, err){
   if(err){
     console.log('error message: ', err)
@@ -53,11 +56,15 @@ app.post("/updatePerson", function(req, res) {
   payload = req.body.payload.person
   console.log("update person payload", payload)
 
-  knex('contacts').where({id: payload.id}).update({
+  knex('contacts').where({contact_id: payload.id}).update({
       updated_at: payload.updated_at,
-      contact_name: payload.first_name && payload.last_name,
+      contact_name: payload.first_name,
       email: payload.email,
-      phone: payload.phone  //still need to add a few more inputs but need to see payload to structure naming
+      phone: payload.phone,
+      fax: payload.fax_number,
+      mobile: payload.mobile,
+      corresponence_contact: payload.primary_address,
+      mailing_address: payload.mailing_address
     })
     .then(function(data, err){
       if(err){
