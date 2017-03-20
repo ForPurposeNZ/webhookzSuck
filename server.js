@@ -46,7 +46,7 @@ app.post('/addContact', function (req, res) {
   //           req.body.payload.mailing_address.address3 +
   //           req.body.payload.mailing_address.city
 
-      console.log('corresponence_contact: ', correspondenceContact)
+      // console.log('corresponence_contact: ', correspondenceContact)
 
 knex('contacts').insert({
   contact_name: payload.full_name,
