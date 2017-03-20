@@ -36,7 +36,7 @@ app.post('/addContact', function (req, res) {
   console.log('first name: ', payload.full_name)
   console.log('unite id: ', payload.unite_id, 'employer',payload.employer, 'occupation: ', payload.occupation, 'position: ', payload.position, 'phone:', payload.phone,'mobile:', payload.mobile, 'corresponence_contact', payload.primary_address, 'mailing_address:', payload.mailing_address)
 
-  var corresponenceContact = req.body.payload.primary_address.address1 +
+  var correspondenceContact = req.body.payload.primary_address.address1 +
             req.body.payload.primary_address.address2 +
             req.body.payload.primary_address.address3 +
             req.body.payload.primary_address.city
@@ -46,7 +46,7 @@ app.post('/addContact', function (req, res) {
   //           req.body.payload.mailing_address.address3 +
   //           req.body.payload.mailing_address.city
 
-      console.log('corresponence_contact: ', corresponenceContact, 'mailingContact: ', mailingContact)
+      console.log('corresponence_contact: ', correspondenceContact)
 
 knex('contacts').insert({
   contact_name: payload.full_name,
@@ -57,7 +57,7 @@ knex('contacts').insert({
   email: payload.email,
   phone: payload.phone,
   mobile: payload.mobile,
-  corresponence_contact: payload.primary_address,
+  //corresponence_contact: payload.primary_address,
   //mailing_address: payload.mailing_address
 
 })
