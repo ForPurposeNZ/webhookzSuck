@@ -40,11 +40,11 @@ app.post('/addContact', function (req, res) {
             req.body.payload.primary_address.address2 +
             req.body.payload.primary_address.address3 +
             req.body.payload.primary_address.city
-
-  var mailingContact = req.body.payload.mailing_address.address1 +
-            req.body.payload.mailing_address.address2 +
-            req.body.payload.mailing_address.address3 +
-            req.body.payload.mailing_address.city
+  //
+  // var mailingContact = req.body.payload.mailing_address.address1 +
+  //           req.body.payload.mailing_address.address2 +
+  //           req.body.payload.mailing_address.address3 +
+  //           req.body.payload.mailing_address.city
 
       console.log('corresponence_contact: ', corresponenceContact, 'mailingContact: ', mailingContact)
 
@@ -58,7 +58,7 @@ knex('contacts').insert({
   phone: payload.phone,
   mobile: payload.mobile,
   corresponence_contact: payload.primary_address,
-  mailing_address: payload.mailing_address
+  //mailing_address: payload.mailing_address
 
 })
 .then(function(data, err){
