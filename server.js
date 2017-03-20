@@ -43,7 +43,7 @@ knex('contacts').insert({
   employer: payload.employer,
   occupation: payload.occupation,
   // position: payload.position,
-  // email: payload.email,
+  email: payload.email,
   // phone: payload.phone,
   // fax: payload.fax_number,
   // mobile: payload.mobile,
