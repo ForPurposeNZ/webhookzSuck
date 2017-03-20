@@ -34,15 +34,15 @@ app.post('/addContact', function (req, res) {
 
   //console.log('payload: ', payload)
   console.log('first name: ', payload.first_name)
-  console.log('unite id: ', payload.unite_id, payload.employer)
+  console.log('unite id: ', payload.unite_id, 'employer',payload.employer, 'occupation', payload.position, 'position', payload.position)
 
 
 knex('contacts').insert({
   contact_name: payload.full_name,
   unite_id: payload.unite_id,
   employer: payload.employer,
-  // occupation: payload.occupation,
-  // position: payload.occupation,
+  occupation: payload.occupation,
+  // position: payload.position,
   // email: payload.email,
   // phone: payload.phone,
   // fax: payload.fax_number,
