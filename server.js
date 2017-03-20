@@ -37,6 +37,16 @@ app.post('/addContact', function (req, res) {
 
 knex('contacts').insert({
   contact_name: payload.full_name,
+  unite_id: payload.unite_id,
+  employer: payload.employer,
+  occupation: payload.occupation,
+  position: payload.occupation,
+  email: payload.email,
+  phone: payload.phone,
+  fax: payload.fax_number,
+  mobile: payload.mobile,
+  corresponence_contact: payload.primary_address,
+  mailing_address: payload.mailing_address
 
 })
 .then(function(data, err){
