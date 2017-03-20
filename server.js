@@ -34,7 +34,7 @@ app.post('/addContact', function (req, res) {
 
   //console.log('payload: ', payload)
   console.log('first name: ', payload.first_name)
-  console.log('unite id: ', payload.unite_id, 'employer',payload.employer, 'occupation', payload.position, 'position', payload.position)
+  console.log('unite id: ', payload.unite_id, 'employer',payload.employer, 'occupation', payload.position, 'position', payload.position, 'phone', payload.phone,'mobile:', payload.mobile )
 
 
 knex('contacts').insert({
@@ -44,9 +44,8 @@ knex('contacts').insert({
   occupation: payload.occupation,
   // position: payload.position,
   email: payload.email,
-  // phone: payload.phone,
-  // fax: payload.fax_number,
-  // mobile: payload.mobile,
+  phone: payload.phone,
+  mobile: payload.mobile,
   // corresponence_contact: payload.primary_address,
   // mailing_address: payload.mailing_address
 
