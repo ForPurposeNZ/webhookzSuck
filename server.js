@@ -79,6 +79,23 @@ app.post("/updatePerson", function(req, res) {
 
 
 
+//
+// exports.up = function(knex, Promise) {
+//   return knex.schema.table('contacts', function(table) {
+//     table.integer('unite_id')
+//     table.string('employer')
+//     table.string('occupation')
+//   })
+//
+// };
+//
+// exports.down = function(knex, Promise) {
+//   console.log('droppedTable')
+//
+// };
+
+
+
 
 
 app.listen(port)
