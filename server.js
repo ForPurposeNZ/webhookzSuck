@@ -34,7 +34,7 @@ app.post('/addContact', function (req, res) {
 
   //console.log('payload: ', payload)
   console.log('first name: ', payload.first_name)
-  console.log('unite id: ', payload.unite_id)
+  console.log('unite id: ', payload.unite_id, payload.employer)
 
 
 knex('contacts').insert({
