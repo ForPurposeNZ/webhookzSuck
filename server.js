@@ -36,7 +36,7 @@ app.post('/addContact', function (req, res) {
   console.log('first name: ', payload.full_name)
   //console.log('unite id: ', payload.unite_id, 'employer',payload.employer, 'occupation: ', payload.occupation, 'position: ', payload.position, 'phone:', payload.phone,'mobile:', payload.mobile, 'corresponence_contact', payload.primary_address, 'mailing_address:', payload.mailing_address)
 
-  console.log('corresponence_contact', payload.primary_address, 'mailing_address:', payload.mailing_address)
+  console.log('corresponence_contact', payload.primary_address, 'payload.primary_address.address1: ', payload.primary_address.address1 )
 
 
   // var correspondenceContact = req.body.payload.primary_address.address1 +
