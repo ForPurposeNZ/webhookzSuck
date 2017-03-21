@@ -52,35 +52,26 @@ app.post('/addContact', function (req, res) {
   console.log("Work! HERE! : ", correspondenceContact)
 
 
-  // var mailingContact = req.body.payload.mailing_address.address1 +
-  //           req.body.payload.mailing_address.address2 +
-  //           req.body.payload.mailing_address.address3 +
-  //           req.body.payload.mailing_address.city
+  knex('contacts').insert({
+    contact_name: payload.full_name,
+    unite_id: payload.unite_id,
+    employer: payload.employer,
+    occupation: payload.occupation,
+    position: payload.position,
+    email: payload.email,
+    phone: payload.phone,
+    mobile: payload.mobile,
+    corresponence_contact: correspondenceContact
+  })
+  .then(function(data, err){
+    if(err){
+      console.log('error message: ', err)
+    } else {
+    console.log('New Nationbuilder Contact Entered into SQL Database')
+      }
+    })
 
-      // console.log('corresponence_contact: ', correspondenceContact)
-
-// knex('contacts').insert({
-//   contact_name: payload.full_name,
-//   unite_id: payload.unite_id,
-//   employer: payload.employer,
-//   occupation: payload.occupation,
-//   position: payload.position,
-//   email: payload.email,
-//   phone: payload.phone,
-//   mobile: payload.mobile,
-//   //corresponence_contact: payload.primary_address,
-//   //mailing_address: payload.mailing_address
-//
-// })
-// .then(function(data, err){
-//   if(err){
-//     console.log('error message: ', err)
-//   } else {
-//   console.log('New Nationbuilder Contact Entered into SQL Database')
-//     }
-//   })
-
-});
+  });
 
 
 ////**** Update Person ****\\\\
