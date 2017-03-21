@@ -71,7 +71,7 @@ app.post('/addContact', function (req, res) {
 //   console.log('New Nationbuilder Contact Entered into SQL Database')
 //     }
 //   })
-// });
+});
 
 
 ////**** Update Person ****\\\\
