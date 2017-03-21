@@ -11,14 +11,9 @@ exports.up = function(knex, Promise) {
   table.string('occupation')
   table.string('position')
   table.string('email')
-  table.bigInteger('phone')
-  table.integer('phone_extension')
-  table.integer('fax')
-  table.bigInteger('mobile')
+  table.string('phone')
+  table.string('mobile')
   table.string('corresponence_contact')
-  table.string('payroll contact')
-  table.string('mailing_address')
-
   })
 };
 
