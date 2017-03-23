@@ -62,17 +62,18 @@ app.post('/addContact', function (req, res) {
     phone: payload.phone,
     mobile: payload.mobile,
     //corresponence_contact: correspondenceContact
-  }).then(function(data, err){
-        if corresponence_contact != null {
-          knex('contacts').insert({
-            corresponence_contact: correspondenceContact
-          })
+  })
+  .then(function(data, err) {
+      if (payload.primary_address.address1 != null) {
+        knex('contacts').insert({
+          corresponence_contact: correspondenceContact
+        })
       } else {
       console.log('Data Entered, no correspondenceContact given')
         }
       })
   .then(function(data, err){
-    if(err){
+    if(err) {
       console.log('error message: ', err)
     } else {
     console.log('New Nationbuilder Contact Entered into SQL Database')
