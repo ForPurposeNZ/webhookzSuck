@@ -61,8 +61,16 @@ app.post('/addContact', function (req, res) {
     email: payload.email,
     phone: payload.phone,
     mobile: payload.mobile,
-    corresponence_contact: correspondenceContact
-  })
+    //corresponence_contact: correspondenceContact
+  }).then(function(data, err){
+        if corresponence_contact != null {
+          knex('contacts').insert({
+            corresponence_contact: correspondenceContact
+          })
+      } else {
+      console.log('Data Entered, no correspondenceContact given')
+        }
+      })
   .then(function(data, err){
     if(err){
       console.log('error message: ', err)
