@@ -55,35 +55,35 @@ app.post('/addContact', function (req, res) {
   //console.log("Work! HERE! : ", correspondenceContact)
 
 
-  knex('contacts').insert({
-    contact_name: payload.full_name,
-    // Nationbuilder_id: payload.id,
-    employer: payload.employer,
-    occupation: payload.occupation,
-    position: payload.position,
-    email: payload.email,
-    phone: payload.phone,
-    mobile: payload.mobile,
-    //city: payload.primary_address.city
-  })
-  .then(function(data, err) {
-      if (payload.primary_address != null) {
-        knex('contacts').insert({
-          correspondence_contact: correspondenceContact
-        })
-      } else {
-      console.log('Data Entered, no physical correspondence address given')
-        }
-      })
-  .then(function(data, err){
-    if(err) {
-      console.log('error message: ', err)
-    } else {
-    console.log('New Nationbuilder Contact Entered into SQL Database')
-      }
-    })
-
-  });
+  // knex('contacts').insert({
+  //   contact_name: payload.full_name,
+  //   // Nationbuilder_id: payload.id,
+  //   employer: payload.employer,
+  //   occupation: payload.occupation,
+  //   position: payload.position,
+  //   email: payload.email,
+  //   phone: payload.phone,
+  //   mobile: payload.mobile,
+  //   //city: payload.primary_address.city
+  // })
+  // .then(function(data, err) {
+  //     if (payload.primary_address != null) {
+  //       knex('contacts').insert({
+  //         correspondence_contact: correspondenceContact
+  //       })
+  //     } else {
+  //     console.log('Data Entered, no physical correspondence address given')
+  //       }
+  //     })
+  // .then(function(data, err){
+  //   if(err) {
+  //     console.log('error message: ', err)
+  //   } else {
+  //   console.log('New Nationbuilder Contact Entered into SQL Database')
+  //     }
+  //   })
+  //
+   });
 
 
 ////**** Update Person ****\\\\
