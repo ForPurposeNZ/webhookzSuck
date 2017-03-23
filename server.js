@@ -33,7 +33,7 @@ app.post('/addContact', function (req, res) {
   payload = req.body.payload.person
 
   //console.log('payload: ', payload)
-  console.log('first name: ', payload.full_name)
+  console.log('full name: ', payload.full_name)
   //console.log('unite id: ', payload.unite_id, 'employer',payload.employer, 'occupation: ', payload.occupation, 'position: ', payload.position, 'phone:', payload.phone,'mobile:', payload.mobile, 'corresponence_contact', payload.primary_address, 'mailing_address:', payload.mailing_address)
 
   // console.log('corresponence_contact', payload.primary_address,
@@ -54,7 +54,7 @@ app.post('/addContact', function (req, res) {
 
   knex('contacts').insert({
     contact_name: payload.full_name,
-    Nationbuilder_id: payload.id,
+    // Nationbuilder_id: payload.id,
     employer: payload.employer,
     occupation: payload.occupation,
     position: payload.position,
@@ -66,7 +66,7 @@ app.post('/addContact', function (req, res) {
   .then(function(data, err) {
       if (payload.primary_address != null) {
         knex('contacts').insert({
-          corresponence_contact: correspondenceContact
+          correspondence_contact: correspondenceContact
         })
       } else {
       console.log('Data Entered, no physical correspondence address given')
