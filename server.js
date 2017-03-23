@@ -61,7 +61,7 @@ app.post('/addContact', function (req, res) {
     email: payload.email,
     phone: payload.phone,
     mobile: payload.mobile,
-    city: payload.primary_address.city
+    //city: payload.primary_address.city
   })
   .then(function(data, err) {
       if (payload.primary_address != null) {
