@@ -55,7 +55,7 @@ app.post('/addContact', function (req, res) {
   knex('contacts').insert({
     contact_name: payload.full_name,
     unite_id: payload.unite_id,
-    contact_id: payload.id,
+    Nationbuilder_id: payload.id,
     employer: payload.employer,
     occupation: payload.occupation,
     position: payload.position,
