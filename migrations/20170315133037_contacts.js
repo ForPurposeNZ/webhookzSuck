@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
   table.string('email')
   table.string('phone')
   table.string('mobile')
+  table.string('City')
   table.string('corresponence_contact')
   })
 };

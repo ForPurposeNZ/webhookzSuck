@@ -55,16 +55,17 @@ app.post('/addContact', function (req, res) {
   knex('contacts').insert({
     contact_name: payload.full_name,
     unite_id: payload.unite_id,
+    contact_id: payload.id,
     employer: payload.employer,
     occupation: payload.occupation,
     position: payload.position,
     email: payload.email,
     phone: payload.phone,
     mobile: payload.mobile,
-    //corresponence_contact: correspondenceContact
+    city: payload.primary_address.city
   })
   .then(function(data, err) {
-      if (correspondenceContact != null) {
+      if (payload.primary_address.address1 != null) {
         knex('contacts').insert({
           corresponence_contact: correspondenceContact
         })
