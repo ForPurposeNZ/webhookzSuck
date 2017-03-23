@@ -49,7 +49,7 @@ app.post('/addContact', function (req, res) {
             payload.primary_address.address3 +
             payload.primary_address.city
 
-  console.log("Work! HERE! : ", correspondenceContact)
+  //console.log("Work! HERE! : ", correspondenceContact)
 
 
   knex('contacts').insert({
