@@ -65,7 +65,7 @@ app.post('/addContact', function (req, res) {
     city: payload.primary_address.city
   })
   .then(function(data, err) {
-      if (payload.primary_address.address1 != null) {
+      if (payload.primary_address != null) {
         knex('contacts').insert({
           corresponence_contact: correspondenceContact
         })
