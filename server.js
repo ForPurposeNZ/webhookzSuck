@@ -64,12 +64,12 @@ app.post('/addContact', function (req, res) {
     //corresponence_contact: correspondenceContact
   })
   .then(function(data, err) {
-      if (payload.primary_address.address1 != null) {
+      if (correspondenceContact != null) {
         knex('contacts').insert({
           corresponence_contact: correspondenceContact
         })
       } else {
-      console.log('Data Entered, no correspondenceContact given')
+      console.log('Data Entered, no physical correspondence address given')
         }
       })
   .then(function(data, err){
