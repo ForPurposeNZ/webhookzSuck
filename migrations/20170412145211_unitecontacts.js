@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTableIfNotExists('contacts', function(table) {
-    console.log('created contacts table!')
+  return knex.schema.createTableIfNotExists('unitecontacts', function(table) {
+    console.log('created unitecontacts')
 
   table.timestamps()
   table.integer('nationbuilder_id')
@@ -22,5 +22,5 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   console.log('droppedTable')
-  return knex.schema.dropTableIfExists('contacts')
+  return knex.schema.dropTableIfExists('unitecontacts')
 };
