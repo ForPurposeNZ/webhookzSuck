@@ -50,7 +50,7 @@ app.post('/addContact', function (req, res) {
   //  address1: payload.primary_address.address1,
   //  address2: payload.primary_address.address2,
   //  address3: payload.primary_address.address3,
-    city: payload.primary_address.city
+  //  city: payload.primary_address.city
   })
 
   // .then(function(data, err) {
