@@ -40,7 +40,7 @@ app.post('/addContact', function (req, res) {
 
   knex('contacts').insert({
     contact_name: payload.full_name,
-    unite_id: payload.id,
+    Member_id: payload.unite_id,
     employer: payload.employer,
     occupation: payload.occupation,
     position: payload.position,
