@@ -34,7 +34,7 @@ app.post('/addContact', function (req, res) {
 
   //console.log('payload: ', payload)
   console.log('full name: ', payload.full_name)
-  console.log('payload.primary_address: ', payload.primary_address, 'CITY payload.primary_address.city: ', payload.primary_address.city)
+
   console.log("id: ", payload.id)
 
 
@@ -69,6 +69,8 @@ app.post('/addContact', function (req, res) {
     console.log('New Nationbuilder Contact Entered into SQL Database')
       }
     })
+
+    console.log('payload.primary_address: ', payload.primary_address, 'CITY payload.primary_address.city: ', payload.primary_address.city)
 
    });
 
