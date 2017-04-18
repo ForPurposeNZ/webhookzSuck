@@ -34,7 +34,7 @@ app.post('/addContact', function (req, res) {
 
   //console.log('payload: ', payload)
   console.log('full name: ', payload.full_name)
-
+  console.log('payload: ', payload)
   console.log("id: ", payload.id)
 
 
