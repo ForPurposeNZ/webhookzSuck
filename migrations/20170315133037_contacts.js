@@ -2,8 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('contacts', function(table) {
     console.log('created contacts table!')
 
-  table.timestamps()
-  table.integer('nationbuilder_id')
+  table.timestamps('Date_time')
   table.string('contact_name')
   table.integer('unite_id')
   table.string('employer')
