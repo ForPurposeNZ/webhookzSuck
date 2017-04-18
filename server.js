@@ -34,16 +34,18 @@ app.post('/addContact', function (req, res) {
 
   //console.log('payload: ', payload)
   console.log('full name: ', payload.full_name)
-  console.log('payload: ', payload)
+  //console.log('payload: ', payload)
   console.log("id: ", payload.id)
 
 
   knex('contacts').insert({
     contact_name: payload.full_name,
     Member_id: payload.unite_id,
+    id: payload.id,
     employer: payload.employer,
     occupation: payload.occupation,
     position: payload.position,
+    Worksite_id: payload.employer,
     email: payload.email,
     phone: payload.phone,
     mobile: payload.mobile
@@ -51,6 +53,9 @@ app.post('/addContact', function (req, res) {
   //  address2: payload.primary_address.address2,
   //  address3: payload.primary_address.address3,
   //  city: payload.primary_address.city
+  Auto_note: 1,
+  Code_id: 11
+
   })
 
   // .then(function(data, err) {
@@ -83,15 +88,23 @@ app.post("/updatePerson", function(req, res) {
   console.log("update person payload", payload)
 
   knex('contacts').where({contact_id: payload.id}).update({
-      updated_at: payload.updated_at,
-      contact_name: payload.full_name,
-      employer: payload.employer,
-      email: payload.email,
-      phone: payload.phone,
-      fax: payload.fax_number,
-      mobile: payload.mobile,
-      corresponence_contact: payload.primary_address,
-      mailing_address: payload.mailing_address
+    contact_name: payload.full_name,
+    Member_id: payload.unite_id,
+    id: payload.id,
+    employer: payload.employer,
+    occupation: payload.occupation,
+    position: payload.position,
+    Worksite_id: payload.employer,
+    email: payload.email,
+    phone: payload.phone,
+    mobile: payload.mobile
+  //  address1: payload.primary_address.address1,
+  //  address2: payload.primary_address.address2,
+  //  address3: payload.primary_address.address3,
+  //  city: payload.primary_address.city
+  Auto_note: 1,
+  Code_id: 10
+
     })
     .then(function(data, err){
       if(err){
