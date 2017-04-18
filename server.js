@@ -32,6 +32,8 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
+  correspondence_contact = payload.primary_address.address1
+
   //console.log('payload: ', payload)
   console.log('full name: ', payload.full_name)
   //console.log('payload: ', payload)
