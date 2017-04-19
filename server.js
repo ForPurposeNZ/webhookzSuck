@@ -38,7 +38,6 @@ app.post('/addContact', function (req, res) {
                           + payload.primary_address.city
 
 
-  console.log('correspondence_contact: ', correspondence_contact)
 
 
   //console.log('payload: ', payload)
@@ -84,6 +83,9 @@ app.post('/addContact', function (req, res) {
     console.log('New Nationbuilder Contact Entered into SQL Database')
       }
     })
+
+    console.log('correspondence_contact: ', correspondence_contact)
+
 
    });
 
