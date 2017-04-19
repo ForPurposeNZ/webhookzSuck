@@ -50,7 +50,7 @@ app.post('/addContact', function (req, res) {
     Worksite_id: payload.employer,
     email: payload.email,
     phone: payload.phone,
-    mobile: payload.mobile
+    mobile: payload.mobile,
   //  address1: payload.primary_address.address1,
   //  address2: payload.primary_address.address2,
   //  address3: payload.primary_address.address3,
@@ -99,7 +99,7 @@ app.post("/updatePerson", function(req, res) {
     Worksite_id: payload.employer,
     email: payload.email,
     phone: payload.phone,
-    mobile: payload.mobile
+    mobile: payload.mobile,
   //  address1: payload.primary_address.address1,
   //  address2: payload.primary_address.address2,
   //  address3: payload.primary_address.address3,
