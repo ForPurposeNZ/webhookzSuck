@@ -32,7 +32,7 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
- var correspondenceContact() = {
+ const correspondenceContact = {
     if (payload.primary_address.address1 || payload.primary_address.address2 || payload.primary_address.address3 || payload.primary_address.city = null) {
       return '';
     } else {
