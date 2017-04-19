@@ -32,59 +32,54 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  correspondence_contact = payload.primary_address.address1
-                          + payload.primary_address.address2
-                          + payload.primary_address.address3
-                          + payload.primary_address.city
-
-
-
+  var correspondence_contact() {
+    if (payload.primary_address.address1 || payload.primary_address.address2 || payload.primary_address.address3 || payload.primary_address.city = null) {
+      return ''
+    } else {
+      return correspondence_contact
+    }
+  }
 
   //console.log('payload: ', payload)
   console.log('full name: ', payload.full_name)
   console.log("id: ", payload.id)
+  console.log('correspondence_contact: ', correspondence_contact)
+  // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
 
-  console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
 
-  //
-  // knex('contacts').insert({
-  //   contact_name: payload.full_name,
-  //   Member_id: payload.unite_id,
-  //   id: payload.id,
-  //   employer: payload.employer,
-  //   occupation: payload.occupation,
-  //   position: payload.position,
-  //   Worksite_id: payload.employer,
-  //   email: payload.email,
-  //   phone: payload.phone,
-  //   mobile: payload.mobile,
-  // //  address1: payload.primary_address.address1,
-  // //  address2: payload.primary_address.address2,
-  // //  address3: payload.primary_address.address3,
-  // //  city: payload.primary_address.city
-  // Auto_note: 1,
-  // Code_id: 11
-  //
-  // })
-  //
-  // // .then(function(data, err) {
-  // //     if (payload.primary_address != null) {
-  // //       knex('contacts').insert({
-  // //         correspondence_contact: correspondenceContact
-  // //       })
-  // //     } else {
-  // //     console.log('Data Entered, no physical correspondence address given')
-  // //       }
-  // //     })
-  // .then(function(data, err){
-  //   if(err) {
-  //     console.log('error message: ', err)
-  //   } else {
-  //   console.log('New Nationbuilder Contact Entered into SQL Database')
-  //     }
-  //   })
+  knex('contacts').insert({
+    contact_name: payload.full_name,
+    Member_id: payload.unite_id,
+    id: payload.id,
+    employer: payload.employer,
+    occupation: payload.occupation,
+    position: payload.position,
+    Worksite_id: payload.employer,
+    email: payload.email,
+    phone: payload.phone,
+    mobile: payload.mobile,
+    correspondence_contact: correspondence_contact,
+    Auto_note: 1,
+    Code_id: 11
 
-    console.log('correspondence_contact: ', correspondence_contact)
+  })
+
+  // .then(function(data, err) {
+  //     if (payload.primary_address != null) {
+  //       knex('contacts').insert({
+  //         correspondence_contact: correspondenceContact
+  //       })
+  //     } else {
+  //     console.log('Data Entered, no physical correspondence address given')
+  //       }
+  //     })
+  .then(function(data, err){
+    if(err) {
+      console.log('error message: ', err)
+    } else {
+    console.log('New Nationbuilder Contact Entered into SQL Database')
+      }
+    })
 
 
    });
