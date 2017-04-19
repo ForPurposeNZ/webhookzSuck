@@ -45,6 +45,8 @@ app.post('/addContact', function (req, res) {
   console.log('full name: ', payload.full_name)
   console.log("id: ", payload.id)
 
+  console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
+
 
   knex('contacts').insert({
     contact_name: payload.full_name,
