@@ -32,7 +32,7 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
- var correspondence_contact() = {
+ var correspondenceContact() = {
     if (payload.primary_address.address1 || payload.primary_address.address2 || payload.primary_address.address3 || payload.primary_address.city = null) {
       return '';
     } else {
@@ -43,7 +43,7 @@ app.post('/addContact', function (req, res) {
   //console.log('payload: ', payload)
   // console.log('full name: ', payload.full_name)
   // console.log("id: ", payload.id)
-  console.log('correspondence_contact: ', correspondence_contact)
+  console.log('correspondenceContact: ', correspondenceContact)
   // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
 
   //
