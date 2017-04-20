@@ -32,19 +32,20 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
- function correspondenceContact() {
+ function correspondence_contact() {
     if (payload.primary_address.address1 || payload.primary_address.address2 || payload.primary_address.address3 || payload.primary_address.city == null) {
-      return '';
+      return ''
     } else {
-      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city;
+      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
     }
   }
+
 
   //console.log('payload: ', payload)
   // console.log('full name: ', payload.full_name)
   // console.log("id: ", payload.id)
-  console.log('address1', payload.primary_address.address1)
-  console.log('correspondenceContact: ', correspondenceContact)
+  //console.log('address1', payload.primary_address.address1)
+  console.log('correspondenceContact: ', correspondenceContact())
   // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
 
   //
