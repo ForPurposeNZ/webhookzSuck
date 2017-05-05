@@ -18,6 +18,7 @@ exports.up = function(knex, Promise) {
   table.string('city')
   table.integer('Auto_note')
   table.integer('Code_id')
+  table.integer('Added_by')
 
   })
 };
