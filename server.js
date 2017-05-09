@@ -48,7 +48,7 @@ app.post('/addContact', function (req, res) {
   // console.log('full name: ', payload.full_name)
   // console.log("id: ", payload.id)
   //console.log('address1', payload.primary_address.address1)
-  console.log('correspondence_contact: ', correspondence_contact() )
+  //console.log('correspondence_contact: ', correspondence_contact() )
   // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
 
 
@@ -65,7 +65,8 @@ app.post('/addContact', function (req, res) {
     mobile: payload.mobile,
     correspondence_contact: correspondence_contact(),
     Auto_note: 1,
-    Code_id: 11
+    Code_id: 11,
+    Added_by: 46825
 
   }).then(function(data, err){
     if(err) {
