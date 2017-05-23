@@ -86,13 +86,13 @@ app.post("/updatePerson", function(req, res) {
 
   console.log(payload.primary_address.address1)
 
- //  function correspondence_contact() {
- //     if (payload.primary_address.address1 == null) {
- //       return ''
- //     } else {
- //       return payload.primary_address.address1
- //   }
- // }
+  function correspondence_contact() {
+     if (payload.primary_address.address1 == null) {
+       console.log("null")
+     } else {
+       console.log(payload.primary_address.address1)
+   }
+ }
  //
  //  knex('contacts').where({id: payload.id}).update({
  //    contact_name: payload.full_name,
