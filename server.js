@@ -106,11 +106,11 @@ app.post("/updatePerson", function(req, res) {
     Worksite_id: payload.employer,
     email: payload.email,
     phone: payload.phone,
-    mobile: payload.mobile,
+    mobile: payload.mobile
     //correspondence_contact: correspondence_contact(),
-    Auto_note: 1,
-    Code_id: 10,
-    Added_by: 46825
+    // Auto_note: 1,
+    // Code_id: 10,
+    // Added_by: 46825
 
     })
     .then(function(data, err){
