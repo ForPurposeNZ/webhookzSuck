@@ -93,6 +93,7 @@ app.post("/updatePerson", function(req, res) {
      } else {
        return ''
    }
+ }
 
   knex('contacts').where({id: payload.id}).update({
     contact_name: payload.full_name,
