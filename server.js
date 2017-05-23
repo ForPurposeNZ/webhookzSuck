@@ -83,7 +83,7 @@ app.post('/addContact', function (req, res) {
 app.post("/updatePerson", function(req, res) {
 
   payload = req.body.payload.person
-  console.log("update person payload", payload)
+  //console.log("update person payload", payload)
 
   // function correspondence_contact() {
   //    if (payload.primary_address.address1 == null ||
