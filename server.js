@@ -30,18 +30,18 @@ global.knex = knexGenerator(knexDbConfig)
 
 app.post('/addContact', function (req, res) {
 
-  payload = req.body.payload.person
-
- function correspondence_contact() {
-    if (payload.primary_address.address1 == null ||
-        payload.primary_address.address2 == null ||
-        payload.primary_address.address3 == null ||
-        payload.primary_address.city == null) {
-      return ''
-    } else {
-      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
-    }
-  }
+ //  payload = req.body.payload.person
+ //
+ // function correspondence_contact() {
+ //    if (payload.primary_address.address1 == null ||
+ //        payload.primary_address.address2 == null ||
+ //        payload.primary_address.address3 == null ||
+ //        payload.primary_address.city == null) {
+ //      return ''
+ //    } else {
+ //      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
+ //    }
+ //  }
 
 
   //console.log('payload: ', payload)
@@ -63,7 +63,7 @@ app.post('/addContact', function (req, res) {
     email: payload.email,
     phone: payload.phone,
     mobile: payload.mobile,
-    correspondence_contact: correspondence_contact(),
+    //correspondence_contact: correspondence_contact(),
     Auto_note: 1,
     Code_id: 11,
     Added_by: 46825
