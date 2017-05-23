@@ -84,9 +84,6 @@ app.post("/updatePerson", function(req, res) {
 
   payload = req.body.payload.person
 
-  console.log("payload.primary_address.address1 :", payload.primary_address.address1)
-  console.log("payload.primary_address.city :", payload.primary_address.city)
-
   function correspondence_contact() {
      if (payload.primary_address.address1 ||
          payload.primary_address.address2 ||
@@ -97,6 +94,9 @@ app.post("/updatePerson", function(req, res) {
        return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
      }
    }
+
+   console.log("payload.primary_address.address1 :", payload.primary_address.address1)
+   console.log("payload.primary_address.city :", payload.primary_address.city)
 
 
   knex('contacts').where({id: payload.id}).update({
