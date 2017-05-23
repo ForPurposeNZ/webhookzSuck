@@ -84,7 +84,7 @@ app.post("/updatePerson", function(req, res) {
 
   payload = req.body.payload.person
 
-  console.log(correspondence_contact)
+  console.log(correspondence_contact())
   console.log("payload.primary_address.address1 :", payload.primary_address.address1)
 
   function correspondence_contact() {
