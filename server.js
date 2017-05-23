@@ -85,11 +85,8 @@ app.post("/updatePerson", function(req, res) {
   payload = req.body.payload.person
 
   function correspondence_contact() {
-     if (payload.primary_address.address1 == !null &&
-         payload.primary_address.address2 == !null &&
-        //  payload.primary_address.address3 == !null &&
-         payload.primary_address.city == !null) {
-       return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
+     if (payload.primary_address.address1 = !null) {
+       return payload.primary_address.address1
      } else {
        return ''
    }
