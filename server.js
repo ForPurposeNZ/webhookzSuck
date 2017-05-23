@@ -84,38 +84,40 @@ app.post("/updatePerson", function(req, res) {
 
   payload = req.body.payload.person
 
-  function correspondence_contact() {
-     if (payload.primary_address.address1 == null) {
-       return ''
-     } else {
-       return payload.primary_address.address1
-   }
- }
+  console.log(payload.primary_address.address1)
 
-  knex('contacts').where({id: payload.id}).update({
-    contact_name: payload.full_name,
-    Member_id: payload.unite_id,
-    id: payload.id,
-    employer: payload.employer,
-    occupation: payload.occupation,
-    position: payload.position,
-    Worksite_id: payload.employer,
-    email: payload.email,
-    phone: payload.phone,
-    mobile: payload.mobile,
-    correspondence_contact: correspondence_contact(),
-    Auto_note: 1,
-    Code_id: 10,
-    Added_by: 46825
-
-    })
-    .then(function(data, err){
-      if(err){
-        console.log('error message: ', err)
-      } else {
-      console.log('Person Successfully Updated from Nationbuilder to SQL')
-      }
-  })
+ //  function correspondence_contact() {
+ //     if (payload.primary_address.address1 == null) {
+ //       return ''
+ //     } else {
+ //       return payload.primary_address.address1
+ //   }
+ // }
+ //
+ //  knex('contacts').where({id: payload.id}).update({
+ //    contact_name: payload.full_name,
+ //    Member_id: payload.unite_id,
+ //    id: payload.id,
+ //    employer: payload.employer,
+ //    occupation: payload.occupation,
+ //    position: payload.position,
+ //    Worksite_id: payload.employer,
+ //    email: payload.email,
+ //    phone: payload.phone,
+ //    mobile: payload.mobile,
+ //    correspondence_contact: correspondence_contact(),
+ //    Auto_note: 1,
+ //    Code_id: 10,
+ //    Added_by: 46825
+ //
+ //    })
+ //    .then(function(data, err){
+ //      if(err){
+ //        console.log('error message: ', err)
+ //      } else {
+ //      console.log('Person Successfully Updated from Nationbuilder to SQL')
+ //      }
+ //  })
 })
 
 
