@@ -95,10 +95,6 @@ app.post("/updatePerson", function(req, res) {
      }
    }
 
-   console.log("payload.primary_address.address1 :", payload.primary_address.address1)
-   console.log("payload.primary_address.city :", payload.primary_address.city)
-
-
   knex('contacts').where({id: payload.id}).update({
     contact_name: payload.full_name,
     Member_id: payload.unite_id,
