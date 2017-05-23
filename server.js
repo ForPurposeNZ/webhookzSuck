@@ -83,20 +83,9 @@ app.post('/addContact', function (req, res) {
 app.post("/updatePerson", function(req, res) {
 
   payload = req.body.payload.person
-  //console.log("update person payload", payload)
 
-  // function correspondence_contact() {
-  //    if (payload.primary_address.address1 == null ||
-  //        payload.primary_address.address2 == null ||
-  //        payload.primary_address.address3 == null ||
-  //        payload.primary_address.city == null) {
-  //      return ''
-  //    } else {
-  //      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
-  //    }
-  //  }
 
-  knex('contacts').where({contact_id: payload.id}).update({
+  knex('contacts').where({id: payload.id}).update({
     contact_name: payload.full_name,
     Member_id: payload.unite_id,
     id: payload.id,
@@ -106,11 +95,11 @@ app.post("/updatePerson", function(req, res) {
     Worksite_id: payload.employer,
     email: payload.email,
     phone: payload.phone,
-    mobile: payload.mobile
+    mobile: payload.mobile,
     //correspondence_contact: correspondence_contact(),
-    // Auto_note: 1,
-    // Code_id: 10,
-    // Added_by: 46825
+    Auto_note: 1,
+    Code_id: 10,
+    Added_by: 46825
 
     })
     .then(function(data, err){
