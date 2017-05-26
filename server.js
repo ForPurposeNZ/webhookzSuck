@@ -24,14 +24,24 @@ var knexDbConfig = knexConfig[env]
 global.knex = knexGenerator(knexDbConfig)
 
 
+////**** Fixie mySQL connection ****\\\\
+
+const mysql = require('mysql2');
+const SocksConnection = require('socksjs');
+
+const fixieUrl = process.env.FIXIE_SOCKS_HOST;
+const fixieValues = fixieUrl.split(new RegExp('[/(:\\/@)/]+'));
+
+
+
 
 ////*** Add New Contact ***\\\
 
 
 app.post('/addContact', function (req, res) {
 
- //  payload = req.body.payload.person
- //
+  payload = req.body.payload.person
+
  // function correspondence_contact() {
  //    if (payload.primary_address.address1 == null ||
  //        payload.primary_address.address2 == null ||
@@ -45,8 +55,8 @@ app.post('/addContact', function (req, res) {
 
 
   //console.log('payload: ', payload)
-  // console.log('full name: ', payload.full_name)
-  // console.log("id: ", payload.id)
+  console.log('full name: ', payload.full_name)
+  console.log("id: ", payload.id)
   //console.log('address1', payload.primary_address.address1)
   //console.log('correspondence_contact: ', correspondence_contact() )
   // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
@@ -72,7 +82,7 @@ app.post('/addContact', function (req, res) {
     if(err) {
       console.log('error message: ', err)
     } else {
-    console.log('New Nationbuilder Contact Entered into SQL Database')
+    console.log( payload.full_name, 'entered into SQL Database')
       }
     })
    });
