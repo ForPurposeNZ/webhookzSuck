@@ -1,7 +1,8 @@
 var express = require('express')
 var app = express()
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser')
 var knex = require('knex')
+var SocksConnection = require('socksjs')
 
 var port = process.env.PORT || 8080
 
@@ -23,6 +24,10 @@ var knexGenerator = require('knex')
 var knexDbConfig = knexConfig[env]
 global.knex = knexGenerator(knexDbConfig)
 
+////**** Fixie Socks connection ****\\\\
+
+const fixieUrl = process.env.FIXIE_SOCKS_HOST;
+const fixieValues = fixieUrl.split(new RegExp('[/(:\\/@)/]+'));
 
 
 ////*** Add New Contact ***\\\
@@ -90,9 +95,12 @@ app.post("/updatePerson", function(req, res) {
      if (payload.primary_address.address1 == null) {
        console.log("null")
      } else {
-       console.log(payload.primary_address.address1)
+       return payload.primary_address.address1
    }
  }
+
+//different types of null? Check and make all falsey??
+
  //
  //  knex('contacts').where({id: payload.id}).update({
  //    contact_name: payload.full_name,
