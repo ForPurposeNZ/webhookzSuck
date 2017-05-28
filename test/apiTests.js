@@ -1,4 +1,9 @@
-var request = require('supertest')
+var supertest = require('supertest')
+var should = require('chai').should()
+var expect = require('chai').expect
+var api = supertest('https://lastchancesaloon.herokuapp.com')
+
+
 var test = require('tape')
 var express = require('express')
 var app = express()
@@ -17,7 +22,7 @@ var app = express()
 
 
 test('new contact is entered into database', function(t) {
-  request(app)
+  supertest(app)
     .get('/addContact')
     .expect(200)
     .end(function(err, res) {
