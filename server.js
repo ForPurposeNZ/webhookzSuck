@@ -53,7 +53,7 @@ const fixieUrl = process.env.FIXIE_SOCKS_HOST;
 const fixieValues = fixieUrl.split(new RegExp('[/(:\\/@)/]+'));
 
 const mysqlServer = {
-  host: '50.23.215.146'
+  host: '50.23.215.146',
   port: 3306
 };
 
