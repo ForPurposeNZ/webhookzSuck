@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+     "test": "node test/*.js",
     "start-dev": "nodemon server.js"
   },
   "repository": {
@@ -20,9 +20,11 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "fixie": "0.0.1",
     "knex": "^0.12.7",
     "nodemon": "^1.11.0",
     "pg": "^6.1.4",
+    "socks": "^1.1.10",
     "sqlite3": "^3.1.8"
   }
 }
