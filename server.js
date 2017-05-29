@@ -32,6 +32,21 @@ const SocksConnection = require('socksjs');
 const fixieUrl = process.env.FIXIE_SOCKS_HOST;
 const fixieValues = fixieUrl.split(new RegExp('[/(:\\/@)/]+'));
 
+const mysqlServer = {
+  host: 'jdbc:mysql://www.unitemembers.org.nz/unitemem_sandpit,unitemem_pitusr,ForPurpose1'
+  // port: 3306
+};
+
+
+const fixieConnection = new SocksConnection(mysqlServer, {
+  user: fixieValues[0],
+  pass: fixieValues[1],
+  host: fixieValues[2],
+  port: fixieValues[3],
+});
+
+
+
 
 
 
