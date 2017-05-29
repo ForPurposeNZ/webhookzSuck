@@ -25,12 +25,13 @@ module.exports = {
     }
   },
 
-  production: 'jdbc:mysql://www.unitemembers.org.nz/unitemem_sandpit,unitemem_pitusr,ForPurpose1' || {
+  production:  {
     client: 'mySQL',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      host : '50.23.215.146',
+      user : 'your_database_user',
+      password : 'your_database_password',
+      database : 'myapp_test'
     },
     pool: {
       min: 2,
