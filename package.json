@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "test": "node test/*.js",
+    "test": "node test/*.js",
     "start-dev": "nodemon server.js"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "express": "^4.15.2",
     "fixie": "0.0.1",
     "knex": "^0.12.7",
+    "mysql": "^2.13.0",
     "nodemon": "^1.11.0",
     "pg": "^6.1.4",
     "socks": "^1.1.10",
