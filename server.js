@@ -33,6 +33,7 @@ fixieRequest('http://www.example.com', (err, res, body) => {
   console.log(`Got response: ${res.statusCode}`);
 });
 
+console.log(process.env.FIXIE_URL)
 
 // const mysql = require('mysql2');
 // const SocksConnection = require('socksjs');
@@ -61,7 +62,7 @@ fixieRequest('http://www.example.com', (err, res, body) => {
 ////*** Add New Contact ***\\\
 
 
-fixieRequest.post('/addContact', function (req, res) {
+app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
