@@ -34,10 +34,10 @@ const SocksConnection = require('socksjs');
 const fixieUrl = process.env.FIXIE_SOCKS_HOST;
 const fixieValues = RegExp('[/(:\\/@)/]+');
 
-const mysqlServer = {
-  host: '50.23.215.146',
-  port: 3306
-};
+// const mysqlServer = {
+//   host: '50.23.215.146',
+//   port: 3306
+// };
 
 const fixieConnection = new SocksConnection(mysqlServer, {
   user: fixieValues[0],
