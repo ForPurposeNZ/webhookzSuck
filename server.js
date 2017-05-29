@@ -90,19 +90,19 @@ app.post('/addContact', function (req, res) {
 
 ////**** Update Person ****\\\\
 
-app.post("/updatePerson", function(req, res) {
-
-  payload = req.body.payload.person
-
-  console.log(payload.primary_address.address1)
-
-  function correspondence_contact() {
-     if (payload.primary_address.address1 == null) {
-       console.log("null")
-     } else {
-       console.log(payload.primary_address.address1)
-   }
- }
+// app.post("/updatePerson", function(req, res) {
+//
+//   payload = req.body.payload.person
+//
+//   console.log(payload.primary_address.address1)
+//
+//   function correspondence_contact() {
+//      if (payload.primary_address.address1 == null) {
+//        console.log("null")
+//      } else {
+//        console.log(payload.primary_address.address1)
+//    }
+//  }
  //
  //  knex('contacts').where({id: payload.id}).update({
  //    contact_name: payload.full_name,

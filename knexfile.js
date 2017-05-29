@@ -25,8 +25,8 @@ module.exports = {
     }
   },
 
-  production: process.env.DATABASE_URL || {
-    client: 'postgresql',
+  production: 'jdbc:mysql://www.unitemembers.org.nz/unitemem_sandpit,unitemem_pitusr,Turtlemania89' || {
+    client: 'mySQL',
     connection: {
       database: 'my_db',
       user:     'username',
