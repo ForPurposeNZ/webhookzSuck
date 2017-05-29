@@ -75,7 +75,9 @@ console.log(process.env.FIXIE_URL)
 
 fixieRequest.post('https://lastchancesaloon.herokuapp.com/addContact', function (req, res) {
 
-  payload = req.body.payload.person
+  console.log("req", req)
+
+  //payload = req.body.payload.person
 
  // function correspondence_contact() {
  //    if (payload.primary_address.address1 == null ||
