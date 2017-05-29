@@ -52,9 +52,9 @@ const fixieConnection = new SocksConnection(mysqlServer, {
 ////*** Add New Contact ***\\\
 
 
-app.post('https://lastchancesaloon.herokuapp.com/addContact', function (err, res, body) {
+app.post('https://lastchancesaloon.herokuapp.com/addContact', function (request, response) {
 
-  console.log("req", req, "body: ", body)
+  console.log("dont log anything")
 
   //payload = req.body.payload.person
 
