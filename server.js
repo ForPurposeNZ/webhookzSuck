@@ -39,7 +39,7 @@ console.log(process.env.FIXIE_URL)
 
 ////*** test fixie with webhookzs ***\\\
 
-fixieRequest.post('/addContact', function(req, res) {
+fixieRequest.post('https://lastchancesaloon.herokuapp.com/addContact', function(req, res) {
  console.log("req: ", req, "res: ", res)
 
 })
