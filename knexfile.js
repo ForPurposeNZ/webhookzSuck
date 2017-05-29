@@ -26,7 +26,7 @@ module.exports = {
   },
 
   production:  {
-    client: 'mySQL',
+    client: 'mysql',
     connection: {
       host : '50.23.215.146',
       user : 'your_database_user',
