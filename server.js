@@ -72,7 +72,7 @@ app.post('/addContact', function (req, res) {
     if(err) {
       console.log('error message: ', err)
     } else {
-    console.log('New Nationbuilder Contact Entered into SQL Database')
+    console.log(data, 'New Nationbuilder Contact Entered into SQL Database')
       }
     })
    });
