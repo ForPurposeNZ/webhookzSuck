@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser');
 var knex = require('knex')
+var request = require('request')
 
 var port = process.env.PORT || 8080
 
@@ -25,6 +26,13 @@ global.knex = knexGenerator(knexDbConfig)
 
 
 ////**** Fixie mySQL connection ****\\\\
+
+const fixieRequest = request.defaults({'proxy': process.env.FIXIE_URL});
+
+fixieRequest('http://www.example.com', (err, res, body) => {
+  console.log(`Got response: ${res.statusCode}`);
+});
+
 
 // const mysql = require('mysql2');
 // const SocksConnection = require('socksjs');
@@ -53,7 +61,7 @@ global.knex = knexGenerator(knexDbConfig)
 ////*** Add New Contact ***\\\
 
 
-app.post('/addContact', function (req, res) {
+fixieRequest.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
