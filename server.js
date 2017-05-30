@@ -28,24 +28,47 @@ global.knex = knexGenerator(knexDbConfig)
 ////**** Fixie mySQL connection ****\\\\
 
 
-const mysql = require('mysql2');
-const SocksConnection = require('socksjs');
-
-const fixieUrl = process.env.FIXIE_SOCKS_HOST;
-const fixieValues = RegExp('[/(:\\/@)/]+');
-
+// const mysql = require('mysql2');
+// const SocksConnection = require('socksjs');
+//
+// const fixieUrl = process.env.FIXIE_SOCKS_HOST;
+// const fixieValues = RegExp('[/(:\\/@)/]+');
+//
 // const mysqlServer = {
 //   host: '50.23.215.146',
 //   port: 3306
 // };
+//
+// const fixieConnection = new SocksConnection(mysqlServer, {
+//   user: fixieValues[0],
+//   pass: fixieValues[1],
+//   host: fixieValues[2],
+//   port: fixieValues[3],
+// });
 
-const fixieConnection = new SocksConnection(mysqlServer, {
-  user: fixieValues[0],
-  pass: fixieValues[1],
-  host: fixieValues[2],
-  port: fixieValues[3],
+var http, options, proxy, url;
+
+http = require("http");
+
+url = require("url");
+
+proxy = url.parse(1080);
+target  = url.parse("http://ip.quotaguard.com/");
+
+options = {
+  hostname: '50.23.215.146',
+  port: proxy.port || 80,
+  path: target.href,
+  headers: {
+    "Proxy-Authorization": "Basic " + (new Buffer(proxy.auth).toString("base64")),
+    "Host" : '50.23.215.146'
+  }
+};
+
+http.get(options, function(res) {
+  res.pipe(process.stdout);
+  return console.log("status code", res.statusCode);
 });
-
 
 
 
