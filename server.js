@@ -53,7 +53,7 @@ http = require("http");
 url = require("url");
 
 proxy = url.parse(1080);
-target  = url.parse("http://ip.quotaguard.com/");
+target  = url.parse("jdbc:mysql://www.unitemembers.org.nz/unitemem_sandpit,unitemem_pitusr,ForPurpose1");
 
 options = {
   hostname: '50.23.215.146',
