@@ -61,7 +61,7 @@ var dbConnection = mysql.createConnection({
 ////*** Add New Contact ***\\\
 
 
-app.post('https://lastchancesaloon.herokuapp.com/addContact', function (request, response) {
+request.post('https://lastchancesaloon.herokuapp.com/addContact', function (request, response) {
 
   console.log("dont log anything")
 
