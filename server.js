@@ -49,7 +49,6 @@ function callback(error, response, body) {
 request(options, callback);
 
 
-
 // var url = require('url')
 // var SocksConnection = require('socksjs')
 // var remote_options = {
@@ -84,9 +83,9 @@ request(options, callback);
 
 app.post('/addContact', function (request, response) {
 
-  console.log("dont log anything")
+  // console.log("dont log anything")
 
-  //payload = req.body.payload.person
+  payload = req.body.payload.person
 
 //  // function correspondence_contact() {
 //  //    if (payload.primary_address.address1 == null ||
@@ -101,36 +100,36 @@ app.post('/addContact', function (request, response) {
 //
 //
 //   //console.log('payload: ', payload)
-//   console.log('full name: ', payload.full_name)
-//   console.log("id: ", payload.id)
-//   console.log('address1', payload.primary_address.address1)
+  console.log('full name: ', payload.full_name)
+  console.log("id: ", payload.id)
+  console.log('address1', payload.primary_address.address1)
 // //   // //console.log('correspondence_contact: ', correspondence_contact() )
 // //   // // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
 //
 //
-//   knex('contacts').insert({
-//     contact_name: payload.full_name,
-//     Member_id: payload.unite_id,
-//     id: payload.id,
-//     employer: payload.employer,
-//     occupation: payload.occupation,
-//     position: payload.position,
-//     Worksite_id: payload.employer,
-//     email: payload.email,
-//     phone: payload.phone,
-//     mobile: payload.mobile,
-//     //correspondence_contact: correspondence_contact(),
-//     Auto_note: 1,
-//     Code_id: 11,
-//     Added_by: 46825
-//
-//   }).then(function(data, err){
-//     if(err) {
-//       console.log('error message: ', err)
-//     } else {
-//     console.log( data, payload.full_name, 'entered into SQL Database')
-//       }
-//     })
+  knex('contacts').insert({
+    contact_name: payload.full_name,
+    Member_id: payload.unite_id,
+    id: payload.id,
+    employer: payload.employer,
+    occupation: payload.occupation,
+    position: payload.position,
+    Worksite_id: payload.employer,
+    email: payload.email,
+    phone: payload.phone,
+    mobile: payload.mobile,
+    //correspondence_contact: correspondence_contact(),
+    Auto_note: 1,
+    Code_id: 11,
+    Added_by: 46825
+
+  }).then(function(data, err){
+    if(err) {
+      console.log('error message: ', err)
+    } else {
+    console.log( data, payload.full_name, 'entered into SQL Database')
+      }
+    })
    });
 
 
