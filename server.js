@@ -64,7 +64,7 @@ global.knex = knexGenerator(knexDbConfig)
 app.post('/addContact', function (request, response) {
 
   console.log("dont log anything")
-ß
+
   //payload = req.body.payload.person
 
 //  // function correspondence_contact() {
