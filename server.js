@@ -28,54 +28,62 @@ global.knex = knexGenerator(knexDbConfig)
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
 
-var mysql = require('mysql2')
-
-var request = require('request');
-
-var options = {
-    proxy: process.env.QUOTAGUARDSTATIC_URL,
-    url: 'http://ip.jsontest.com/',
-    headers: {
-        'User-Agent': 'node.js'
-    }
-};
-
-function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body);
-    }
-}
-
-request(options, callback);
-
-
-// var url = require('url')
-// var SocksConnection = require('socksjs')
-// var remote_options = {
-//   host:'50.23.215.146',
-//   port: 3306
+// var mysql = require('mysql2')
+//
+// var request = require('request');
+//
+// var options = {
+//     proxy: process.env.QUOTAGUARDSTATIC_URL,
+//     url: 'http://ip.jsontest.com/',
+//     headers: {
+//         'User-Agent': 'node.js'
+//     }
 // };
 //
-// var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
-// var auth = proxy.auth;
-// var username = auth.split(":")[0]
-// var pass = auth.split(":")[1]
-//
-// var sock_options = {
-//   host: proxy.hostname,
-//   port: 1080,
-//   user: username,
-//   pass: pass
+// function callback(error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//         console.log(body);
+//     }
 // }
 //
-//
-// var sockConn = new SocksConnection(remote_options, sock_options)
-// var dbConnection = mysql.createConnection({
-//   user: 'test',
-//   database: 'test',
-//   password: 'ForPurpose1',
-//   stream: sockConn
-// })
+// request(options, callback);
+
+
+var mysql = require('mysql2'),
+    url = require('url'),
+    SocksConnection = require('socksjs');
+
+var remote_options = {
+    host:'your-database.eu-west-1.rds.amazonaws.com',
+    port: 3306
+};
+
+var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
+    auth = proxy.auth,
+    username = auth.split(':')[0],
+    pass = auth.split(':')[1];
+
+var sock_options = {
+    host: proxy.hostname,
+    port: 1080,
+    user: username,
+    pass: pass
+};
+
+var sockConn = new SocksConnection(remote_options, sock_options);
+var dbConnection = mysql.createConnection({
+    user: 'dbuser',
+    database: 'dbname',
+    password: 'dbpassword',
+    stream: sockConn
+});
+dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log('Result: ', rows);
+    sockConn.dispose();
+});
+dbConnection.end();
 
 
 ////*** Add New Contact ***\\\
