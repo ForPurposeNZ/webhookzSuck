@@ -46,30 +46,32 @@ global.knex = knexGenerator(knexDbConfig)
 //   port: fixieValues[3],
 // });
 
-var http, options, proxy, url;
 
-http = require("http");
-
-url = require("url");
-
-proxy = url.parse(1080);
-target  = url.parse("jdbc:mysql://www.unitemembers.org.nz/unitemem_sandpit,unitemem_pitusr,ForPurpose1");
-
-options = {
-  hostname: '50.23.215.146',
-  port: proxy.port || 80,
-  path: target.href,
-  headers: {
-    "Proxy-Authorization": "Basic " + (new Buffer(proxy.auth).toString("base64")),
-    "Host" : '50.23.215.146'
-  }
+var mysql = require('mysql2');
+var url = require("url");
+var SocksConnection = require('socksjs');
+var remote_options = {
+host:'50.23.215.146',
+port: 3306
 };
+var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
+var auth = proxy.auth;
+var username = auth.split(":")[0]
+var pass = auth.split(":")[1]
 
-http.get(options, function(res) {
-  res.pipe(process.stdout);
-  return console.log("status code", res.statusCode);
+var sock_options = {
+host: proxy.hostname,
+port: 1080,
+user: username,
+pass: pass
+}
+var sockConn = new SocksConnection(remote_options, sock_options)
+var dbConnection = mysql.createConnection({
+user: 'test',
+database: 'test',
+password: 'testpw',
+stream: sockConn
 });
-
 
 
 ////*** Add New Contact ***\\\
