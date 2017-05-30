@@ -72,9 +72,9 @@ var sock_options = {
 
 var sockConn = new SocksConnection(remote_options, sock_options);
 var dbConnection = mysql.createConnection({
-    user: 'dbuser',
-    database: 'dbname',
-    password: 'dbpassword',
+    user: 'unitemem_pituser',
+    database: 'unitemem_sandpit',
+    password: 'Du1s58@@3',
     stream: sockConn
 });
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
