@@ -36,7 +36,8 @@ var remote_options = {
   port: 3306
 };
 
-var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
+var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
+var socksProxyUrl = proxy.replace(":9293",":1080");
 var auth = proxy.auth;
 var username = auth.split(":")[0]
 var pass = auth.split(":")[1]
