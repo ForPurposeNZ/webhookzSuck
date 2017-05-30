@@ -48,6 +48,7 @@ var sock_options = {
   pass: pass
 }
 
+
 var sockConn = new SocksConnection(remote_options, sock_options)
 var dbConnection = mysql.createConnection({
   user: 'test',
