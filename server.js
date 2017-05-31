@@ -44,7 +44,7 @@ var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
     pass = auth.split(':')[1];
 
 var sock_options = {
-    host: proxy.hostname,
+    host: '54.84.138.60',
     port: 1080,
     user: username,
     pass: pass
@@ -60,19 +60,10 @@ var dbConnection = mysql.createConnection({
 
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-
-
-  console.log('proxy.hostname:    ', proxy.hostname)
-  console.log('dbconnection:    ', dbConnection)
-  console.log('auth:   ', auth)
-  console.log('proxy:   ', proxy)
-
-  console.log('sockConn: ', sockConn)
-
-
     if (err) throw err;
 
-    console.log('sockConn: ', sockConn)
+    console.log('Result: ', rows);
+    console.log('sock_options.host : ', sock_options.host)
 
     sockConn.dispose();
   });
@@ -86,53 +77,53 @@ dbConnection.end();
 
 app.post('/addContact', function (req, res) {
 
-  console.log('crap ballz')
+  console.log('fuck this shit')
 
-//   payload = req.body.payload.person
+  payload = req.body.payload.person
+
+//  // function correspondence_contact() {
+//  //    if (payload.primary_address.address1 == null ||
+//  //        payload.primary_address.address2 == null ||
+//  //        payload.primary_address.address3 == null ||
+//  //        payload.primary_address.city == null) {
+//  //      return ''
+//  //    } else {
+//  //      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
+//  //    }
+//  //  }
 //
-// //  // function correspondence_contact() {
-// //  //    if (payload.primary_address.address1 == null ||
-// //  //        payload.primary_address.address2 == null ||
-// //  //        payload.primary_address.address3 == null ||
-// //  //        payload.primary_address.city == null) {
-// //  //      return ''
-// //  //    } else {
-// //  //      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
-// //  //    }
-// //  //  }
-// //
-// //
-// //   //console.log('payload: ', payload)
-//   console.log('full name: ', payload.full_name)
-//   console.log("id: ", payload.id)
-//   console.log('address1', payload.primary_address.address1)
-// // //   // //console.log('correspondence_contact: ', correspondence_contact() )
-// // //   // // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
-// //
-// //
-//   knex('contacts').insert({
-//     contact_name: payload.full_name,
-//     Member_id: payload.unite_id,
-//     id: payload.id,
-//     employer: payload.employer,
-//     occupation: payload.occupation,
-//     position: payload.position,
-//     Worksite_id: payload.employer,
-//     email: payload.email,
-//     phone: payload.phone,
-//     mobile: payload.mobile,
-//     //correspondence_contact: correspondence_contact(),
-//     Auto_note: 1,
-//     Code_id: 11,
-//     Added_by: 46825
 //
-//   }).then(function(data, err){
-//     if(err) {
-//       console.log('error message: ', err)
-//     } else {
-//     console.log( data, payload.full_name, 'entered into SQL Database')
-//       }
-//     })
+//   //console.log('payload: ', payload)
+  console.log('full name: ', payload.full_name)
+  console.log("id: ", payload.id)
+  // console.log('address1', payload.primary_address.address1)
+// //   // //console.log('correspondence_contact: ', correspondence_contact() )
+// //   // // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
+//
+//
+  knex('contacts').insert({
+    contact_name: payload.full_name,
+    Member_id: payload.unite_id,
+    id: payload.id,
+    employer: payload.employer,
+    occupation: payload.occupation,
+    position: payload.position,
+    Worksite_id: payload.employer,
+    email: payload.email,
+    phone: payload.phone,
+    mobile: payload.mobile,
+    //correspondence_contact: correspondence_contact(),
+    Auto_note: 1,
+    Code_id: 11,
+    Added_by: 46825
+
+  }).then(function(data, err){
+    if(err) {
+      console.log('error message: ', err)
+    } else {
+    console.log( data, payload.full_name, 'entered into SQL Database')
+      }
+    })
    });
 
 
