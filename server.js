@@ -54,7 +54,7 @@ var mysql = require('mysql2'),
     SocksConnection = require('socksjs');
 
 var remote_options = {
-    host:'50.23.215.146',
+    host:'your-database.eu-west-1.rds.amazonaws.com',
     port: 3306
 };
 
@@ -78,11 +78,6 @@ var dbConnection = mysql.createConnection({
     stream: sockConn
 });
 
-function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body);
-    }
-}
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
