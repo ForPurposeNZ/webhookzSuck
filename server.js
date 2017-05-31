@@ -27,81 +27,50 @@ global.knex = knexGenerator(knexDbConfig)
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
-'use strict';
+var mysql = require('mysql2')
+    request = require('request');
+    url = require('url'),
+    SocksConnection = require('socksjs');
 
-const mysql = require('mysql2');
-const SocksConnection = require('socksjs');
-
-const fixieUrl = process.env.FIXIE_SOCKS_HOST;
-const fixieValues = fixieUrl.split(new RegExp('[/(:\\/@)/]+'));
-
-const mysqlServer = {
-  host: '50.23.215.146',
-  port: 3306
+var remote_options = {
+    host:'50.23.215.146',
+    port: 3306
 };
 
-const fixieConnection = new SocksConnection(mysqlServer, {
-  user: fixieValues[0],
-  pass: fixieValues[1],
-  host: fixieValues[2],
-  port: fixieValues[3],
+var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
+    auth = proxy.auth,
+    username = auth.split(':')[0],
+    pass = auth.split(':')[1];
+
+var sock_options = {
+    host: proxy.hostname,
+    port: 1080,
+    user: username,
+    pass: pass
+};
+
+var sockConn = new SocksConnection(remote_options, sock_options);
+var dbConnection = mysql.createConnection({
+    user: 'unitemem_pituser',
+    database: 'unitemem_sandpit',
+    password: 'Du1s58@@3',
+    stream: sockConn
 });
 
-const mysqlConnPool = mysql.createPool({
-  user: 'unitemem_pituser',
-  password: 'Du1s58@@3',
-  database: 'unitemem_sandpit',
-  stream: fixieConnection
-});
 
-mysqlConnPool.getConnection(function gotConnection(err, connection) {
-  connection.query('SELECT 1+1 as test1;', function (err, rows, fields) {
-      console.log('Result: ', rows);
-      connection.release();
+dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log('Result: ', rows);
+    sockConn.dispose();
   });
-});
 
 
 
+knex.select().from('contacts').timeout(100)
 
-// var mysql = require('mysql2')
-//     request = require('request');
-//     url = require('url'),
-//     SocksConnection = require('socksjs');
-//
-// var remote_options = {
-//     host:'50.23.215.146',
-//     port: 3306
-// };
-//
-// var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
-//     auth = proxy.auth,
-//     username = auth.split(':')[0],
-//     pass = auth.split(':')[1];
-//
-// var sock_options = {
-//     host: proxy.hostname,
-//     port: 1080,
-//     user: username,
-//     pass: pass
-// };
-//
-// var sockConn = new SocksConnection(remote_options, sock_options);
-// var dbConnection = mysql.createConnection({
-//     user: 'unitemem_pituser',
-//     database: 'unitemem_sandpit',
-//     password: 'Du1s58@@3',
-//     stream: sockConn
-// });
-//
-//
-// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log('Result: ', rows);
-//     sockConn.dispose();
-// });
-// dbConnection.end();
+
+dbConnection.end();
 
 
 
