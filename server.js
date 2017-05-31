@@ -76,7 +76,7 @@ dbConnection.end();
 
 app.post('/addContact', function (req, res) {
 
-  console.log('sockConn: ', sockConn)
+  console.log('fuck this shit')
 
 //   payload = req.body.payload.person
 //
