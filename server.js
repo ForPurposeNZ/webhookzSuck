@@ -60,6 +60,16 @@ var dbConnection = mysql.createConnection({
 
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+
+
+  console.log('proxy.hostname:    ', proxy.hostname)
+  console.log('dbconnection:    ', dbConnection)
+  console.log('auth:   ', auth)
+  console.log('proxy:   ', proxy)
+
+  console.log('sockConn: ', sockConn)
+
+
     if (err) throw err;
 
     console.log('sockConn: ', sockConn)
