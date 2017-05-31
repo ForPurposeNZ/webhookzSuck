@@ -86,13 +86,6 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 });
 dbConnection.end();
 
-var ipAddr = req.headers["x-forwarded-for"];
- if (ipAddr){
-   var list = ipAddr.split(",");
-   ipAddr = list[list.length-1];
- } else {
-   ipAddr = req.connection.remoteAddress;
-}
 
 
 ////*** Add New Contact ***\\\
