@@ -27,48 +27,48 @@ global.knex = knexGenerator(knexDbConfig)
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
-
-var mysql = require('mysql2')
-    request = require('request');
-    url = require('url'),
-    SocksConnection = require('socksjs');
-
-var remote_options = {
-    host: '50.23.215.146',
-    port: 3306
-};
-
-var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
-    auth = proxy.auth,
-    username = auth.split(':')[0],
-    pass = auth.split(':')[1];
-
-var sock_options = {
-    host: proxy.hostname,
-    port: 1080,
-    user: username,
-    pass: pass
-};
-
-var sockConn = new SocksConnection(remote_options, sock_options);
-var dbConnection = mysql.createConnection({
-    user: 'unitemem_pituser',
-    database: 'unitemem_sandpit',
-    password: 'Du1s58@@3',
-    stream: sockConn
-});
-
-
-dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log('Result: ', rows);
-    console.log('sock_options.host : ', sock_options.host)
-
-    sockConn.dispose();
-  });
-
-dbConnection.end();
+//
+// var mysql = require('mysql2')
+//     request = require('request');
+//     url = require('url'),
+//     SocksConnection = require('socksjs');
+//
+// var remote_options = {
+//     host: '50.23.215.146',
+//     port: 3306
+// };
+//
+// var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
+//     auth = proxy.auth,
+//     username = auth.split(':')[0],
+//     pass = auth.split(':')[1];
+//
+// var sock_options = {
+//     host: proxy.hostname,
+//     port: 1080,
+//     user: username,
+//     pass: pass
+// };
+//
+// var sockConn = new SocksConnection(remote_options, sock_options);
+// var dbConnection = mysql.createConnection({
+//     user: 'unitemem_pituser',
+//     database: 'unitemem_sandpit',
+//     password: 'Du1s58@@3',
+//     stream: sockConn
+// });
+//
+//
+// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log('Result: ', rows);
+//     console.log('sock_options.host : ', sock_options.host)
+//
+//     sockConn.dispose();
+//   });
+//
+// dbConnection.end();
 
 
 
