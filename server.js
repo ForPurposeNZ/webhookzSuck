@@ -27,46 +27,76 @@ global.knex = knexGenerator(knexDbConfig)
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
-var mysql = require('mysql2')
-    request = require('request');
-    url = require('url'),
-    SocksConnection = require('socksjs');
+var url = require('url');
+var Client = require('socksftp');
 
-var remote_options = {
-    host:'50.23.215.146',
-    port: 3306
+var httpProxyUrl = process.env.QUOTAGUARDSTATIC_URL;
+// Make sure to switch to the SOCKS5 proxy port 1080
+var socksProxyUrl = httpProxyUrl.replace(":9293",":1080");
+
+var server = {
+    'host': 'ftp.linuxjournal.com',
+    'port': 21,
+    'socksproxy': socksProxyUrl
 };
 
-var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
-    auth = proxy.auth,
-    username = auth.split(':')[0],
-    pass = auth.split(':')[1];
-
-var sock_options = {
-    host: proxy.hostname,
-    port: 1080,
-    user: username,
-    pass: pass
-};
-
-var sockConn = new SocksConnection(remote_options, sock_options);
-var dbConnection = mysql.createConnection({
-    user: 'unitemem_pituser',
-    database: 'unitemem_sandpit',
-    password: 'Du1s58@@3',
-    stream: sockConn
+var c = new Client();
+c.on('ready', function() {
+    c.list(function(err, list) {
+      if (err) throw err;
+      console.dir(list);
+      c.end();
+    });
 });
 
+c.on('error', function(err){
+    console.error('socksftp error: ' + err);
+    return;
+});
 
-dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    if (err) throw err;
+c.connect(server);
 
-    console.log('sockConn: ', sockConn)
 
-    sockConn.dispose();
-  });
-
-dbConnection.end();
+// var mysql = require('mysql2')
+//     request = require('request');
+//     url = require('url'),
+//     SocksConnection = require('socksjs');
+//
+// var remote_options = {
+//     host:'50.23.215.146',
+//     port: 3306
+// };
+//
+// var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
+//     auth = proxy.auth,
+//     username = auth.split(':')[0],
+//     pass = auth.split(':')[1];
+//
+// var sock_options = {
+//     host: proxy.hostname,
+//     port: 1080,
+//     user: username,
+//     pass: pass
+// };
+//
+// var sockConn = new SocksConnection(remote_options, sock_options);
+// var dbConnection = mysql.createConnection({
+//     user: 'unitemem_pituser',
+//     database: 'unitemem_sandpit',
+//     password: 'Du1s58@@3',
+//     stream: sockConn
+// });
+//
+//
+// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log('sockConn: ', sockConn)
+//
+//     sockConn.dispose();
+//   });
+//
+// dbConnection.end();
 
 
 
