@@ -54,7 +54,7 @@ var mysql = require('mysql2'),
     SocksConnection = require('socksjs');
 
 var remote_options = {
-    host:'your-database.eu-west-1.rds.amazonaws.com',
+    host:'jdbc:mysql://www.unitemembers.org.nz/unitemem_sandpit,unitemem_pitusr,Du1s58@@3',
     port: 3306
 };
 
