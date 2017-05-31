@@ -33,10 +33,10 @@ var mysql = require('mysql2')
     url = require('url'),
     SocksConnection = require('socksjs');
 
-var remote_options = {
-    host:'50.23.215.146',
-    port: 3306
-};
+// var remote_options = {
+//     host:'50.23.215.146',
+//     port: 3306
+// };
 
 var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL),
     auth = proxy.auth,
