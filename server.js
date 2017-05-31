@@ -56,6 +56,8 @@ var dbConnection = mysql.createConnection({
     stream: sockConn
 });
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    console.log(process.env.QUOTAGUARDSTATIC_URL)
+
     if (err) throw err;
 
     console.log('Result: ', rows);
