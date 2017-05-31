@@ -77,6 +77,13 @@ var dbConnection = mysql.createConnection({
     password: 'Du1s58@@3',
     stream: sockConn
 });
+
+function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body);
+    }
+}
+
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
 
