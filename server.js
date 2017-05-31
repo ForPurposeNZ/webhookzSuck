@@ -27,14 +27,12 @@ global.knex = knexGenerator(knexDbConfig)
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
-
-var mysql = require('mysql2')
-    request = require('request');
+var mysql = require('mysql2'),
     url = require('url'),
     SocksConnection = require('socksjs');
 
 var remote_options = {
-    host: '50.23.215.146',
+    host:'50.23.215.146',
     port: 3306
 };
 
@@ -57,17 +55,12 @@ var dbConnection = mysql.createConnection({
     password: 'Du1s58@@3',
     stream: sockConn
 });
-
-
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
 
     console.log('Result: ', rows);
-    console.log('sock_options.host : ', sock_options.host)
-
     sockConn.dispose();
-  });
-
+});
 dbConnection.end();
 
 
