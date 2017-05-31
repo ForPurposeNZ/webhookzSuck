@@ -34,7 +34,7 @@ var mysql = require('mysql2')
     SocksConnection = require('socksjs');
 
 var remote_options = {
-    host:'50.23.215.146',
+    host: proxy.hostname,
     port: 3306
 };
 
