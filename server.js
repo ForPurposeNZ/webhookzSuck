@@ -33,19 +33,19 @@ const mysql = require('mysql2');
 const SocksConnection = require('socksjs');
 
 const fixieUrl = process.env.FIXIE_SOCKS_HOST;
-// const fixieValues = fixieUrl.split(new RegExp('[/(:\\/@)/]+'));
+const fixieValues = fixieUrl.split(new RegExp('[/(:\\/@)/]+'));
 
 const mysqlServer = {
   host: '50.23.215.146',
   port: 3306
 };
 
-// const fixieConnection = new SocksConnection(mysqlServer, {
-//   user: fixieValues[0],
-//   pass: fixieValues[1],
-//   host: fixieValues[2],
-//   port: fixieValues[3],
-// });
+const fixieConnection = new SocksConnection(mysqlServer, {
+  user: fixieValues[0],
+  pass: fixieValues[1],
+  host: fixieValues[2],
+  port: fixieValues[3],
+});
 
 const mysqlConnPool = mysql.createPool({
   user: 'unitemem_pituser',
