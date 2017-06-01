@@ -29,26 +29,26 @@ global.knex = knexGenerator(knexDbConfig)
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
-// var mysql = require('mysql2')
-// var url = require("url")
-// var SocksConnection = require('socksjs')
-//
-// var remote_options = {
-// host:'50.23.215.146',
-// port: 3306
-// };
-//
-// var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
-// var auth = proxy.auth;
-// var username = auth.split(":")[0]
-// var pass = auth.split(":")[1]
-//
-// var sock_options = {
-// host: proxy.hostname,
-// port: 1080,
-// user: username,
-// pass: pass
-// }
+var mysql = require('mysql2')
+var url = require("url")
+var SocksConnection = require('socksjs')
+
+var remote_options = {
+host:'localhost',
+port: 8080
+};
+
+var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
+var auth = proxy.auth;
+var username = auth.split(":")[0]
+var pass = auth.split(":")[1]
+
+var sock_options = {
+host: proxy.hostname,
+port: 1080,
+user: username,
+pass: pass
+}
 //
 // var sockConn = new SocksConnection(remote_options, sock_options)
 // var dbConnection = mysql.createConnection({
