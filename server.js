@@ -102,3 +102,6 @@ app.post('/addContact', function (req, res) {
       }
     })
   });
+
+
+app.listen(port)
