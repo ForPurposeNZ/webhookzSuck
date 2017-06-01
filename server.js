@@ -24,6 +24,7 @@ var knexGenerator = require('knex')
 var knexDbConfig = knexConfig[env]
 global.knex = knexGenerator(knexDbConfig)
 
+
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
 var mysql = require('mysql2')
@@ -31,8 +32,8 @@ var url = require("url")
 var SocksConnection = require('socksjs')
 
 var remote_options = {
-  host:'50.23.215.146',
-  port: 3306
+ host:'50.23.215.146',
+ port: 3306
 };
 
 var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
@@ -69,17 +70,11 @@ dbConnection.end();
 
 ////*** Add New Contact ***\\\
 
-
 app.post('/addContact', function (req, res) {
 
-
   payload = req.body.payload.person
-
-
-
   console.log('full name: ', payload.full_name)
   console.log("id: ", payload.id)
-
 
   knex('contacts').insert({
     contact_name: payload.full_name,
