@@ -99,13 +99,4 @@ app.post('/addContact', function (req, res) {
     console.log( data, payload.full_name, 'entered into SQL Database')
       }
     })
-   });
-
-
-
-
-
-
-
-
-app.listen(port)
+  });
