@@ -14,5 +14,3 @@ socksAddress: '172.17.0.2',
 2017-05-31T02:37:36.082664+00:00 app[web.1]:   socksPort: 41942,
 
 isServer: undefined,
-
-web: bin/qgtunnel bundle exec unicorn -p $PORT -c ./config/unicorn.rb
