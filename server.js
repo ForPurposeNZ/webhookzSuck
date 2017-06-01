@@ -62,19 +62,25 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
     console.log('Result: ', rows)
 
-app.post('/addContact', function (req, res) {
-
-    payload = req.body.payload.person
-
-  INSERT INTO contacts (contact_name, Member_id)
-  VALUES (payload.full_name, payload.unite_id)
-
-})
-
-
     sockConn.dispose()
 
 })
+
+
+app.post('/addContact', function (req, res) {
+
+   payload = req.body.payload.person
+
+   dbConnection.query('INSERT INTO contacts (contact_name, Member_id) VALUES payload.full_name, payload.unite_id;', function(err, res) {
+       if (err) throw err;
+       console.log('Res   : ', res)
+
+       sockConn.dispose()
+
+   })
+
+})
+
 
 dbConnection.end();
 
