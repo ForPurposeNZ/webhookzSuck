@@ -58,6 +58,8 @@ stream: sockConn
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
+  console.log('Host***:      ', Host)
+
   app.post('/addContact', function (req, res) {
 
     console.log('fuck this shit')
