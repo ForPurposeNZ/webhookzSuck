@@ -38,6 +38,41 @@ var options = {
 };
 
 function callback(error, response, body) {
+
+
+  app.post('/addContact', function (req, res) {
+
+    console.log('fuck this shit')
+
+    payload = req.body.payload.person
+    console.log('full name: ', payload.full_name)
+    console.log("id: ", payload.id)
+
+    knex('contacts').insert({
+      contact_name: payload.full_name,
+      Member_id: payload.unite_id,
+      id: payload.id,
+      employer: payload.employer,
+      occupation: payload.occupation,
+      position: payload.position,
+      Worksite_id: payload.employer,
+      email: payload.email,
+      phone: payload.phone,
+      mobile: payload.mobile,
+      Auto_note: 1,
+      Code_id: 11,
+      Added_by: 46825
+
+    }).then(function(data, err){
+      if(err) {
+        console.log('error message: ', err)
+      } else {
+      console.log( data, payload.full_name, 'entered into SQL Database')
+        }
+      })
+     });
+
+
     if (!error && response.statusCode == 200) {
         console.log(body);
     }
@@ -81,37 +116,37 @@ stream: sockConn
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
 
-  app.post('/addContact', function (req, res) {
-
-    console.log('fuck this shit')
-
-    payload = req.body.payload.person
-    console.log('full name: ', payload.full_name)
-    console.log("id: ", payload.id)
-
-    knex('contacts').insert({
-      contact_name: payload.full_name,
-      Member_id: payload.unite_id,
-      id: payload.id,
-      employer: payload.employer,
-      occupation: payload.occupation,
-      position: payload.position,
-      Worksite_id: payload.employer,
-      email: payload.email,
-      phone: payload.phone,
-      mobile: payload.mobile,
-      Auto_note: 1,
-      Code_id: 11,
-      Added_by: 46825
-
-    }).then(function(data, err){
-      if(err) {
-        console.log('error message: ', err)
-      } else {
-      console.log( data, payload.full_name, 'entered into SQL Database')
-        }
-      })
-     });
+  // app.post('/addContact', function (req, res) {
+  //
+  //   console.log('fuck this shit')
+  //
+  //   payload = req.body.payload.person
+  //   console.log('full name: ', payload.full_name)
+  //   console.log("id: ", payload.id)
+  //
+  //   knex('contacts').insert({
+  //     contact_name: payload.full_name,
+  //     Member_id: payload.unite_id,
+  //     id: payload.id,
+  //     employer: payload.employer,
+  //     occupation: payload.occupation,
+  //     position: payload.position,
+  //     Worksite_id: payload.employer,
+  //     email: payload.email,
+  //     phone: payload.phone,
+  //     mobile: payload.mobile,
+  //     Auto_note: 1,
+  //     Code_id: 11,
+  //     Added_by: 46825
+  //
+  //   }).then(function(data, err){
+  //     if(err) {
+  //       console.log('error message: ', err)
+  //     } else {
+  //     console.log( data, payload.full_name, 'entered into SQL Database')
+  //       }
+  //     })
+  //    });
 
 
 
