@@ -35,7 +35,7 @@ var SocksConnection = require('socksjs')
 
 var remote_options = {
 host:'localhost',
-port: 8080
+port: 3306
 };
 
 var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
