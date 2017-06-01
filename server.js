@@ -24,6 +24,28 @@ var knexGenerator = require('knex')
 var knexDbConfig = knexConfig[env]
 global.knex = knexGenerator(knexDbConfig)
 
+//////////////////////////////////////
+
+
+var request = require('request');
+
+var options = {
+    proxy: process.env.QUOTAGUARDSTATIC_URL,
+    url: 'http://ip.jsontest.com/',
+    headers: {
+        'User-Agent': 'node.js'
+    }
+};
+
+function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body);
+    }
+}
+
+request(options, callback);
+
+
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
@@ -58,7 +80,6 @@ stream: sockConn
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
-  console.log('Host***:      ', Host)
 
   app.post('/addContact', function (req, res) {
 
