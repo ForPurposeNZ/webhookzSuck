@@ -64,7 +64,6 @@ var username = auth.split(":")[0]
 var pass = auth.split(":")[1]
 
 var sock_options = {
-socksAddress: '54.84.138.60',
 host: proxy.hostname,
 port: 1080,
 user: username,
@@ -83,8 +82,6 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
 
   app.post('/addContact', function (req, res) {
-
-    console.log('socksAddress:     ', sockConn.socksAddress, 'socksPort:    ', sockConn.socksPort)
 
     payload = req.body.payload.person
     console.log('full name: ', payload.full_name)
