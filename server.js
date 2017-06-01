@@ -32,7 +32,7 @@ var url = require("url")
 var SocksConnection = require('socksjs')
 
 var remote_options = {
-host:'mysql.db.hostname',
+host:'50.23.215.146',
 port: 3306
 };
 
@@ -50,9 +50,9 @@ pass: pass
 
 var sockConn = new SocksConnection(remote_options, sock_options)
 var dbConnection = mysql.createConnection({
-user: 'test',
-database: 'test',
-password: 'testpw',
+user: 'unitemem_pituser',
+database: 'unitemem_sandpit',
+password: 'Du1s58@@3',
 stream: sockConn
 })
 
