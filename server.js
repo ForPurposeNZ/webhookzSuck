@@ -83,7 +83,7 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
   app.post('/addContact', function (req, res) {
 
-    console.log('socksConnection:     ', socksConnection)
+    console.log('sockConn     ', sockConn)
 
     payload = req.body.payload.person
     console.log('full name: ', payload.full_name)
