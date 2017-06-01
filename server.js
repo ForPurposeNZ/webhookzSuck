@@ -7,7 +7,6 @@ var request = require('request')
 var port = process.env.PORT || 8080
 
 console.log(port)
-console.log('process.argv', process.argv)
 
 
 app.use(bodyParser.json())
