@@ -6,6 +6,8 @@ var request = require('request')
 
 var port = process.env.PORT || 8080
 
+console.log(port)
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -26,47 +28,47 @@ global.knex = knexGenerator(knexDbConfig)
 
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
-
-var mysql = require('mysql2')
-var url = require("url")
-var SocksConnection = require('socksjs')
-
-var remote_options = {
-host:'I put the ip address to database here',
-port: 3306
-};
-
-var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
-var auth = proxy.auth;
-var username = auth.split(":")[0]
-var pass = auth.split(":")[1]
-
-var sock_options = {
-host: proxy.hostname,
-port: 1080,
-user: username,
-pass: pass
-}
-
-var sockConn = new SocksConnection(remote_options, sock_options)
-var dbConnection = mysql.createConnection({
-user: 'I put the user here',
-database: 'I put the database name here',
-password: 'I put the password here',
-stream: sockConn
-})
-
-dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log('Result: ', rows)
-    sockConn.dispose()
-
-})
-
-dbConnection.end();
-
-
+//
+// var mysql = require('mysql2')
+// var url = require("url")
+// var SocksConnection = require('socksjs')
+//
+// var remote_options = {
+// host:'I put the ip address to database here',
+// port: 3306
+// };
+//
+// var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
+// var auth = proxy.auth;
+// var username = auth.split(":")[0]
+// var pass = auth.split(":")[1]
+//
+// var sock_options = {
+// host: proxy.hostname,
+// port: 1080,
+// user: username,
+// pass: pass
+// }
+//
+// var sockConn = new SocksConnection(remote_options, sock_options)
+// var dbConnection = mysql.createConnection({
+// user: 'I put the user here',
+// database: 'I put the database name here',
+// password: 'I put the password here',
+// stream: sockConn
+// })
+//
+// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log('Result: ', rows)
+//     sockConn.dispose()
+//
+// })
+//
+// dbConnection.end();
+//
+//
 
 ////*** Add New Contact ***\\\
 
