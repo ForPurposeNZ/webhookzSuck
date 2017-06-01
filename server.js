@@ -62,7 +62,6 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
     console.log('Result: ', rows)
 
-    sockConn.dispose()
 
 })
 
