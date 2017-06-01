@@ -64,6 +64,7 @@ var username = auth.split(":")[0]
 var pass = auth.split(":")[1]
 
 var sock_options = {
+socksAddress: "54.84.138.60"
 host: proxy.hostname,
 port: 1080,
 user: username,
