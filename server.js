@@ -69,6 +69,7 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 app.post('/addContact', function (req, res) {
 
    payload = req.body.payload.person
+   console.log(payload.full_name)
 
    dbConnection.query('INSERT INTO contacts (contact_name) VALUES ('test');' , function(err, res) {
        if (err) throw err;
@@ -76,7 +77,6 @@ app.post('/addContact', function (req, res) {
 
 
    })
-
 })
 
 
