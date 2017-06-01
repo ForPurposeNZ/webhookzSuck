@@ -57,6 +57,43 @@ stream: sockConn
 })
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+
+  app.post('/addContact', function (req, res) {
+
+    console.log('fuck this shit')
+
+    payload = req.body.payload.person
+    console.log('full name: ', payload.full_name)
+    console.log("id: ", payload.id)
+
+    knex('contacts').insert({
+      contact_name: payload.full_name,
+      Member_id: payload.unite_id,
+      id: payload.id,
+      employer: payload.employer,
+      occupation: payload.occupation,
+      position: payload.position,
+      Worksite_id: payload.employer,
+      email: payload.email,
+      phone: payload.phone,
+      mobile: payload.mobile,
+      Auto_note: 1,
+      Code_id: 11,
+      Added_by: 46825
+
+    }).then(function(data, err){
+      if(err) {
+        console.log('error message: ', err)
+      } else {
+      console.log( data, payload.full_name, 'entered into SQL Database')
+        }
+      })
+     });
+
+
+
+
+
 if (err) throw err;
 
 console.log('Result: ', rows)
@@ -70,56 +107,56 @@ dbConnection.end();
 ////*** Add New Contact ***\\\
 
 
-app.post('/addContact', function (req, res) {
-
-  console.log('fuck this shit')
-
-  payload = req.body.payload.person
-
-//  // function correspondence_contact() {
-//  //    if (payload.primary_address.address1 == null ||
-//  //        payload.primary_address.address2 == null ||
-//  //        payload.primary_address.address3 == null ||
-//  //        payload.primary_address.city == null) {
-//  //      return ''
-//  //    } else {
-//  //      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
-//  //    }
-//  //  }
+// app.post('/addContact', function (req, res) {
 //
+//   console.log('fuck this shit')
 //
-//   //console.log('payload: ', payload)
-  console.log('full name: ', payload.full_name)
-  console.log("id: ", payload.id)
-  // console.log('address1', payload.primary_address.address1)
-// //   // //console.log('correspondence_contact: ', correspondence_contact() )
-// //   // // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
+//   payload = req.body.payload.person
 //
+// //  // function correspondence_contact() {
+// //  //    if (payload.primary_address.address1 == null ||
+// //  //        payload.primary_address.address2 == null ||
+// //  //        payload.primary_address.address3 == null ||
+// //  //        payload.primary_address.city == null) {
+// //  //      return ''
+// //  //    } else {
+// //  //      return payload.primary_address.address1 && payload.primary_address.address2 && payload.primary_address.address3 && payload.primary_address.city
+// //  //    }
+// //  //  }
+// //
+// //
+// //   //console.log('payload: ', payload)
+//   console.log('full name: ', payload.full_name)
+//   console.log("id: ", payload.id)
+//   // console.log('address1', payload.primary_address.address1)
+// // //   // //console.log('correspondence_contact: ', correspondence_contact() )
+// // //   // // console.log(payload.full_name, 'Member_id/unite_id:', payload.unite_id, 'id:', payload.id)
+// //
+// //
+//   knex('contacts').insert({
+//     contact_name: payload.full_name,
+//     Member_id: payload.unite_id,
+//     id: payload.id,
+//     employer: payload.employer,
+//     occupation: payload.occupation,
+//     position: payload.position,
+//     Worksite_id: payload.employer,
+//     email: payload.email,
+//     phone: payload.phone,
+//     mobile: payload.mobile,
+//     //correspondence_contact: correspondence_contact(),
+//     Auto_note: 1,
+//     Code_id: 11,
+//     Added_by: 46825
 //
-  knex('contacts').insert({
-    contact_name: payload.full_name,
-    Member_id: payload.unite_id,
-    id: payload.id,
-    employer: payload.employer,
-    occupation: payload.occupation,
-    position: payload.position,
-    Worksite_id: payload.employer,
-    email: payload.email,
-    phone: payload.phone,
-    mobile: payload.mobile,
-    //correspondence_contact: correspondence_contact(),
-    Auto_note: 1,
-    Code_id: 11,
-    Added_by: 46825
-
-  }).then(function(data, err){
-    if(err) {
-      console.log('error message: ', err)
-    } else {
-    console.log( data, payload.full_name, 'entered into SQL Database')
-      }
-    })
-   });
+//   }).then(function(data, err){
+//     if(err) {
+//       console.log('error message: ', err)
+//     } else {
+//     console.log( data, payload.full_name, 'entered into SQL Database')
+//       }
+//     })
+//    });
 
 
 ////**** Update Person ****\\\\
