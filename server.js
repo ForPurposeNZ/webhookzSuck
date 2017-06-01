@@ -74,14 +74,16 @@ app.post('/addContact', function (req, res) {
        if (err) throw err;
        console.log('Res   : ', res)
 
-       sockConn.dispose()
 
    })
 
 })
 
 
-dbConnection.end();
+// sockConn.dispose()
+
+
+// dbConnection.end();
 
 
 
