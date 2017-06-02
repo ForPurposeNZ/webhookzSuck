@@ -72,7 +72,9 @@ app.post('/addContact', function (req, res) {
    payload = req.body.payload.person
    console.log(payload.full_name)
 
-   dbConnection.query('INSERT INTO contacts (contact_name) VALUES ('test')' , function(err, res) {
+   var query = INSERT INTO contacts (contact_name) VALUES ('test');
+
+   dbConnection.query(query, function(err, res) {
        if (err) throw err;
        console.log('Res   : ', res)
 
