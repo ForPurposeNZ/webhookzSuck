@@ -66,6 +66,13 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
 })
 
+// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+//     if (err) throw err;
+//     console.log('Result: ', rows)
+//
+//
+// })  try doing a select using a piece of data from test sandpit
+
 
 app.post('/addContact', function (req, res) {
 
@@ -73,7 +80,7 @@ app.post('/addContact', function (req, res) {
    console.log(payload.full_name)
 
 
-   dbConnection.execute(
+   dbConnection.query(
      INSERT INTO contacts (contact_name) VALUES ('test');
       function(err, results, fields) {
         if (err) throw err;
