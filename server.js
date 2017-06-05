@@ -36,7 +36,7 @@ var url = require("url")
 var SocksConnection = require('socksjs')
 
 var remote_options = {
-  host:'localhost',
+  host:'localhost:8080',
   port: 3306
 };
 
