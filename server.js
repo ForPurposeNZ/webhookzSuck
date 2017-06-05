@@ -73,20 +73,18 @@ app.post('/addContact', function (req, res) {
   console.log('full name: ', payload.full_name)
   console.log("id: ", payload.id)
 
-  dbConnection.query(
-    'INSERT INTO `contacts` `contact_name` VALUES `test`',
-    function(err, results, fields) {
+  dbConnection.query('INSERT INTO `contacts` `contact_name` VALUES `test`', function(err, results, fields) {
       console.log(results); // results contains rows returned by server
       console.log(fields); // fields contains extra meta data about results, if available
-    }
-  .then(function(data, err){
+    })
+  .then(function(data, err) {
     if(err) {
       console.log('error message: ', err)
     } else {
     console.log( payload.full_name, 'entered into SQL Database')
+    }
   })
-    })
-  })
+})
 
 
 
