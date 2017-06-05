@@ -78,8 +78,14 @@ app.post('/addContact', function (req, res) {
     function(err, results, fields) {
       console.log(results); // results contains rows returned by server
       console.log(fields); // fields contains extra meta data about results, if available
+  .then(function(data, err){
+    if(err) {
+      console.log('error message: ', err)
+    } else {
+    console.log( payload.full_name, 'entered into SQL Database')
+      }
     })
-  });
+});
 
 
 
