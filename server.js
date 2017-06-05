@@ -6,6 +6,9 @@ var request = require('request')
 
 var port = process.env.PORT || 8080
 
+console.log(port)
+
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -14,15 +17,15 @@ app.get('/', function (req, res) {
 })
 
 
-var knexConfig = require('./knexfile.js')
-
-var knex = knex(knexConfig[process.env.NODE_ENV || 'development'])
-
-var env = 'production'
-var knexConfig = require('./knexfile.js')
-var knexGenerator = require('knex')
-var knexDbConfig = knexConfig[env]
-global.knex = knexGenerator(knexDbConfig)
+// var knexConfig = require('./knexfile.js')
+//
+// var knex = knex(knexConfig[process.env.NODE_ENV || 'development'])
+//
+// var env = 'production'
+// var knexConfig = require('./knexfile.js')
+// var knexGenerator = require('knex')
+// var knexDbConfig = knexConfig[env]
+// global.knex = knexGenerator(knexDbConfig)
 
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
@@ -32,7 +35,7 @@ var url = require("url")
 var SocksConnection = require('socksjs')
 
 var remote_options = {
-host:'I put the ip address to database here',
+host:'50.23.215.146',
 port: 3306
 };
 
@@ -47,49 +50,56 @@ port: 1080,
 user: username,
 pass: pass
 }
-
+//
 var sockConn = new SocksConnection(remote_options, sock_options)
 var dbConnection = mysql.createConnection({
-user: 'I put the user here',
-database: 'I put the database name here',
-password: 'I put the password here',
+user: 'unitemem_pituser',
+database: 'unitemem_sandpit',
+password: 'Du1s58@@3',
 stream: sockConn
 })
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
-
     console.log('Result: ', rows)
-    sockConn.dispose()
+
 
 })
+
+// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+//     if (err) throw err;
+//     console.log('Result: ', rows)
+//
+//
+// })  try doing a select using a piece of data from test sandpit
+
+
+app.post('/addContact', function (req, res) {
+
+   payload = req.body.payload.person
+   console.log(payload.full_name)
+
+
+   dbConnection.query(
+     INSERT INTO contacts (contact_name) VALUES ('test');
+      function(err, results, fields) {
+        if (err) throw err;
+       console.log('Results   : ', results)
+       console.log('fields   : ', fields)
+
+
+   })
+})
+
+
+sockConn.dispose()
+
 
 dbConnection.end();
 
 
 
 ////*** Add New Contact ***\\\
-
-
-app.post('/addContact', function (req, res) {
-
-  payload = req.body.payload.person
-  console.log('full name: ', payload.full_name)
-  console.log("id: ", payload.id)
-
-  knex('contacts').insert({
-    contact_name: payload.full_name,
-    email: payload.email
-
-  }).then(function(data, err){
-    if(err) {
-      console.log('error message: ', err)
-    } else {
-    console.log( data, payload.full_name, 'entered into SQL Database')
-      }
-    })
-   });
-
 
 
 
