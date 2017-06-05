@@ -74,22 +74,31 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 // })  try doing a select using a piece of data from test sandpit
 
 
-app.post('/addContact', function (req, res) {
-
-   payload = req.body.payload.person
-   console.log(payload.full_name)
-
-
-   dbConnection.query(
-     INSERT INTO contacts (contact_name) VALUES ('test');
-      function(err, results, fields) {
-        if (err) throw err;
-       console.log('Results   : ', results)
-       console.log('fields   : ', fields)
+dbConnection.query(
+  'INSERT INTO `contacts` `contact_name` VALUES `test`',
+  function(err, results, fields) {
+    console.log(results); // results contains rows returned by server
+    console.log(fields); // fields contains extra meta data about results, if available
+  }
+);
 
 
-   })
-})
+// app.post('/addContact', function (req, res) {
+//
+//    payload = req.body.payload.person
+//    console.log(payload.full_name)
+//
+//
+//    dbConnection.query(
+//      INSERT INTO contacts (contact_name) VALUES ('test');
+//       function(err, results, fields) {
+//         if (err) throw err;
+//        console.log('Results   : ', results)
+//        console.log('fields   : ', fields)
+//
+//
+//    })
+// })
 
 
 sockConn.dispose()
