@@ -18,15 +18,15 @@ app.get('/', function (req, res) {
 })
 
 
-var knexConfig = require('./knexfile.js')
-
-var knex = knex(knexConfig[process.env.NODE_ENV || 'development'])
-
-var env = 'production'
-var knexConfig = require('./knexfile.js')
-var knexGenerator = require('knex')
-var knexDbConfig = knexConfig[env]
-global.knex = knexGenerator(knexDbConfig)
+// var knexConfig = require('./knexfile.js')
+//
+// var knex = knex(knexConfig[process.env.NODE_ENV || 'development'])
+//
+// var env = 'production'
+// var knexConfig = require('./knexfile.js')
+// var knexGenerator = require('knex')
+// var knexDbConfig = knexConfig[env]
+// global.knex = knexGenerator(knexDbConfig)
 
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
@@ -36,7 +36,7 @@ var url = require("url")
 var SocksConnection = require('socksjs')
 
 var remote_options = {
-  host:'localhost:8080',
+  host:'50.23.215.146',
   port: 3306
 };
 
