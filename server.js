@@ -74,12 +74,12 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 // })  try doing a select using a piece of data from test sandpit
 
 
-// dbConnection.query(
-//   'INSERT INTO `contacts` `contact_name` VALUES `test`',
-//   function(err, results, fields) {
-//     console.log(results); // results contains rows returned by server
-//     console.log(fields); // fields contains extra meta data about results, if available
-//   })
+dbConnection.query(
+  'INSERT INTO `contacts` `contact_name` VALUES `test`',
+  function(err, results, fields) {
+    console.log(results); // results contains rows returned by server
+    console.log(fields); // fields contains extra meta data about results, if available
+  })
 
 
 
