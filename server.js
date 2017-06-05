@@ -66,20 +66,29 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
 })
 
-// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-//     if (err) throw err;
-//     console.log('Result: ', rows)
-//
-//
-// })  try doing a select using a piece of data from test sandpit
+app.post('/addContact', function (req, res) {
+
+  payload = req.body.payload.person
+
+  console.log('full name: ', payload.full_name)
+  console.log("id: ", payload.id)
+
+  dbConnection.query(
+    'INSERT INTO `contacts` `contact_name` VALUES `test`',
+    function(err, results, fields) {
+      console.log(results); // results contains rows returned by server
+      console.log(fields); // fields contains extra meta data about results, if available
+    }).then(function(data, err){
+    if(err) {
+      console.log('error message: ', err)
+    } else {
+    console.log( payload.full_name, 'entered into SQL Database')
+      }
+    })
+});
 
 
-dbConnection.query(
-  'INSERT INTO `contacts` `contact_name` VALUES `test`',
-  function(err, results, fields) {
-    console.log(results); // results contains rows returned by server
-    console.log(fields); // fields contains extra meta data about results, if available
-  })
+
 
 
 
@@ -93,6 +102,38 @@ dbConnection.end();
 
 ////*** Add New Contact ***\\\
 
+
+// app.post('/addContact', function (req, res) {
+//
+//   payload = req.body.payload.person
+//
+//   console.log('full name: ', payload.full_name)
+//   console.log("id: ", payload.id)
+//
+//   knex('contacts').insert({
+//     contact_name: payload.full_name,
+//     Member_id: payload.unite_id,
+//     id: payload.id,
+//     employer: payload.employer,
+//     occupation: payload.occupation,
+//     position: payload.position,
+//     Worksite_id: payload.employer,
+//     email: payload.email,
+//     phone: payload.phone,
+//     mobile: payload.mobile,
+//     //correspondence_contact: correspondence_contact(),
+//     Auto_note: 1,
+//     Code_id: 11,
+//     Added_by: 46825
+//
+//   }).then(function(data, err){
+//     if(err) {
+//       console.log('error message: ', err)
+//     } else {
+//     console.log( payload.full_name, 'entered into SQL Database')
+//       }
+//     })
+//    });
 
 
 app.listen(port)
