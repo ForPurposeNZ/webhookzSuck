@@ -61,12 +61,12 @@ password: 'Du1s58@@3',
 stream: sockConn
 })
 
-dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log('Result: ', rows);
-    sockConn.dispose();
-});
+// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log('Result: ', rows);
+//     sockConn.dispose();
+// });
 
 dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Connie Genet";', function(err, rows, fields) {
     if (err) throw err;
