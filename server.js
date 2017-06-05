@@ -55,9 +55,9 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 var dbConnection = mysql.createConnection({
-user: 'unitemem_pituser',
-database: 'unitemem_sandpit',
-password: 'Du1s58@@3',
+user: process.env.dbuser,
+database: process.env.dbdatabase,
+password: process.env.dbpassword,
 stream: sockConn
 })
 
