@@ -74,22 +74,14 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 // })  try doing a select using a piece of data from test sandpit
 
 
-app.post('/addContact', function (req, res) {
-
-   payload = req.body.payload.person
-   console.log(payload.full_name)
-
-
-   dbConnection.query(
-     INSERT INTO contacts (contact_name) VALUES ('test');
-      function(err, results, fields) {
-        if (err) throw err;
-       console.log('Results   : ', results)
-       console.log('fields   : ', fields)
+// dbConnection.query(
+//   'INSERT INTO `contacts` `contact_name` VALUES `test`',
+//   function(err, results, fields) {
+//     console.log(results); // results contains rows returned by server
+//     console.log(fields); // fields contains extra meta data about results, if available
+//   })
 
 
-   })
-})
 
 
 sockConn.dispose()
@@ -101,36 +93,6 @@ dbConnection.end();
 
 ////*** Add New Contact ***\\\
 
-
-// app.post('/addContact', function (req, res) {
-//
-//   payload = req.body.payload.person
-//   console.log('full name: ', payload.full_name)
-//   console.log("id: ", payload.id)
-//
-//   knex('contacts').insert({
-//     contact_name: payload.full_name,
-//     Member_id: payload.unite_id,
-//     id: payload.id,
-//     employer: payload.employer,
-//     occupation: payload.occupation,
-//     position: payload.position,
-//     Worksite_id: payload.employer,
-//     email: payload.email,
-//     phone: payload.phone,
-//     mobile: payload.mobile,
-//     Auto_note: 1,
-//     Code_id: 11,
-//     Added_by: 46825
-//
-//   }).then(function(data, err){
-//     if(err) {
-//       console.log('error message: ', err)
-//     } else {
-//     console.log( data, payload.full_name, 'entered into SQL Database')
-//       }
-//     })
-//   });
 
 
 app.listen(port)
