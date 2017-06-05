@@ -8,7 +8,6 @@ var port = process.env.PORT || 8080
 
 console.log(port)
 
-console.log(localhost)
 
 
 app.use(bodyParser.json())
