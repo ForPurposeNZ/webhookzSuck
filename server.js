@@ -83,22 +83,7 @@ dbConnection.query(
 )
 
 
-// app.post('/addContact', function (req, res) {
-//
-//    payload = req.body.payload.person
-//    console.log(payload.full_name)
-//
-//
-//    dbConnection.query(
-//      INSERT INTO contacts (contact_name) VALUES ('test');
-//       function(err, results, fields) {
-//         if (err) throw err;
-//        console.log('Results   : ', results)
-//        console.log('fields   : ', fields)
-//
-//
-//    })
-// })
+
 
 
 sockConn.dispose()
