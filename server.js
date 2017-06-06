@@ -91,12 +91,14 @@ app.post('/addContact', function (req, res) {
     if (err) throw err;
 
     console.log("its in thurr:  ", rows)
+
+    sockConn.dispose();
+
   })
 
 })
 
 
-sockConn.dispose();
 
 dbConnection.end();
 //
