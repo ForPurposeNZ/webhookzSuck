@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var knex = require('knex')
 var request = require('request')
 
+require('dotenv').config()
+
 var port = process.env.PORT || 8080
 
 console.log(port)
