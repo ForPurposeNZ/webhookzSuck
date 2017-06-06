@@ -97,46 +97,7 @@ var column = '(contact_name)'
 //   })
 // })
 
-var relevantDataEquals = {
 
-    contact_name = payload.full_name,
-    Member_id = payload.unite_id,
-    id = payload.id,
-    employer = payload.employer,
-    occupation = payload.occupation,
-    position = payload.position,
-    Worksite_id = payload.employer,
-    email = payload.email,
-    phone = payload.phone,
-    mobile = payload.mobile,
-    Auto_note = 1,
-    Code_id = 11,
-    Added_by = 46825
-
-  }
-
-  console.log("relevantDataEquals", relevantDataEquals)
-
-
-  var relevantDataDots = {
-
-      contact_name: payload.full_name,
-      Member_id: payload.unite_id,
-      id: payload.id,
-      employer: payload.employer,
-      occupation: payload.occupation,
-      position: payload.position,
-      Worksite_id: payload.employer,
-      email: payload.email,
-      phone: payload.phone,
-      mobile: payload.mobile,
-      Auto_note: 1,
-      Code_id: 11,
-      Added_by: 46825
-
-    }
-
-console.log("relevantDataDots", relevantDataDots)
 
 
 
@@ -149,6 +110,26 @@ app.post('/addContact', function (req, res) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
+
+    var relevantDataDots = {
+
+        contact_name: payload.full_name,
+        Member_id: payload.unite_id,
+        id: payload.id,
+        employer: payload.employer,
+        occupation: payload.occupation,
+        position: payload.position,
+        Worksite_id: payload.employer,
+        email: payload.email,
+        phone: payload.phone,
+        mobile: payload.mobile,
+        Auto_note: 1,
+        Code_id: 11,
+        Added_by: 46825
+
+      }
+
+  console.log("relevantDataDots", relevantDataDots)
 
     // sockConn.dispose();
   })
