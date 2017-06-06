@@ -97,6 +97,17 @@ var column = '(contact_name)'
 //   })
 // })
 
+// [employer: payload.employer],
+// [occupation: payload.occupation],
+// [position: payload.position],
+// [Worksite_id: payload.employer],
+// [email: payload.email],
+// [phone: payload.phone],
+// [mobile: payload.mobile],
+// [Auto_note: 1],
+// [Code_id: 11],
+// [Added_by: 46825]
+
 
 
 
@@ -105,33 +116,16 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  itsOkay =  {
-      "contact_name": payload.full_name,
-      "Member_id": payload.unite_id
-            }
-
-  //var relevantData = [ payload.full_name, payload.unite_id, payload.id, payload.employer, payload.occupation, payload.position, payload.employer, payload.email, payload.phone, 1, 11, 46825]
-
-
-      // contact_name: payload.full_name],
-      // [Member_id: payload.unite_id],
-      // [id: payload.id],
-      // [employer: payload.employer],
-      // [occupation: payload.occupation],
-      // [position: payload.position],
-      // [Worksite_id: payload.employer],
-      // [email: payload.email],
-      // [phone: payload.phone],
-      // [mobile: payload.mobile],
-      // [Auto_note: 1],
-      // [Code_id: 11],
-      // [Added_by: 46825]
-
+  var relevantData = {
+      contact_name: payload.full_name,
+      Member_id: payload.unite_id,
+      id: payload.id
+}
 
 
 // console.log("relevantData", relevantData)
 
-  dbConnection.query('INSERT INTO ' + table + ' VALUES "' + itsOkay + '"', function(err, rows, fields) {
+  dbConnection.query('INSERT INTO ' + table + ' SET "' + relevantData + '"', function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
