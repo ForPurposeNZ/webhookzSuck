@@ -76,9 +76,24 @@ dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi
     if (err) throw err;
 
     console.log('Result: ', rows);
-    sockConn.dispose();
 });
 
+
+app.post('/addContact', function (req, res) {
+
+  payload = req.body.payload.person
+
+  dbConnection.query('INSERT INTO `contacts` `contact_name` VALUES `payload.full_name`;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log("its in thurr:  " rows)
+  })
+
+
+})
+
+
+sockConn.dispose();
 
 dbConnection.end();
 //
@@ -87,37 +102,37 @@ dbConnection.end();
 ////*** Add New Contact ***\\\
 
 
-app.post('/addContact', function (req, res) {
-
-  payload = req.body.payload.person
-
-  console.log('full name: ', payload.full_name)
-  console.log("id: ", payload.id)
-
-  knex('contacts').insert({
-    contact_name: payload.full_name,
-    Member_id: payload.unite_id,
-    id: payload.id,
-    employer: payload.employer,
-    occupation: payload.occupation,
-    position: payload.position,
-    Worksite_id: payload.employer,
-    email: payload.email,
-    phone: payload.phone,
-    mobile: payload.mobile,
-    //correspondence_contact: correspondence_contact(),
-    Auto_note: 1,
-    Code_id: 11,
-    Added_by: 46825
-
-  }).then(function(data, err){
-    if(err) {
-      console.log('error message: ', err)
-    } else {
-    console.log( payload.full_name, 'entered into SQL Database')
-      }
-    })
-   });
+// app.post('/addContact', function (req, res) {
+//
+//   payload = req.body.payload.person
+//
+//   console.log('full name: ', payload.full_name)
+//   console.log("id: ", payload.id)
+//
+//   knex('contacts').insert({
+//     contact_name: payload.full_name,
+//     Member_id: payload.unite_id,
+//     id: payload.id,
+//     employer: payload.employer,
+//     occupation: payload.occupation,
+//     position: payload.position,
+//     Worksite_id: payload.employer,
+//     email: payload.email,
+//     phone: payload.phone,
+//     mobile: payload.mobile,
+//     //correspondence_contact: correspondence_contact(),
+//     Auto_note: 1,
+//     Code_id: 11,
+//     Added_by: 46825
+//
+//   }).then(function(data, err){
+//     if(err) {
+//       console.log('error message: ', err)
+//     } else {
+//     console.log( payload.full_name, 'entered into SQL Database')
+//       }
+//     })
+//    });
 
 
 app.listen(port)
