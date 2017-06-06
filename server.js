@@ -83,6 +83,63 @@ var dataTest = 'test'
 var column = '(contact_name)'
 
 
+// app.post('/addContact', function (req, res) {
+//
+//   payload = req.body.payload.person
+//
+//
+//   dbConnection.query('INSERT INTO ' + table + ' SET contact_name="' + payload.full_name + '"', function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
+//
+//     // sockConn.dispose();
+//   })
+// })
+
+var relevantDataEquals = {
+
+    contact_name = payload.full_name,
+    Member_id = payload.unite_id,
+    id = payload.id,
+    employer = payload.employer,
+    occupation = payload.occupation,
+    position = payload.position,
+    Worksite_id = payload.employer,
+    email = payload.email,
+    phone = payload.phone,
+    mobile = payload.mobile,
+    Auto_note = 1,
+    Code_id = 11,
+    Added_by = 46825
+
+  }
+
+  console.log("relevantDataEquals", relevantDataEquals)
+
+
+  var relevantDataDots = {
+
+      contact_name: payload.full_name,
+      Member_id: payload.unite_id,
+      id: payload.id,
+      employer: payload.employer,
+      occupation: payload.occupation,
+      position: payload.position,
+      Worksite_id: payload.employer,
+      email: payload.email,
+      phone: payload.phone,
+      mobile: payload.mobile,
+      Auto_note: 1,
+      Code_id: 11,
+      Added_by: 46825
+
+    }
+
+console.log("relevantDataDots", relevantDataDots)
+
+
+
 app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
@@ -91,20 +148,17 @@ app.post('/addContact', function (req, res) {
   dbConnection.query('INSERT INTO ' + table + ' SET contact_name="' + payload.full_name + '"', function(err, rows, fields) {
     if (err) throw err;
 
-
-
-
-
-    console.log("its in thurr:  ", rows)
+    console.log(payload.full_name, "is now in teh derterberse:  ", rows)
 
     // sockConn.dispose();
-
-
   })
-
 })
 
-//TODO: Figure out pooling. Write rest of code.
+
+
+
+
+//TODO: Figure out pooling. Write rest of code. suss correspondence_contact.
 
 // dbConnection.end();
 
