@@ -97,17 +97,15 @@ var column = '(contact_name)'
 //   })
 // })
 
-// [employer: payload.employer],
-// [occupation: payload.occupation],
-// [position: payload.position],
-// [Worksite_id: payload.employer],
-// [email: payload.email],
-// [phone: payload.phone],
-// [mobile: payload.mobile],
-// [Auto_note: 1],
-// [Code_id: 11],
-// [Added_by: 46825]
+var test = "Bob Test"
 
+dbConnection.query('INSERT INTO ' + table + ' SET contact_name="' + test + '"', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log(test, "is now in teh derterberse:  ", rows)
+
+    // sockConn.dispose();
+  })
 
 
 
