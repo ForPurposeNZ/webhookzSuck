@@ -54,12 +54,15 @@ var sock_options = {
 
 var sockConn = new SocksConnection(remote_options, sock_options)
 
+var pWord = process.env.DB_PASSWORD
+
 var dbConnection = mysql.createConnection({
 user: 'unitemem_pituser',
 database: 'unitemem_sandpit',
-password: process.env.DB_PASSWORD,
+password: pWord,
 stream: sockConn
 })
+
 
 // dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 //     if (err) throw err;
