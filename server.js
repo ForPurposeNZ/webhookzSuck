@@ -104,7 +104,7 @@ app.post('/addContact', function (req, res) {
 
 })
 
-
+//TODO: Figure out pooling. Write rest of code.
 
 // dbConnection.end();
 
