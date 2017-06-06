@@ -87,12 +87,11 @@ app.post('/addContact', function (req, res) {
   payload = req.body.payload.person
 
 
-  dbConnection.query('INSERT INTO' + table + ' SET contact_name"'+ dataTest +'"', function(err, rows, fields) {
+  dbConnection.query('INSERT INTO' + table + ' WHERE `contact_name` VALUES' + dataTest + '"', function(err, rows, fields) {
     if (err) throw err;
 
     console.log("its in thurr:  ", rows)
 
-    sockConn.dispose();
 
   })
 
@@ -100,6 +99,7 @@ app.post('/addContact', function (req, res) {
 
 
 
+sockConn.dispose();
 dbConnection.end();
 //
 //
