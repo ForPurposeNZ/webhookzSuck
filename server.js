@@ -69,7 +69,7 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
 
     console.log('Result: ', rows);
-    sockConn.dispose();
+    // sockConn.dispose();
 });
 
 // dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
