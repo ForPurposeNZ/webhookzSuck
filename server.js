@@ -33,7 +33,7 @@ app.get('/', function (req, res) {
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
-var mysql = require('mysql2')
+var mysql = require('mysql')
 var url = require("url")
 var SocksConnection = require('socksjs')
 
@@ -125,7 +125,7 @@ app.post('/addContact', function (req, res) {
 
 // console.log("relevantData", relevantData)
 
-  dbConnection.query('INSERT INTO ' + table + ' SET "' + relevantData + '"', function(err, rows, fields) {
+  dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
