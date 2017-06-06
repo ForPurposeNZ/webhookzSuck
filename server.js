@@ -90,7 +90,7 @@ app.post('/addContact', function (req, res) {
   dbConnection.query('INSERT INTO' + table + ' SET contact_name"'+ dataTest +'"', function(err, rows, fields) {
     if (err) throw err;
 
-    console.log("its in thurr:  " rows)
+    console.log("its in thurr:  ", rows)
   })
 
 })
