@@ -72,23 +72,45 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     // sockConn.dispose();
 });
 
+
+/////***** tests etc *****/////
+
 // dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
 //     if (err) throw err;
 //
 //     console.log('Result: ', rows);
 // });
 
-var table = 'contacts'
-var dataTest = 'test'
-var column = '(contact_name)'
+
+// var test = "Bob Test"
+//
+// dbConnection.query('INSERT INTO ' + table + ' SET contact_name="' + test + '"', function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log(test, "is now in teh derterberse:  ", rows)
+//
+//     // sockConn.dispose();
+//   })
 
 
 // app.post('/addContact', function (req, res) {
 //
 //   payload = req.body.payload.person
 //
+//   var relevantData = {
+//       contact_id: payload.id,
+//       contact_name: payload.full_name,
+//       position: payload.position,
+//       email: payload.email,
+//       phone: payload.phone,
+//       mobile: payload.mobile,
+//       Auto_note: 1,
+//       Code_id: 11,
+//       Added_by: 46825
+// }
+// // console.log("relevantData", relevantData)
 //
-//   dbConnection.query('INSERT INTO ' + table + ' SET contact_name="' + payload.full_name + '"', function(err, rows, fields) {
+//   dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
 //     if (err) throw err;
 //
 //     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
@@ -97,17 +119,23 @@ var column = '(contact_name)'
 //   })
 // })
 
-var test = "Bob Test"
-
-dbConnection.query('INSERT INTO ' + table + ' SET contact_name="' + test + '"', function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log(test, "is now in teh derterberse:  ", rows)
-
-    // sockConn.dispose();
-  })
 
 
+
+//TODO: Figure out pooling. Write rest of code. suss correspondence_contact.
+
+// dbConnection.end();
+
+
+
+/////***** Relevant Variables and Functions *****/////
+
+var table = 'contacts'
+
+
+
+
+////*** Add New Contact ***\\\
 
 
 app.post('/addContact', function (req, res) {
@@ -126,15 +154,12 @@ app.post('/addContact', function (req, res) {
       Added_by: 46825
 }
 
-
 // console.log("relevantData", relevantData)
 
   dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-
-
 
     // sockConn.dispose();
   })
@@ -144,47 +169,8 @@ app.post('/addContact', function (req, res) {
 
 
 
-//TODO: Figure out pooling. Write rest of code. suss correspondence_contact.
-
-// dbConnection.end();
-
-//
-//
-
-////*** Add New Contact ***\\\
 
 
-// app.post('/addContact', function (req, res) {
-//
-//   payload = req.body.payload.person
-//
-//   console.log('full name: ', payload.full_name)
-//   console.log("id: ", payload.id)
-//
-//   knex('contacts').insert({
-//     contact_name: payload.full_name,
-//     Member_id: payload.unite_id,
-//     id: payload.id,
-//     employer: payload.employer,
-//     occupation: payload.occupation,
-//     position: payload.position,
-//     Worksite_id: payload.employer,
-//     email: payload.email,
-//     phone: payload.phone,
-//     mobile: payload.mobile,
-//     //correspondence_contact: correspondence_contact(),
-//     Auto_note: 1,
-//     Code_id: 11,
-//     Added_by: 46825
-//
-//   }).then(function(data, err){
-//     if(err) {
-//       console.log('error message: ', err)
-//     } else {
-//     console.log( payload.full_name, 'entered into SQL Database')
-//       }
-//     })
-//    });
 
 
 app.listen(port)
