@@ -94,14 +94,15 @@ app.post('/addContact', function (req, res) {
     console.log("its in thurr:  ", rows)
 
 
-    sockConn.dispose();
   })
 
 })
 
+// sockConn.dispose();
 
-sockConn.dispose();
+
 dbConnection.end();
+
 //
 //
 
