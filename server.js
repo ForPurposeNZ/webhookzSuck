@@ -72,18 +72,20 @@ stream: sockConn
 //     sockConn.dispose();
 // });
 
-dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log('Result: ', rows);
-});
+// dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log('Result: ', rows);
+// });
 
 
 app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  dbConnection.query('INSERT INTO `contacts` `contact_name` SET `test`;', function(err, rows, fields) {
+  var post  = {contact_name: 'testing prepared statement'}
+
+  dbConnection.query('INSERT INTO contacts SET ?', post, function(err, rows, fields) {
     if (err) throw err;
 
     console.log("its in thurr:  " rows)
