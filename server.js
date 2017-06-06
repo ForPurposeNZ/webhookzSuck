@@ -120,7 +120,12 @@ app.post('/addContact', function (req, res) {
       contact_id: payload.id,
       contact_name: payload.full_name,
       position: payload.position,
-      email: payload.email
+      email: payload.email,
+      phone: payload.phone,
+      mobile: payload.mobile,
+      Auto_note: 1,
+      Code_id: 11,
+      Added_by: 46825
 }
 
 
