@@ -117,9 +117,10 @@ app.post('/addContact', function (req, res) {
   payload = req.body.payload.person
 
   var relevantData = {
+      id: payload.id,
       contact_name: payload.full_name,
-      Member_id: payload.unite_id,
-      id: payload.id
+      position: payload.position,
+      email: payload.email
 }
 
 
