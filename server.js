@@ -68,7 +68,7 @@ stream: sockConn
 //     sockConn.dispose();
 // });
 
-dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Connie Genet";', function(err, rows, fields) {
+dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
     if (err) throw err;
 
     console.log('Result: ', rows);
