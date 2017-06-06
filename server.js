@@ -55,9 +55,9 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 var dbConnection = mysql.createConnection({
-user: process.env.dbuser,
-database: process.env.dbdatabase,
-password: process.env.dbpassword,
+user: 'unitemem_pituser',
+database: 'unitemem_sandpit',
+password: 'Du1s58@@3',
 stream: sockConn
 })
 
@@ -68,7 +68,7 @@ stream: sockConn
 //     sockConn.dispose();
 // });
 
-dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
+dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Linda Asher";', function(err, rows, fields) {
     if (err) throw err;
 
     console.log('Result: ', rows);
