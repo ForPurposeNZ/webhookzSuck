@@ -65,12 +65,12 @@ stream: sockConn
 })
 
 
-// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log('Result: ', rows);
-//     sockConn.dispose();
-// });
+dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log('Result: ', rows);
+    sockConn.dispose();
+});
 
 // dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
 //     if (err) throw err;
@@ -93,7 +93,7 @@ app.post('/addContact', function (req, res) {
 
     console.log("its in thurr:  ", rows)
 
-    sockConn.dispose();
+    // sockConn.dispose();
 
 
   })
@@ -102,7 +102,7 @@ app.post('/addContact', function (req, res) {
 
 
 
-dbConnection.end();
+// dbConnection.end();
 
 //
 //
