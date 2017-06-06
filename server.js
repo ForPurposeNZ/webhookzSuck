@@ -148,10 +148,10 @@ app.post('/addContact', function (req, res) {
       position: payload.position,
       email: payload.email,
       phone: payload.phone,
-      mobile: payload.mobile,
-      Auto_note: 1,
-      Code_id: 11,
-      Added_by: 46825
+      mobile: payload.mobile
+      // Auto_note: 1,
+      // Code_id: 11,
+      // Added_by: 46825
 }
 
 // console.log("relevantData", relevantData)
