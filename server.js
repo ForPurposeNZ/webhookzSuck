@@ -78,14 +78,16 @@ stream: sockConn
 //     console.log('Result: ', rows);
 // });
 
+var table = 'contacts'
+var dataTest = 'test'
+
 
 app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  var post  = {contact_name: 'testing prepared statement'}
 
-  dbConnection.query('INSERT INTO contacts SET ?', post, function(err, rows, fields) {
+  dbConnection.query('INSERT INTO' + table + ' `contact_name` SET ' + dataTest, function(err, rows, fields) {
     if (err) throw err;
 
     console.log("its in thurr:  " rows)
