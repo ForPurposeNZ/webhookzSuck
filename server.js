@@ -69,7 +69,7 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     if (err) throw err;
 
     console.log('Result: ', rows);
-    // sockConn.dispose();
+    sockConn.dispose();
 });
 
 
@@ -172,7 +172,8 @@ var table = 'contacts'
 
 app.post('/updatePerson', function (req, res) {
 
-  payload = req.body.payload.person
+
+     payload = req.body.payload.person
 
   var relevantData = {
       contact_id: payload.id,
