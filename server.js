@@ -189,12 +189,12 @@ app.post('/updatePerson', function (req, res) {
 
 // console.log("relevantData", relevantData)
 
-  dbConnection.query('UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData, function(err, rows, fields) {
+  dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now updated:  ", rows)
 
-    sockConn.dispose();
+    sockConn.dispose(); //<---?
   })
 })
 
