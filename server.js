@@ -93,37 +93,6 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 //   })
 
 
-app.post('/addContact', function (req, res) {
-
-  payload = req.body.payload.person
-
-  console.log('payload: ', payload)
-
-
-  var relevantData = {
-      contact_id: payload.id,
-      contact_name: payload.full_name,
-      position: payload.position,
-      email: payload.email,
-      phone: payload.phone,
-      mobile: payload.mobile,
-      Auto_note: 1,
-      Code_id: 11,
-      Added_by: 46825
-}
-// console.log("relevantData", relevantData)
-
-  dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-
-    // sockConn.dispose();
-  })
-})
-
-
-
 
 //TODO: Figure out pooling. Write rest of code. suss correspondence_contact.
 
@@ -141,37 +110,62 @@ var table = 'contacts'
 //*** Add New Contact ***\\\
 
 
+app.post('/addContact', function (req, res) {
+
+  payload = req.body.payload.person
+
+  var relevantData = {
+      contact_id: payload.id,
+      contact_name: payload.full_name,
+      position: payload.position,
+      email: payload.email,
+      phone: payload.phone,
+      mobile: payload.mobile
+      // Auto_note: 1,
+      // Code_id: 11,
+      // Added_by: 46825
+}
+// console.log("relevantData", relevantData)
+
+  dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log(payload.full_name, "is now in teh derterberse:  ", rows)
+
+    // sockConn.dispose();
+  })
+})
 
 
 /////***** Update Contact *****/////
 
 
 
-// app.post('/updatePerson', function (req, res) {
-//
-//
-//      payload = req.body.payload.person
-//
-//   var relevantData = {
-//       contact_id: payload.id,
-//       contact_name: payload.full_name,
-//       position: payload.position,
-//       email: payload.email,
-//       phone: payload.phone,
-//       mobile: payload.mobile
-//       // Auto_note: 1,
-//       // Code_id: 11,
-//       // Added_by: 46825
-//     }
-//
-//   dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log(payload.full_name, "is now updated:  ", rows)
-//
-//     sockConn.dispose(); //<---?
-//   })
-// })
+app.post('/updatePerson', function (req, res) {
+
+
+     payload = req.body.payload.person
+
+  var relevantData = {
+      contact_id: payload.id,
+      contact_name: payload.full_name,
+      position: payload.position,
+      email: payload.email,
+      phone: payload.phone,
+      mobile: payload.mobile
+      // Auto_note: 1,
+      // Code_id: 11,
+      // Added_by: 46825
+    }
+
+  dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log(payload.full_name, "is now updated:  ", rows)
+
+    sockConn.dispose(); //<---?
+  })
+})
 
 
 
