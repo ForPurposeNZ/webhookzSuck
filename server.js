@@ -163,7 +163,7 @@ app.post('/updatePerson', function (req, res) {
 
     console.log(payload.full_name, "is now updated:  ", rows)
 
-    sockConn.dispose(); //<---?
+    // sockConn.dispose(); //<---?
   })
 })
 
