@@ -188,7 +188,11 @@ app.post('/updatePerson', function (req, res) {
 
 // console.log("relevantData", relevantData)
 
-  dbConnection.query('UPDATE ' + table + 'SET ? ' + relevantData + 'WHERE contact_id= '+ payload.id, function(err, rows, fields) {
+var querrry = 'UPDATE ' + table + ' SET ? ' + relevantData + 'WHERE contact_id= '+ payload.id
+
+console.log("qqqq lookz liek   :", querrry)
+
+  dbConnection.query(querrry, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now updated:  ", rows)
