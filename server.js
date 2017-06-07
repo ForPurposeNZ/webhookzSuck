@@ -114,9 +114,11 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  console.log("date?", Date.now())
+  console.log('new Date().toString():', new Date().toString())
+  console.log("employer: ", payload.employer)
 
   var relevantData = {
+      Note_id: autoincrement,
       member_id: payload.unite_id,
       firstname_primary: payload.first_name,
       lastname_primary: payload.last_name,
@@ -127,12 +129,30 @@ app.post('/addContact', function (req, res) {
       email: payload.email,
       phone_mobile: payload.mobile,
       phone_home: payload.phone,
-      lastupdated: Date.now(),
+      members_notes: "signed up with Nationbuilder"
+      // lastupdated: Date.now(),
+      Worksite_id: payload.Employer,
+      Date_time:
       // Auto_note: 1,
-      Code_id: 11,
-      Added_by: 46825
+      // Code_id: 11,
+      // Added_by: 46825
 }
 
+Note_id – autoincrement
+
+Member_id – member id
+
+Note_text – description of change, for addition simply “Member  signed up.”
+
+Added_by – normally the Member_id of the user adding/updating
+
+Date_time – timestamp
+
+Auto_note – value “1” as this note has been automatically added
+
+Code_id – value “10” for an update, value “11” for an addition
+
+Worksite_id – member’s current worksite
 
 // console.log("relevantData", relevantData)
 
@@ -161,7 +181,8 @@ app.post('/updatePerson', function (req, res) {
       position: payload.position,
       email: payload.email,
       phone: payload.phone,
-      mobile: payload.mobile
+      mobile: payload.mobile,
+      members_notes: "Changed with Nationbuilder"
       // Auto_note: 1,
       // Code_id: 11,
       // Added_by: 46825
