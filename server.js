@@ -155,32 +155,32 @@ var memberNotesData = {
 
 
 
-app.post('/updatePerson', function (req, res) {
-
-
-     payload = req.body.payload.person
-
-  var relevantData = {
-      contact_id: payload.id,
-      contact_name: payload.full_name,
-      position: payload.position,
-      email: payload.email,
-      phone: payload.phone,
-      mobile: payload.mobile,
-      Note_text: "Changed with Nationbuilder"
-      // Auto_note: 1,
-      // Code_id: 11,
-      // Added_by: 46825
-    }
-
-  dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log(payload.full_name, "is now updated:  ", rows)
-
-    // sockConn.dispose(); //<---?
-  })
-})
+// app.post('/updatePerson', function (req, res) {
+//
+//
+//      payload = req.body.payload.person
+//
+//   var relevantData = {
+//       contact_id: payload.id,
+//       contact_name: payload.full_name,
+//       position: payload.position,
+//       email: payload.email,
+//       phone: payload.phone,
+//       mobile: payload.mobile,
+//       Note_text: "Changed with Nationbuilder"
+//       // Auto_note: 1,
+//       // Code_id: 11,
+//       // Added_by: 46825
+//     }
+//
+//   dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log(payload.full_name, "is now updated:  ", rows)
+//
+//     // sockConn.dispose(); //<---?
+//   })
+// })
 
 
 
