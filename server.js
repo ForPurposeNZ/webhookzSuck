@@ -199,7 +199,7 @@ console.log("relevantData", relevantData)
 })
 
 
-'UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData
+// 'UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData
 
 
 
