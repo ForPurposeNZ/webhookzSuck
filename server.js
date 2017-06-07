@@ -188,7 +188,7 @@ app.post('/updatePerson', function (req, res) {
 
 // console.log("relevantData", relevantData)
 
-var querrry = 'UPDATE ' + table + ' SET ? ' + relevantData + 'WHERE contact_id= '+ payload.id
+var querrry = 'UPDATE ' + table + ' SET ' + relevantData + 'WHERE contact_id= '+ payload.id
 
 console.log("qqqq lookz liek   :", querrry)
 
