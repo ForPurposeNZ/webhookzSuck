@@ -116,7 +116,7 @@ app.post('/addContact', function (req, res) {
 
 
   var relevantData = {
-      // Note_id: autoincrement,
+
       member_id: payload.unite_id,
       firstname_primary: payload.first_name,
       lastname_primary: payload.last_name,
@@ -127,9 +127,10 @@ app.post('/addContact', function (req, res) {
       email: payload.email,
       phone_mobile: payload.mobile,
       phone_home: payload.phone,
-      members_notes: "signed up with Nationbuilder",
       Worksite_id: payload.employer,
       Date_time: new Date().toString()
+      // Note_text: "signed up with Nationbuilder",
+      // Note_id: autoincrement,
       // Auto_note: 1,
       // Code_id: 11,
       // Added_by: 46825
@@ -163,7 +164,7 @@ app.post('/updatePerson', function (req, res) {
       email: payload.email,
       phone: payload.phone,
       mobile: payload.mobile,
-      members_notes: "Changed with Nationbuilder"
+      Note_text: "Changed with Nationbuilder"
       // Auto_note: 1,
       // Code_id: 11,
       // Added_by: 46825
