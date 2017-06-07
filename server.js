@@ -114,8 +114,6 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  console.log('payload: ', payload)
-
   var date = Date.now()
 
   console.log('is it that easy?   ', date)
@@ -132,7 +130,7 @@ app.post('/addContact', function (req, res) {
       phone_mobile: payload.mobile,
       phone_home: payload.phone,
       lastupdated: Date.now(),
-      Auto_note: 1,
+      // Auto_note: 1,
       Code_id: 11,
       Added_by: 46825
 }
