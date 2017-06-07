@@ -131,8 +131,8 @@ app.post('/addContact', function (req, res) {
       phone_home: payload.phone,
       members_notes: "signed up with Nationbuilder",
       // lastupdated: Date.now(),
-      Worksite_id: payload.employer,
-      Date_time:
+      Worksite_id: payload.employer
+      // Date_time:
       // Auto_note: 1,
       // Code_id: 11,
       // Added_by: 46825
