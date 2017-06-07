@@ -102,7 +102,7 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
 /////***** Relevant Variables and Functions *****/////
 
-var table = 'contacts'
+var table = 'members'
 
 
 
@@ -116,17 +116,28 @@ app.post('/addContact', function (req, res) {
 
   console.log('payload: ', payload)
 
+  var date = Date.now()
+
+  console.log('is it that easy?   ', date)
+
   var relevantData = {
-      contact_id: payload.id,
-      contact_name: payload.full_name,
-      position: payload.position,
+      member_id: payload.unite_id,
+      firstname_primary: payload.first_name,
+      lastname_primary: payload.last_name,
+      addr1: payload.primary_address.address1,
+      addr2:payload.primary_address.address2,
+      city: payload.primary_address.city,
+      postcode: payload.primary_address.zip,
       email: payload.email,
-      phone: payload.phone,
-      mobile: payload.mobile
-      // Auto_note: 1,
-      // Code_id: 11,
-      // Added_by: 46825
+      phone_mobile: payload.mobile,
+      phone_home: payload.phone,
+      lastupdated: Date.now(),
+      Auto_note: 1,
+      Code_id: 11,
+      Added_by: 46825
 }
+
+
 // console.log("relevantData", relevantData)
 
   dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
