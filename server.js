@@ -114,11 +114,9 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  console.log('new Date().toString():', new Date().toString())
-  console.log("employer: ", payload.employer)
 
   var relevantData = {
-      Note_id: autoincrement,
+      // Note_id: autoincrement,
       member_id: payload.unite_id,
       firstname_primary: payload.first_name,
       lastname_primary: payload.last_name,
@@ -130,9 +128,8 @@ app.post('/addContact', function (req, res) {
       phone_mobile: payload.mobile,
       phone_home: payload.phone,
       members_notes: "signed up with Nationbuilder",
-      // lastupdated: Date.now(),
-      Worksite_id: payload.employer
-      // Date_time:
+      Worksite_id: payload.employer,
+      Date_time: new Date().toString()
       // Auto_note: 1,
       // Code_id: 11,
       // Added_by: 46825
