@@ -195,7 +195,7 @@ console.log("relevantData", relevantData)
   //   console.log(payload.full_name, "is now updated:  ", rows)
 
     // sockConn.dispose();
-  })
+  // })
 })
 
 
