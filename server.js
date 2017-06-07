@@ -8,7 +8,7 @@ require('dotenv').config()
 
 var port = process.env.PORT || 8080
 
-console.log(port)
+console.log("up, running, ready and awaiting...")
 
 
 
@@ -113,6 +113,8 @@ var table = 'contacts'
 app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
+
+  console.log('payload: ', payload)
 
   var relevantData = {
       contact_id: payload.id,
