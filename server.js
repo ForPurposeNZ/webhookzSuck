@@ -138,22 +138,6 @@ app.post('/addContact', function (req, res) {
       // Added_by: 46825
 }
 
-Note_id – autoincrement
-
-Member_id – member id
-
-Note_text – description of change, for addition simply “Member  signed up.”
-
-Added_by – normally the Member_id of the user adding/updating
-
-Date_time – timestamp
-
-Auto_note – value “1” as this note has been automatically added
-
-Code_id – value “10” for an update, value “11” for an addition
-
-Worksite_id – member’s current worksite
-
 // console.log("relevantData", relevantData)
 
   dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
