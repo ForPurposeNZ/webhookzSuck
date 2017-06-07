@@ -142,6 +142,8 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
+  console.log('payload: ', payload)
+
   var relevantData = {
       contact_id: payload.id,
       contact_name: payload.full_name,
@@ -186,8 +188,6 @@ app.post('/updatePerson', function (req, res) {
       // Code_id: 11,
       // Added_by: 46825
     }
-
-// console.log("relevantData", relevantData)
 
   dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
     if (err) throw err;
