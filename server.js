@@ -188,11 +188,11 @@ app.post('/updatePerson', function (req, res) {
 
 // console.log("relevantData", relevantData)
 
-var querrry = 'UPDATE ' + table + ' SET ' + relevantData + 'WHERE contact_id= '+ payload.id
+var querrry = 'UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ?' + relevantData
 
 console.log("qqqq lookz liek   :", querrry)
 
-  dbConnection.query(querrry, function(err, rows, fields) {
+  dbConnection.query('UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now updated:  ", rows)
@@ -202,7 +202,7 @@ console.log("qqqq lookz liek   :", querrry)
 })
 
 
-// 'UPDATE ' + table + 'SET ? ' + relevantData + 'WHERE contact_id= '+ payload.id
+'UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData
 
 
 
