@@ -184,13 +184,13 @@ app.post('/updatePerson', function (req, res) {
       // Auto_note: 1,
       // Code_id: 11,
       // Added_by: 46825
-}
+    }
 
 // console.log("relevantData", relevantData)
 
-var querrry = 'UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ?' + relevantData
+  var querrry = 'UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ?' + relevantData
 
-console.log("qqqq lookz liek   :", querrry)
+  console.log("qqqq lookz liek   :", querrry)
 
   dbConnection.query('UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData, function(err, rows, fields) {
     if (err) throw err;
