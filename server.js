@@ -129,9 +129,9 @@ app.post('/addContact', function (req, res) {
       email: payload.email,
       phone_mobile: payload.mobile,
       phone_home: payload.phone,
-      members_notes: "signed up with Nationbuilder"
+      members_notes: "signed up with Nationbuilder",
       // lastupdated: Date.now(),
-      Worksite_id: payload.Employer,
+      Worksite_id: payload.employer,
       Date_time:
       // Auto_note: 1,
       // Code_id: 11,
