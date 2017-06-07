@@ -187,12 +187,12 @@ app.post('/updatePerson', function (req, res) {
       // Added_by: 46825
     }
 
-// console.log("relevantData", relevantData)
+console.log("relevantData", relevantData)
 
-  dbConnection.query('UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData, function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log(payload.full_name, "is now updated:  ", rows)
+  // dbConnection.query('UPDATE ' + table + 'WHERE contact_id= '+ payload.id + 'SET ? ', relevantData, function(err, rows, fields) {
+  //   if (err) throw err;
+  //
+  //   console.log(payload.full_name, "is now updated:  ", rows)
 
     // sockConn.dispose();
   })
