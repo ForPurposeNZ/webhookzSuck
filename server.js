@@ -117,7 +117,6 @@ app.post('/addContact', function (req, res) {
 
   var relevantData = {
 
-      member_id: payload.unite_id,
       firstname_primary: payload.first_name,
       lastname_primary: payload.last_name,
       // addr1: payload.primary_address.address1,
@@ -127,16 +126,20 @@ app.post('/addContact', function (req, res) {
       email: payload.email,
       phone_mobile: payload.mobile,
       phone_home: payload.phone,
-      Worksite_id: payload.employer,
-      Date_time: new Date().toString()
-      // Note_text: "signed up with Nationbuilder",
-      // Note_id: autoincrement,
-      // Auto_note: 1,
-      // Code_id: 11,
-      // Added_by: 46825
 }
 
-// console.log("relevantData", relevantData)
+var memberNotesData = {
+
+        // date_time: new Date().toString(),
+        // member_id: payload.unite_id,
+        // worksite_id: payload.employer,
+        // note_text: "signed up with Nationbuilder",
+        // note_id: autoincrement,
+        // auto_note: 1,
+        // code_id: 11,
+        // added_by: 46825
+}
+
 
   dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
     if (err) throw err;
