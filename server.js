@@ -102,7 +102,31 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 
 /////***** Relevant Variables and Functions *****/////
 
-var table = 'members'
+var membersTable = 'members'
+var extInfoUniteTable = 'ext_info_unite'
+
+// insertMemberExtTable = function({
+//
+//   dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
+//      if (err) throw err;
+//
+//      console.log(payload.full_name, "'s add on's are in member_ext table:  ", rows)
+//
+//      // sockConn.dispose(); //<---?
+//    })
+// })
+//
+//
+// insertMemberTable = function({
+//
+//   dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
+//     if (err) throw err;
+//
+//     console.log(payload.full_name, "is now in member table:  ", rows)
+//
+//     // sockConn.dispose();
+//   })
+// })
 
 
 
@@ -130,14 +154,14 @@ app.post('/addContact', function (req, res) {
 
 var memberNotesData = {
 
-        // date_time: new Date().toString(),
-        // member_id: payload.unite_id,
-        // worksite_id: payload.employer,
-        // note_text: "signed up with Nationbuilder",
-        // note_id: autoincrement,
-        // auto_note: 1,
-        // code_id: 11,
-        // added_by: 46825
+        date_time: new Date().toString(),
+        member_id: payload.unite_id,
+        worksite_id: payload.employer,
+        note_text: "signed up with Nationbuilder",
+        note_id: autoincrement,
+        auto_note: 1,
+        code_id: 11,
+        added_by: 46825
 }
 
 
@@ -145,9 +169,16 @@ var memberNotesData = {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
+  })
+
+  dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
+        if (err) throw err;
+
+      console.log(payload.full_name, "is now in member table:  ", rows)
+    })
 
     // sockConn.dispose();
-  })
+
 })
 
 
