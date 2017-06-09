@@ -128,22 +128,6 @@ var extInfoUniteTable = 'ext_info_unite'
 //   })
 // })
 
-payload = req.body.payload.person
-
-var memberTableData = {
-
-    member_id: payload.unite_id,
-    firstname_primary: payload.first_name,
-    lastname_primary: payload.last_name,
-    // addr1: payload.primary_address.address1,
-    // addr2:payload.primary_address.address2,
-    // city: payload.primary_address.city,
-    // postcode: payload.primary_address.zip,
-    email: payload.email,
-    phone_mobile: payload.mobile,
-    phone_home: payload.phone,
-}
-
 
 
 //*** Add New Contact ***\\\
@@ -151,21 +135,21 @@ var memberTableData = {
 
 app.post('/addContact', function (req, res) {
 
-//   payload = req.body.payload.person
-//
-//   var memberTableData = {
-//
-//       member_id: payload.unite_id,
-//       firstname_primary: payload.first_name,
-//       lastname_primary: payload.last_name,
-//       // addr1: payload.primary_address.address1,
-//       // addr2:payload.primary_address.address2,
-//       // city: payload.primary_address.city,
-//       // postcode: payload.primary_address.zip,
-//       email: payload.email,
-//       phone_mobile: payload.mobile,
-//       phone_home: payload.phone,
-// }
+  payload = req.body.payload.person
+
+  var memberTableData = {
+
+      member_id: payload.unite_id,
+      firstname_primary: payload.first_name,
+      lastname_primary: payload.last_name,
+      // addr1: payload.primary_address.address1,
+      // addr2:payload.primary_address.address2,
+      // city: payload.primary_address.city,
+      // postcode: payload.primary_address.zip,
+      email: payload.email,
+      phone_mobile: payload.mobile,
+      phone_home: payload.phone,
+}
 
 var memberNotesData = {
 
