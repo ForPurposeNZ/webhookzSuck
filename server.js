@@ -137,6 +137,8 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
+  console.log("payload**  ***", payload)
+
   var memberTableData = {
 
       member_id: payload.unite_id,
@@ -151,17 +153,17 @@ app.post('/addContact', function (req, res) {
       phone_home: payload.phone,
 }
 
-var memberNotesData = {
-
-        last_status_change: new Date().toString(),
-        member_id: payload.unite_id,
-        worksite_id: payload.employer,
-        note_text: "signed up with Nationbuilder",
-        // note_id: AUTO_INCREMENT,
-        auto_note: 1,
-        code_id: 11,
-        added_by: 46825
-}
+// var memberNotesData = {
+//
+//         last_status_change: new Date().toString(),
+//         member_id: payload.unite_id,
+//         worksite_id: payload.employer,
+//         note_text: "signed up with Nationbuilder",
+//         // note_id: AUTO_INCREMENT,
+//         auto_note: 1,
+//         code_id: 11,
+//         added_by: 46825
+// }
 
   dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
     if (err) throw err;
@@ -196,7 +198,7 @@ var memberNotesData = {
 //       email: payload.email,
 //       phone: payload.phone,
 //       mobile: payload.mobile,
-//       Note_text: "Changed with Nationbuilder"
+//       Note_text: "Updated using Nationbuilder"
 //       // Auto_note: 1,
 //       // Code_id: 11,
 //       // Added_by: 46825
