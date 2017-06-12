@@ -203,7 +203,7 @@ app.post('/addContact', function (req, res) {
 
   }).then(function() {
 		console.log("but whyyy!???")
-})
+  })
 
   // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
   //       if (err) throw err;
