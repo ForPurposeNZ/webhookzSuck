@@ -61,8 +61,16 @@ var conn = mysql.createPool({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
+connectionLimit: 100,
+connectTimeout: 2000,
+queueLimit: 0,
+debug: true,
+waitForConnection: true,
+dateStrings: true,
 stream: sockConn
 })
+
+
 
 
 conn.getConnection(function (error, connection){
@@ -82,6 +90,7 @@ conn.getConnection(function (error, connection){
   }
 
     conn.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
+      conn.release();
       if (err) throw err;
 
       console.log(payload.full_name, "is now in teh derterberse:  ", rows)
