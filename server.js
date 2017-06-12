@@ -90,7 +90,7 @@ conn.getConnection(function (error, connection){
     })
   })
 
-conn.release()
+// conn.release()
 
 })
 
