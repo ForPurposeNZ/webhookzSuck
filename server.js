@@ -62,7 +62,7 @@ user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
 connectionLimit: 100,
-connectTimeout: 2000,
+connectTimeout: 30000,
 stream: sockConn
 })
 
