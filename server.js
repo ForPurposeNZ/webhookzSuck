@@ -57,7 +57,7 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 
-var pool = mysql.createPool({
+var conn = mysql.createPool({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
@@ -65,7 +65,7 @@ stream: sockConn
 })
 
 
-pool.getConnection(function (error, connection){
+conn.getConnection(function (error, connection){
 
   app.post('/addContact', function (req, res) {
 
@@ -89,6 +89,8 @@ pool.getConnection(function (error, connection){
 
     })
   })
+
+conn.release()
 
 })
 
