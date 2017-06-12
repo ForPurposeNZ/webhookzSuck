@@ -201,10 +201,9 @@ app.post('/addContact', function (req, res) {
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
 
-  }).then(function() {
-		console.log("but whyyy!???")
   })
 
+  sockConn.dispose();
   // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
   //       if (err) throw err;
   //
