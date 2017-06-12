@@ -90,8 +90,6 @@ pool.getConnection(function (error, connection){
     })
   })
 
-conn.release()
-
 })
 
 //
