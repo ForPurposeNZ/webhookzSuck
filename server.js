@@ -202,7 +202,7 @@ app.post('/addContact', function (req, res) {
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
 
   }).then(function() {
-		sockConn.dispose();
+		console.log("but whyyy!???")
 })
 
   // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
