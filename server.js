@@ -163,7 +163,7 @@ var memberNotesData = {
         added_by: 46825
 }
 
-var insertNew() = dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
+  dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
