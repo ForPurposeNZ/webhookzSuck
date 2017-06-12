@@ -61,9 +61,9 @@ var conn = mysql.createPool({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
-connectionLimit: 100,
-connectTimeout: 30000,
-acquireTimeout: 30000,
+// connectionLimit: 100,
+// connectTimeout: 30000,
+// acquireTimeout: 30000,
 stream: sockConn
 })
 
@@ -72,27 +72,27 @@ stream: sockConn
 
 conn.getConnection(function (error, connection){
 
-  app.post('/addContact', function (req, res) {
-
-    payload = req.body.payload.person
-
-    var memberTableData = {
-
-        member_id: payload.unite_id,
-        firstname_primary: payload.first_name,
-        lastname_primary: payload.last_name,
-        email: payload.email,
-        phone_mobile: payload.mobile,
-        phone_home: payload.phone,
-  }
-
-    conn.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
-      if (err) throw err;
-
-      console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-    })
-  })
-})
+//   app.post('/addContact', function (req, res) {
+//
+//     payload = req.body.payload.person
+//
+//     var memberTableData = {
+//
+//         member_id: payload.unite_id,
+//         firstname_primary: payload.first_name,
+//         lastname_primary: payload.last_name,
+//         email: payload.email,
+//         phone_mobile: payload.mobile,
+//         phone_home: payload.phone,
+//   }
+//
+//     conn.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
+//       if (err) throw err;
+//
+//       console.log(payload.full_name, "is now in teh derterberse:  ", rows)
+//     })
+//   })
+// })
 
 //
 //
@@ -166,53 +166,53 @@ var extInfoUniteTable = 'ext_info_unite'
 //*** Add New Contact ***\\\
 
 
-// app.post('/addContact', function (req, res) {
+app.post('/addContact', function (req, res) {
+
+  payload = req.body.payload.person
+
+  var memberTableData = {
+
+      member_id: payload.unite_id,
+      firstname_primary: payload.first_name,
+      lastname_primary: payload.last_name,
+      // addr1: payload.primary_address.address1,
+      // addr2:payload.primary_address.address2,
+      // city: payload.primary_address.city,
+      // postcode: payload.primary_address.zip,
+      email: payload.email,
+      phone_mobile: payload.mobile,
+      phone_home: payload.phone,
+}
+
+// var memberNotesData = {
 //
-//   payload = req.body.payload.person
-//
-//   var memberTableData = {
-//
-//       member_id: payload.unite_id,
-//       firstname_primary: payload.first_name,
-//       lastname_primary: payload.last_name,
-//       // addr1: payload.primary_address.address1,
-//       // addr2:payload.primary_address.address2,
-//       // city: payload.primary_address.city,
-//       // postcode: payload.primary_address.zip,
-//       email: payload.email,
-//       phone_mobile: payload.mobile,
-//       phone_home: payload.phone,
+//         last_status_change: new Date().toString(),
+//         member_id: payload.unite_id,
+//         worksite_id: payload.employer,
+//         note_text: "signed up with Nationbuilder",
+//         // note_id: AUTO_INCREMENT,
+//         auto_note: 1,
+//         code_id: 11,
+//         added_by: 46825
 // }
-//
-// // var memberNotesData = {
-// //
-// //         last_status_change: new Date().toString(),
-// //         member_id: payload.unite_id,
-// //         worksite_id: payload.employer,
-// //         note_text: "signed up with Nationbuilder",
-// //         // note_id: AUTO_INCREMENT,
-// //         auto_note: 1,
-// //         code_id: 11,
-// //         added_by: 46825
-// // }
-//
-//   dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-//
-//
-//   })
-//
-//   // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
-//   //       if (err) throw err;
-//   //
-//   //     console.log(payload.full_name, "is now in member table:  ", rows)
-//   //
-//   //     sockConn.dispose();
-//   //
-//   //   })
-// })
+
+  dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log(payload.full_name, "is now in teh derterberse:  ", rows)
+
+
+  })
+
+  // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
+  //       if (err) throw err;
+  //
+  //     console.log(payload.full_name, "is now in member table:  ", rows)
+  //
+  //     sockConn.dispose();
+  //
+  //   })
+})
 
 
 
