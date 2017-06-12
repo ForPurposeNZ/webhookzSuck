@@ -168,7 +168,6 @@ app.post('/addContact', function (req, res) {
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
 
-    // sockConn.dispose();
 
   })
 
@@ -180,12 +179,10 @@ app.post('/addContact', function (req, res) {
   //     sockConn.dispose();
   //
   //   })
-
-
-
-
-
 })
+
+  sockConn.dispose();
+
 
 
 /////***** Update Contact *****/////
