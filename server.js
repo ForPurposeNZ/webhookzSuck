@@ -181,7 +181,7 @@ app.post('/addContact', function (req, res) {
       // postcode: payload.primary_address.zip,
       email: payload.email,
       phone_mobile: payload.mobile,
-      phone_home: payload.phone,
+      phone_home: payload.phone
 }
 
 // var memberNotesData = {
@@ -200,8 +200,6 @@ app.post('/addContact', function (req, res) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-
-
   })
 
   // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
