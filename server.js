@@ -86,7 +86,9 @@ conn.getConnection(function (error, connection){
 
       console.log(payload.full_name, "is now in teh derterberse:  ", rows)
 
-      conn.end()
+      .then(function(){
+        conn.end()
+      })
 
 
     })
