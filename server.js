@@ -172,14 +172,14 @@ var memberNotesData = {
 
   })
 
-  dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
-        if (err) throw err;
-
-      console.log(payload.full_name, "is now in member table:  ", rows)
-
-      sockConn.dispose();
-
-    })
+  // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
+  //       if (err) throw err;
+  //
+  //     console.log(payload.full_name, "is now in member table:  ", rows)
+  //
+  //     sockConn.dispose();
+  //
+  //   })
 
 
 
