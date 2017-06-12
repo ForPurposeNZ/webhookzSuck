@@ -70,7 +70,7 @@ stream: sockConn
 
 
 
-conn.getConnection(function (error, connection){
+// conn.getConnection(function (error, connection){
 
 //   app.post('/addContact', function (req, res) {
 //
