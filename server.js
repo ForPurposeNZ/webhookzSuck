@@ -57,7 +57,7 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 
-var conn = mysql.createPool({
+var dbConnection = mysql.createPool({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
