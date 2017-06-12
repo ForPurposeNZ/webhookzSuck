@@ -90,7 +90,6 @@ conn.getConnection(function (error, connection){
   }
 
     conn.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
-      conn.end();
       if (err) throw err;
 
       console.log(payload.full_name, "is now in teh derterberse:  ", rows)
