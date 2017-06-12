@@ -181,8 +181,6 @@ app.post('/addContact', function (req, res) {
   //   })
 })
 
-  sockConn.dispose();
-
 
 
 /////***** Update Contact *****/////
