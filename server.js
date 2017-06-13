@@ -170,6 +170,8 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
+  var dothething = 'INSERT INTO ' + membersTable + ' SET ?'
+
   var memberTableData = {
 
       member_id: payload.unite_id,
@@ -196,7 +198,7 @@ var memberNotesData = {
         added_by: 46825
 }
 
-  dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
+  dbConnection.query(dothething, memberTableData, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now in teh derterberse:  ", rows)
