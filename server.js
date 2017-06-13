@@ -184,17 +184,17 @@ app.post('/addContact', function (req, res) {
       phone_home: payload.phone
 }
 
-// var memberNotesData = {
-//
-//         last_status_change: new Date().toString(),
-//         member_id: payload.unite_id,
-//         worksite_id: payload.employer,
-//         note_text: "signed up with Nationbuilder",
-//         // note_id: AUTO_INCREMENT,
-//         auto_note: 1,
-//         code_id: 11,
-//         added_by: 46825
-// }
+var memberNotesData = {
+
+        last_status_change: CURRENT_TIMESTAMP,
+        member_id: payload.unite_id,
+        worksite_id: payload.employer,
+        note_text: "signed up with Nationbuilder",
+        // note_id: AUTO_INCREMENT,
+        auto_note: 1,
+        code_id: 11,
+        added_by: 46825
+}
 
   dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
     if (err) throw err;
@@ -203,14 +203,13 @@ app.post('/addContact', function (req, res) {
 
   })
 
-  // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
-  //       if (err) throw err;
-  //
-  //     console.log(payload.full_name, "is now in member table:  ", rows)
-  //
-  //     sockConn.dispose();
-  //
-  //   })
+  dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
+        if (err) throw err;
+
+      console.log(payload.full_name, "is now in member table:  ", rows)
+
+    })
+
 })
 
 
