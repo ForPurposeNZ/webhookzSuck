@@ -186,7 +186,7 @@ app.post('/addContact', function (req, res) {
 
 var memberNotesData = {
 
-        last_status_change: CURRENT_TIMESTAMP,
+        last_status_change: new Date().toString(),
         member_id: payload.unite_id,
         worksite_id: payload.employer,
         note_text: "signed up with Nationbuilder",
