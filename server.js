@@ -170,7 +170,8 @@ app.post('/addContact', function (req, res) {
 
   payload = req.body.payload.person
 
-  var dothething = 'INSERT INTO ' + membersTable + ' SET ?'
+  var addsContact = 'INSERT INTO ' + membersTable + ' SET ?'
+
 
   var memberTableData = {
 
@@ -198,19 +199,19 @@ var memberNotesData = {
         added_by: 46825
 }
 
-  dbConnection.query(dothething, memberTableData, function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-
-  })
-
-  // dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
-  //       if (err) throw err;
+  // dbConnection.query(addsContact, memberTableData, function(err, rows, fields) {
+  //   if (err) throw err;
   //
-  //     console.log(payload.full_name, "is now in member table:  ", rows)
+  //   console.log(payload.full_name, "is now in teh derterberse:  ", rows)
   //
-  //   })
+  // })
+
+  dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
+        if (err) throw err;
+
+      console.log(payload.full_name, "is now in member table:  ", rows)
+
+    })
 
 })
 
