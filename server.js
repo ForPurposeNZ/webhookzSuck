@@ -76,8 +76,41 @@ var extInfoUniteTable = 'ext_info_unite'
 var addMemberdata = 'INSERT INTO ' + membersTable + ' SET ?'
 var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
 
-// var updateMemberData = 'UPDATE ' + membersTable + ' SET ? WHERE contact_id= '+ payload.id, relevantData,
-// var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE contact_id= '+ payload.id, relevantData,
+var updateMemberData = 'UPDATE ' + membersTable + ' SET ? WHERE member_id= '+ payload.unite_id
+var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE contact_id= '+ payload.unite_id
+
+
+var changePerson = function() {
+
+    dbConnection.beginTransaction(function(err) {
+    if (err) { throw err }
+    dbConnection.query(updateMemberData, memberTableData, function(err, result) {
+      if (err) {
+        dbConnection.rollback(function() {
+          throw err
+        })
+      }
+
+      dbConnection.query(updateMemberNotes, memberNotesData, function(err, result) {
+        if (err) {
+          dbConnection.rollback(function() {
+            throw err
+          });
+        }
+        dbConnection.commit(function(err) {
+          if (err) {
+            dbConnection.rollback(function() {
+              throw err
+            })
+          }
+          console.log('Transaction Complete, person updated.');
+          dbConnection.end()
+        })
+      })
+    })
+  })
+}
+
 
 var addPerson = function() {
 
@@ -102,7 +135,7 @@ var addPerson = function() {
               throw err
             })
           }
-          console.log('Transaction Complete.');
+          console.log('Transaction Complete, person added');
           dbConnection.end()
         })
       })
@@ -110,41 +143,7 @@ var addPerson = function() {
   })
 }
 
-//
-// app.post('/updatePerson', function (req, res) {
-//   console.log("reaching line 115")
-//   var payload = req.body.payload.person
-//   console.log('Updated Person  : ***', payload.first_name)
-//
-// })
 
-
-app.post('/changePerson', function (req, res) {
-
-
-     payload = req.body.payload.person
-
-     var memberTableData = {
-
-         member_id: payload.unite_id,
-         firstname_primary: payload.first_name,
-         lastname_primary: payload.last_name,
-         // addr1: payload.primary_address.address1,
-         // addr2:payload.primary_address.address2,
-         // city: payload.primary_address.city,
-         // postcode: payload.primary_address.zip,
-         email: payload.email,
-         phone_mobile: payload.mobile,
-         phone_home: payload.phone
-     }
-
-
-  dbConnection.query('UPDATE ' + membersTable + ' SET ? WHERE member_id= '+ payload.unite_id, memberTableData, function(err, rows, fields) {
-    if (err) throw err;
-
-    console.log(payload.full_name, "is now UPDATED:  ", rows)
-  })
-})
 
 
 //*** Add New Contact ***\\\
@@ -153,9 +152,7 @@ app.post('/changePerson', function (req, res) {
 app.post('/addPerson', function (req, res) {
 
     var payload = req.body.payload.person
-
     var memberTableData = {
-
         member_id: payload.unite_id,
         firstname_primary: payload.first_name,
         lastname_primary: payload.last_name,
@@ -169,7 +166,6 @@ app.post('/addPerson', function (req, res) {
     }
 
     var memberNotesData = {
-
           last_status_change: new Date().toString(),
           member_id: payload.unite_id,
           worksite_id: payload.employer
@@ -179,7 +175,6 @@ app.post('/addPerson', function (req, res) {
           // code_id: 11,
           // added_by: 46825
     }
-
     if (payload.unite_id != null) {
      return addContact()
     } else {
@@ -190,7 +185,39 @@ app.post('/addPerson', function (req, res) {
 
 /////***** Update Contact *****/////
 
+app.post('/changePerson', function (req, res) {
 
+  var payload = req.body.payload.person
+  var memberTableData = {
+      member_id: payload.unite_id,
+      firstname_primary: payload.first_name,
+      lastname_primary: payload.last_name,
+      // addr1: payload.primary_address.address1,
+      // addr2:payload.primary_address.address2,
+      // city: payload.primary_address.city,
+      // postcode: payload.primary_address.zip,
+      email: payload.email,
+      phone_mobile: payload.mobile,
+      phone_home: payload.phone
+  }
+
+  var memberNotesData = {
+        last_status_change: new Date().toString(),
+        member_id: payload.unite_id,
+        worksite_id: payload.employer
+        // note_text: "signed up with Nationbuilder",
+        // note_id: AUTO_INCREMENT,
+        // auto_note: 1,
+        // code_id: 11,
+        // added_by: 46825
+  }
+  if (payload.unite_id != null) {
+   return changePerson()
+  } else {
+    console.log('contact is not a unite Member or has not been assigned Unite Member I.D.')
+  }
+
+})
 
 
 //http://www.codediesel.com/nodejs/mysql-transactions-in-nodejs/
