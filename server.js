@@ -112,9 +112,9 @@ var addPerson = function() {
 
 
 app.post('/updatePerson', function(req, res) {
-
+  console.log("reaching line 115")
   var payload = req.body.payload.person
-  console.log('Updated Person Payload : ***', payload)
+  console.log('Updated Person  : ***', payload.first_name)
 
 })
 
