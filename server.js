@@ -119,7 +119,7 @@ var addPerson = function() {
 // })
 
 
-app.post('/updatePerson', function (req, res) {
+app.post('/changePerson', function (req, res) {
 
 
      payload = req.body.payload.person
