@@ -192,8 +192,8 @@ var memberNotesData = {
         worksite_id: payload.employer,
         // note_text: "signed up with Nationbuilder",
         // note_id: AUTO_INCREMENT,
-        auto_note: 1,
-        code_id: 11,
+        // auto_note: 1,
+        // code_id: 11,
         added_by: 46825
 }
 
