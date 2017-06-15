@@ -1,7 +1,6 @@
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser');
-var knex = require('knex')
 var request = require('request')
 
 require('dotenv').config()
@@ -74,87 +73,82 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 var membersTable = 'members'
 var extInfoUniteTable = 'ext_info_unite'
 
+payload = req.body.payload.person
 
-//*** Add New Contact ***\\\
+var memberTableData = {
 
-
-app.post('/addPerson', function (req, res) {
-
-  payload = req.body.payload.person
-
-
-  var memberTableData = {
-
-      member_id: payload.unite_id,
-      firstname_primary: payload.first_name,
-      lastname_primary: payload.last_name,
-      // addr1: payload.primary_address.address1,
-      // addr2:payload.primary_address.address2,
-      // city: payload.primary_address.city,
-      // postcode: payload.primary_address.zip,
-      email: payload.email,
-      phone_mobile: payload.mobile,
-      phone_home: payload.phone
+    member_id: payload.unite_id,
+    firstname_primary: payload.first_name,
+    lastname_primary: payload.last_name,
+    // addr1: payload.primary_address.address1,
+    // addr2:payload.primary_address.address2,
+    // city: payload.primary_address.city,
+    // postcode: payload.primary_address.zip,
+    email: payload.email,
+    phone_mobile: payload.mobile,
+    phone_home: payload.phone
 }
 
 var memberNotesData = {
 
-        last_status_change: new Date().toString(),
-        member_id: payload.unite_id,
-        worksite_id: payload.employer
-        // note_text: "signed up with Nationbuilder",
-        // note_id: AUTO_INCREMENT,
-        // auto_note: 1,
-        // code_id: 11,
-        // added_by: 46825
+      last_status_change: new Date().toString(),
+      member_id: payload.unite_id,
+      worksite_id: payload.employer
+      // note_text: "signed up with Nationbuilder",
+      // note_id: AUTO_INCREMENT,
+      // auto_note: 1,
+      // code_id: 11,
+      // added_by: 46825
 }
 
 var addMemberdata = 'INSERT INTO ' + membersTable + ' SET ?'
 var addMemberNotesData = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
 
-/* Begin transaction */
+var addPerson = function() {
 
-  dbConnection.beginTransaction(function(err) {
-    if (err) { throw err; }
+    dbConnection.beginTransaction(function(err) {
+    if (err) { throw err }
     dbConnection.query(addMemberdata, memberTableData, function(err, result) {
       if (err) {
         dbConnection.rollback(function() {
-          throw err;
-        });
+          throw err
+        })
       }
 
       dbConnection.query(addMemberNotesData, memberNotesData, function(err, result) {
         if (err) {
           dbConnection.rollback(function() {
-            throw err;
+            throw err
           });
         }
         dbConnection.commit(function(err) {
           if (err) {
             dbConnection.rollback(function() {
-              throw err;
-            });
+              throw err
+            })
           }
           console.log('Transaction Complete.');
-          dbConnection.end();
-        });
-      });
-    });
-  });
+          dbConnection.end()
+        })
+      })
+    })
+  })
+}
 
+
+
+//*** Add New Contact ***\\\
+
+
+app.post('/addPerson', function (req, res) {
+  return addContact()
 })
-
-
-
-
-
-
 
 
 /////***** Update Contact *****/////
 
 
-
+//http://www.codediesel.com/nodejs/mysql-transactions-in-nodejs/
 
 
 
