@@ -74,7 +74,10 @@ var membersTable = 'members'
 var extInfoUniteTable = 'ext_info_unite'
 
 var addMemberdata = 'INSERT INTO ' + membersTable + ' SET ?'
-var addMemberNotesData = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
+var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
+
+// var updateMemberData = 'UPDATE ' + membersTable + ' SET ? WHERE contact_id= '+ payload.id, relevantData,
+// var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE contact_id= '+ payload.id, relevantData,
 
 var addPerson = function() {
 
@@ -151,6 +154,13 @@ app.post('/addPerson', function (req, res) {
 
 
 /////***** Update Contact *****/////
+
+app.post('/updatePerson', function(req, res) {
+
+  var payload = req.body.payload.person
+  console.log('Updated Person Payload : ***', payload)
+
+})
 
 
 //http://www.codediesel.com/nodejs/mysql-transactions-in-nodejs/
