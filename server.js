@@ -203,6 +203,12 @@ dbConnection.beginTransaction(function(err) {
           throw err;
         });
       }
+
+    dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData,, function(err, result) {
+        if (err) {
+          dbConnection.rollback(function() {
+      throw err;
+    });
       dbConnection.commit(function(err) {
         if (err) {
           dbConnection.rollback(function() {
