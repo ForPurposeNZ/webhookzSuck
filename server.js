@@ -8,9 +8,6 @@ require('dotenv').config()
 
 var port = process.env.PORT || 8080
 
-console.log("up, running, ready and awaiting...")
-
-
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -18,17 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.get('/', function (req, res) {
   res.send('Hello World')
 })
-
-
-// var knexConfig = require('./knexfile.js')
-//
-// var knex = knex(knexConfig[process.env.NODE_ENV || 'development'])
-//
-// var env = 'production'
-// var knexConfig = require('./knexfile.js')
-// var knexGenerator = require('knex')
-// var knexDbConfig = knexConfig[env]
-// global.knex = knexGenerator(knexDbConfig)
 
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
@@ -56,8 +42,6 @@ var sock_options = {
 
 var sockConn = new SocksConnection(remote_options, sock_options)
 
-
-
 var dbConnection = mysql.createConnection({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
@@ -65,69 +49,23 @@ password: process.env.DB_PASSWORD,
 stream: sockConn
 })
 
+console.log("up, running, ready and awaiting...")
+
+
+dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log('Result: ', rows);
+    // dbConnection.end();
+});
 
 
 
-// conn.getConnection(function (error, connection){
+// TODO:
+//Figure out pooling / connection open-close.
+//suss correspondence_contact
+// only entering if mamberid != null
 
-//   app.post('/addContact', function (req, res) {
-//
-//     payload = req.body.payload.person
-//
-//     var memberTableData = {
-//
-//         member_id: payload.unite_id,
-//         firstname_primary: payload.first_name,
-//         lastname_primary: payload.last_name,
-//         email: payload.email,
-//         phone_mobile: payload.mobile,
-//         phone_home: payload.phone,
-//   }
-//
-//     conn.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, rows, fields) {
-//       if (err) throw err;
-//
-//       console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-//     })
-//   })
-// })
-
-//
-//
-// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log('Result: ', rows);
-//     // sockConn.dispose();
-// });
-
-
-
-
-/////***** tests etc *****/////
-
-// dbConnection.query('SELECT * FROM `contacts` WHERE `contact_name` = "Mark & Debi Rush";', function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log('Result: ', rows);
-// });
-
-
-// var test = "Bob Test"
-//
-// dbConnection.query('INSERT INTO ' + table + ' SET contact_name="' + test + '"', function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log(test, "is now in teh derterberse:  ", rows)
-//
-//     // sockConn.dispose();
-//   })
-
-
-
-//TODO: Figure out pooling. Write rest of code. suss correspondence_contact.
-
-// dbConnection.end();
 
 
 
@@ -135,30 +73,6 @@ stream: sockConn
 
 var membersTable = 'members'
 var extInfoUniteTable = 'ext_info_unite'
-
-// insertMemberExtTable = function({
-//
-//   dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
-//      if (err) throw err;
-//
-//      console.log(payload.full_name, "'s add on's are in member_ext table:  ", rows)
-//
-//      // sockConn.dispose(); //<---?
-//    })
-// })
-//
-//
-// insertMemberTable = function({
-//
-//   dbConnection.query('INSERT INTO ' + table + ' SET ?', relevantData, function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log(payload.full_name, "is now in member table:  ", rows)
-//
-//     // sockConn.dispose();
-//   })
-// })
-
 
 
 //*** Add New Contact ***\\\
@@ -195,16 +109,21 @@ var memberNotesData = {
         // added_by: 46825
 }
 
+var addMemberdata = 'INSERT INTO ' + membersTable + ' SET ?'
+var addMemberNotesData = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
+
+/* Begin transaction */
+
   dbConnection.beginTransaction(function(err) {
     if (err) { throw err; }
-    dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, result) {
+    dbConnection.query(addMemberdata, memberTableData, function(err, result) {
       if (err) {
         dbConnection.rollback(function() {
           throw err;
         });
       }
 
-      dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, result) {
+      dbConnection.query(addMemberNotesData, memberNotesData, function(err, result) {
         if (err) {
           dbConnection.rollback(function() {
             throw err;
@@ -227,7 +146,7 @@ var memberNotesData = {
 
 
 
-/* Begin transaction */
+
 
 
 
@@ -236,32 +155,6 @@ var memberNotesData = {
 
 
 
-// app.post('/updatePerson', function (req, res) {
-//
-//
-//      payload = req.body.payload.person
-//
-//   var relevantData = {
-//       contact_id: payload.id,
-//       contact_name: payload.full_name,
-//       position: payload.position,
-//       email: payload.email,
-//       phone: payload.phone,
-//       mobile: payload.mobile,
-//       Note_text: "Updated using Nationbuilder"
-//       // Auto_note: 1,
-//       // Code_id: 11,
-//       // Added_by: 46825
-//     }
-//
-//   dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log(payload.full_name, "is now updated:  ", rows)
-//
-//     // sockConn.dispose(); //<---?
-//   })
-// })
 
 
 
