@@ -139,7 +139,7 @@ app.post('/changePerson', function (req, res) {
      }
 
 
-  dbConnection.query('UPDATE ' + membersTable + ' SET ? WHERE member= '+ payload.unite_id, memberTableData, function(err, rows, fields) {
+  dbConnection.query('UPDATE ' + membersTable + ' SET ? WHERE member_id= '+ payload.unite_id, memberTableData, function(err, rows, fields) {
     if (err) throw err;
 
     console.log(payload.full_name, "is now UPDATED:  ", rows)
