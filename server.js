@@ -195,8 +195,8 @@ var memberNotesData = {
         // added_by: 46825
 }
 
-dbConnection.beginTransaction(function(err) {
-  if (err) { throw err; }
+  dbConnection.beginTransaction(function(err) {
+    if (err) { throw err; }
     dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, result) {
       if (err) {
         dbConnection.rollback(function() {
@@ -204,24 +204,27 @@ dbConnection.beginTransaction(function(err) {
         });
       }
 
-    dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, result) {
-        if (err) {
-          dbConnection.rollback(function() {
-      throw err;
-    });
-      dbConnection.commit(function(err) {
+      dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, result) {
         if (err) {
           dbConnection.rollback(function() {
             throw err;
           });
         }
-        console.log('Transaction Complete.');
-        dbConnection.end();
-        })
-      })
-    })
-  })
+        dbConnection.commit(function(err) {
+          if (err) {
+            dbConnection.rollback(function() {
+              throw err;
+            });
+          }
+          console.log('Transaction Complete.');
+          dbConnection.end();
+        });
+      });
+    });
+  });
+
 })
+
 
 
 /* Begin transaction */
