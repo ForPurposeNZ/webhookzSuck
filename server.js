@@ -166,7 +166,7 @@ var extInfoUniteTable = 'ext_info_unite'
 //*** Add New Contact ***\\\
 
 
-app.post('/addContact', function (req, res) {
+app.post('/addPerson', function (req, res) {
 
   payload = req.body.payload.person
 
