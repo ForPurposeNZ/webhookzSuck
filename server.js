@@ -76,8 +76,7 @@ var extInfoUniteTable = 'ext_info_unite'
 var addMemberdata = 'INSERT INTO ' + membersTable + ' SET ?'
 var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
 
-var updateMemberData = 'UPDATE ' + membersTable + ' SET ? WHERE member_id= '+ payload.unite_id
-var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE contact_id= '+ payload.unite_id
+
 
 
 var changePerson = function() {
@@ -188,6 +187,9 @@ app.post('/addPerson', function (req, res) {
 app.post('/changePerson', function (req, res) {
 
   var payload = req.body.payload.person
+  var updateMemberData = 'UPDATE ' + membersTable + ' SET ? WHERE member_id= '+ payload.unite_id
+  var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE contact_id= '+ payload.unite_id
+
   var memberTableData = {
       member_id: payload.unite_id,
       firstname_primary: payload.first_name,
