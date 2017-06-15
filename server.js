@@ -171,26 +171,26 @@ app.post('/addPerson', function (req, res) {
   var addsContact = 'INSERT INTO ' + membersTable + ' SET ?'
 
 
-  var memberTableData = {
-
-      member_id: payload.unite_id,
-      firstname_primary: payload.first_name,
-      lastname_primary: payload.last_name,
-      // addr1: payload.primary_address.address1,
-      // addr2:payload.primary_address.address2,
-      // city: payload.primary_address.city,
-      // postcode: payload.primary_address.zip,
-      email: payload.email,
-      phone_mobile: payload.mobile,
-      phone_home: payload.phone
-}
+//   var memberTableData = {
+//
+//       member_id: payload.unite_id,
+//       firstname_primary: payload.first_name,
+//       lastname_primary: payload.last_name,
+//       // addr1: payload.primary_address.address1,
+//       // addr2:payload.primary_address.address2,
+//       // city: payload.primary_address.city,
+//       // postcode: payload.primary_address.zip,
+//       email: payload.email,
+//       phone_mobile: payload.mobile,
+//       phone_home: payload.phone
+// }
 
 var memberNotesData = {
 
         last_status_change: new Date().toString(),
         member_id: payload.unite_id,
         worksite_id: payload.employer,
-        note_text: "signed up with Nationbuilder",
+        // note_text: "signed up with Nationbuilder",
         // note_id: AUTO_INCREMENT,
         auto_note: 1,
         code_id: 11,
