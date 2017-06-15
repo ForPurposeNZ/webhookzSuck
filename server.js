@@ -111,6 +111,13 @@ var addPerson = function() {
 }
 
 
+app.post('/updatePerson', function(req, res) {
+
+  var payload = req.body.payload.person
+  console.log('Updated Person Payload : ***', payload)
+
+})
+
 
 //*** Add New Contact ***\\\
 
@@ -155,12 +162,7 @@ app.post('/addPerson', function (req, res) {
 
 /////***** Update Contact *****/////
 
-app.post('/updatePerson', function(req, res) {
 
-  var payload = req.body.payload.person
-  console.log('Updated Person Payload : ***', payload)
-
-})
 
 
 //http://www.codediesel.com/nodejs/mysql-transactions-in-nodejs/
