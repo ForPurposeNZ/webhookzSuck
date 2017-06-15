@@ -168,22 +168,20 @@ app.post('/addPerson', function (req, res) {
 
   payload = req.body.payload.person
 
-  var addsContact = 'INSERT INTO ' + membersTable + ' SET ?'
 
+  var memberTableData = {
 
-//   var memberTableData = {
-//
-//       member_id: payload.unite_id,
-//       firstname_primary: payload.first_name,
-//       lastname_primary: payload.last_name,
-//       // addr1: payload.primary_address.address1,
-//       // addr2:payload.primary_address.address2,
-//       // city: payload.primary_address.city,
-//       // postcode: payload.primary_address.zip,
-//       email: payload.email,
-//       phone_mobile: payload.mobile,
-//       phone_home: payload.phone
-// }
+      member_id: payload.unite_id,
+      firstname_primary: payload.first_name,
+      lastname_primary: payload.last_name,
+      // addr1: payload.primary_address.address1,
+      // addr2:payload.primary_address.address2,
+      // city: payload.primary_address.city,
+      // postcode: payload.primary_address.zip,
+      email: payload.email,
+      phone_mobile: payload.mobile,
+      phone_home: payload.phone
+}
 
 var memberNotesData = {
 
@@ -197,20 +195,33 @@ var memberNotesData = {
         // added_by: 46825
 }
 
-  dbConnection.query('INSERT INTO ' + extInfoUniteTable + ' SET ?', memberNotesData, function(err, rows, fields) {
-        if (err) throw err;
-
-      console.log(payload.full_name, "is now in member table:  ", rows)
+dbConnection.beginTransaction(function(err) {
+  if (err) { throw err; }
+    dbConnection.query('INSERT INTO ' + membersTable + ' SET ?', memberTableData, function(err, result) {
+      if (err) {
+        dbConnection.rollback(function() {
+          throw err;
+        });
+      }
+      dbConnection.commit(function(err) {
+        if (err) {
+          dbConnection.rollback(function() {
+            throw err;
+          });
+        }
+        console.log('Transaction Complete.');
+        dbConnection.end();
+      })
     })
+  })
 
-    // dbConnection.query(addsContact, memberTableData, function(err, rows, fields) {
-    //   if (err) throw err;
-    //
-    //   console.log(payload.full_name, "is now in teh derterberse:  ", rows)
-    //
-    // })
+
 
 })
+
+
+/* Begin transaction */
+
 
 
 
