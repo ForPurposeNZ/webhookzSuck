@@ -217,12 +217,10 @@ dbConnection.beginTransaction(function(err) {
         }
         console.log('Transaction Complete.');
         dbConnection.end();
+        })
       })
     })
   })
-
-
-
 })
 
 
