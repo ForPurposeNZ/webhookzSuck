@@ -124,25 +124,28 @@ app.post('/changePerson', function (req, res) {
 
      payload = req.body.payload.person
 
-  var relevantData = {
-      contact_id: payload.id,
-      contact_name: payload.full_name,
-      position: payload.position,
-      email: payload.email,
-      phone: payload.phone,
-      mobile: payload.mobile,
-      Note_text: "Updated using Nationbuilder"
-      // Auto_note: 1,
-      // Code_id: 11,
-      // Added_by: 46825
-    }
+     var memberTableData = {
 
-  dbConnection.query('UPDATE ' + table + ' SET ? WHERE contact_id= '+ payload.id, relevantData, function(err, rows, fields) {
+         member_id: payload.unite_id,
+         firstname_primary: payload.first_name,
+         lastname_primary: payload.last_name,
+         // addr1: payload.primary_address.address1,
+         // addr2:payload.primary_address.address2,
+         // city: payload.primary_address.city,
+         // postcode: payload.primary_address.zip,
+         email: payload.email,
+         phone_mobile: payload.mobile,
+         phone_home: payload.phone
+     }
+
+
+  dbConnection.query('UPDATE ' + membersTable + ' SET ? WHERE member= '+ payload.unite_id, memberTableData, function(err, rows, fields) {
     if (err) throw err;
 
-    console.log(payload.full_name, "is now updated:  ", rows)
+    console.log(payload.full_name, "is now UPDATED:  ", rows)
   })
 })
+
 
 //*** Add New Contact ***\\\
 
