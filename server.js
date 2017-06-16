@@ -76,49 +76,6 @@ var extInfoUniteTable = 'ext_info_unite'
 var addMemberdata = 'INSERT INTO ' + membersTable + ' SET ?'
 var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
 
-
-
-
-var changePerson = function() {
-
-
-}
-
-
-var addPerson = function() {
-
-    dbConnection.beginTransaction(function(err) {
-    if (err) { throw err }
-    dbConnection.query(addMemberdata, memberTableData, function(err, result) {
-      if (err) {
-        dbConnection.rollback(function() {
-          throw err
-        })
-      }
-
-      dbConnection.query(addMemberNotesData, memberNotesData, function(err, result) {
-        if (err) {
-          dbConnection.rollback(function() {
-            throw err
-          });
-        }
-        dbConnection.commit(function(err) {
-          if (err) {
-            dbConnection.rollback(function() {
-              throw err
-            })
-          }
-          console.log('Transaction Complete, person added');
-          dbConnection.end()
-        })
-      })
-    })
-  })
-}
-
-
-
-
 //*** Add New Contact ***\\\
 
 
@@ -149,7 +106,33 @@ app.post('/addPerson', function (req, res) {
           // added_by: 46825
     }
     if (payload.unite_id != null) {
-     return addPerson()
+        dbConnection.beginTransaction(function(err) {
+        if (err) { throw err }
+        dbConnection.query(addMemberdata, memberTableData, function(err, result) {
+          if (err) {
+            dbConnection.rollback(function() {
+              throw err
+            })
+          }
+
+          dbConnection.query(addMemberNotesData, memberNotesData, function(err, result) {
+            if (err) {
+              dbConnection.rollback(function() {
+                throw err
+              });
+            }
+            dbConnection.commit(function(err) {
+              if (err) {
+                dbConnection.rollback(function() {
+                  throw err
+                })
+              }
+              console.log('Transaction Complete, person added');
+              dbConnection.end()
+            })
+          })
+        })
+      })
     } else {
       console.log('ERROR trying to ADD person: the person you are trying to add is not a unite Member or has not been assigned Unite Member I.D.')
     }
