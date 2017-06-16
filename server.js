@@ -162,7 +162,7 @@ app.post('/changePerson', function (req, res) {
 
   var payload = req.body.payload.person
   var updateMemberData = 'UPDATE ' + membersTable + ' SET ? WHERE member_id= '+ payload.unite_id
-  var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE contact_id= '+ payload.unite_id
+  var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE member_id= '+ payload.unite_id
 
   var memberTableData = {
       member_id: payload.unite_id,
@@ -188,8 +188,9 @@ app.post('/changePerson', function (req, res) {
         // added_by: 46825
   }
   if (payload.unite_id != null) {
+
     dbConnection.beginTransaction(function(err) {
-    if (err) { throw err }
+      if (err) { throw err }
     dbConnection.query(updateMemberData, memberTableData, function(err, result) {
       if (err) {
         dbConnection.rollback(function() {
