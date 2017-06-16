@@ -81,33 +81,7 @@ var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
 
 var changePerson = function() {
 
-    dbConnection.beginTransaction(function(err) {
-    if (err) { throw err }
-    dbConnection.query(updateMemberData, memberTableData, function(err, result) {
-      if (err) {
-        dbConnection.rollback(function() {
-          throw err
-        })
-      }
 
-      dbConnection.query(updateMemberNotes, memberNotesData, function(err, result) {
-        if (err) {
-          dbConnection.rollback(function() {
-            throw err
-          });
-        }
-        dbConnection.commit(function(err) {
-          if (err) {
-            dbConnection.rollback(function() {
-              throw err
-            })
-          }
-          console.log('Transaction Complete, person updated.');
-          dbConnection.end()
-        })
-      })
-    })
-  })
 }
 
 
@@ -214,7 +188,33 @@ app.post('/changePerson', function (req, res) {
         // added_by: 46825
   }
   if (payload.unite_id != null) {
-   return changePerson()
+    dbConnection.beginTransaction(function(err) {
+    if (err) { throw err }
+    dbConnection.query(updateMemberData, memberTableData, function(err, result) {
+      if (err) {
+        dbConnection.rollback(function() {
+          throw err
+        })
+      }
+
+      dbConnection.query(updateMemberNotes, memberNotesData, function(err, result) {
+        if (err) {
+          dbConnection.rollback(function() {
+            throw err
+          });
+        }
+        dbConnection.commit(function(err) {
+          if (err) {
+            dbConnection.rollback(function() {
+              throw err
+            })
+          }
+          console.log('Transaction Complete, person updated.');
+          dbConnection.end()
+        })
+      })
+    })
+  })
   } else {
     console.log('ERROR trying to UPDATE contact: contact is not a unite Member or has not been assigned Unite Member I.D.')
   }
