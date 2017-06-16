@@ -106,9 +106,9 @@ app.post('/addPerson', function (req, res) {
           // code_id: 11,
           // added_by: 46825
     }
-    if (payload.unite_id != null) {
+    if (payload.unite_id != null && ) {
         dbConnection.beginTransaction(function(err) {
-        if (err) { throw err }
+        if (err) { console.log('error at line 111!', err) }
         dbConnection.query(addMemberdata, memberTableData, function(err, result) {
           if (err) {
             dbConnection.rollback(function() {
