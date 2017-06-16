@@ -82,6 +82,7 @@ var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
 app.post('/addPerson', function (req, res) {
 
     var payload = req.body.payload.person
+
     var memberTableData = {
         member_id: payload.unite_id,
         firstname_primary: payload.first_name,
@@ -115,7 +116,7 @@ app.post('/addPerson', function (req, res) {
             })
           }
 
-          dbConnection.query(addMemberNotesData, memberNotesData, function(err, result) {
+          dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
             if (err) {
               dbConnection.rollback(function() {
                 throw err
