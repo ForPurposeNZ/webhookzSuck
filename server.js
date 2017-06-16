@@ -177,7 +177,7 @@ app.post('/addPerson', function (req, res) {
     if (payload.unite_id != null) {
      return addContact()
     } else {
-      console.log('contact is not a unite Member or has not been assigned Unite Member I.D.')
+      console.log('ERROR trying to ADD contact: contact is not a unite Member or has not been assigned Unite Member I.D.')
     }
 })
 
@@ -216,7 +216,7 @@ app.post('/changePerson', function (req, res) {
   if (payload.unite_id != null) {
    return changePerson()
   } else {
-    console.log('contact is not a unite Member or has not been assigned Unite Member I.D.')
+    console.log('ERROR trying to UPDATE contact: contact is not a unite Member or has not been assigned Unite Member I.D.')
   }
 
 })
