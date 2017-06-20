@@ -129,7 +129,7 @@ app.post('/addPerson', function (req, res) {
                 })
               }
               console.log('Transaction Complete, person added');
-              dbConnection.end()
+              // dbConnection.end()
             })
           })
         })
@@ -195,7 +195,7 @@ app.post('/changePerson', function (req, res) {
             })
           }
           console.log('Transaction Complete, person updated.');
-          dbConnection.end()
+          // dbConnection.end()
         })
       })
     })
