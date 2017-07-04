@@ -54,8 +54,9 @@ acquireTimeout: 60000 //60 secs
 
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    if (err) throw err;
-
+    if (err.code === 'ETIMEDOUT') {
+    console.log('My dish error: ', util.inspect(err, { showHidden: true, depth: 2 }));
+}
     console.log('Result: ', rows);
     // dbConnection.end();
 });
