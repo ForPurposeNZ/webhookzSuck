@@ -50,10 +50,10 @@ stream: sockConn
 
 
 
-dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    console.log('Result: ', rows);
-    // dbConnection.end();
-});
+// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+//     console.log('Result: ', rows);
+//     // dbConnection.end();
+// });
 
 
 console.log("up, running, ready and awaiting...")
@@ -103,8 +103,8 @@ app.post('/addPerson', function (req, res) {
           // note_text: "signed up with Nationbuilder",
           // note_id: AUTO_INCREMENT,
           // auto_note: 1,
-          code_id: 11,
-          updateby: 46825
+          // code_id: 11,
+          // updateby: 46825
     }
     if (payload.unite_id != null) {
         dbConnection.beginTransaction(function(err) {
@@ -168,9 +168,9 @@ app.post('/changePerson', function (req, res) {
         // note_id: AUTO_INCREMENT,
         // auto_note: 1,
         // code_id: 11,
-         updateby: 46825
+        // updateby: 46825
   }
-  if (payload.unite_id != null) {
+  // if (payload.unite_id != null) {
 
     dbConnection.beginTransaction(function(err) {
       if (err) { throw err }
@@ -199,9 +199,9 @@ app.post('/changePerson', function (req, res) {
       })
     })
   })
-  } else {
-    console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-  }
+  // } else {
+  //   console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
+  // }
 })
 
 
