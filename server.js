@@ -46,7 +46,9 @@ var dbConnection = mysql.createConnection({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
-stream: sockConn
+stream: sockConn,
+connectionLimit: 10,
+acquireTimeout: 30000 //30 secs
 })
 
 
