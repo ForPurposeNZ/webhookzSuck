@@ -134,7 +134,7 @@ app.post('/addPerson', function (req, res) {
                 })
               }
               console.log('Transaction Complete, person added');
-              dbConnection.end()
+              // dbConnection.end()
             })
           })
         })
