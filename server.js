@@ -106,7 +106,7 @@ app.post('/addPerson', function (req, res) {
           code_id: 11,
           updateby: 46825
     }
-    if (payload.first_name != null) {
+    if (payload.member_id != null) {
         dbConnection.beginTransaction(function(err) {
         if (err) { console.log('error at line 111!', err) }
         dbConnection.query(addMemberdata, memberTableData, function(err, result) {
