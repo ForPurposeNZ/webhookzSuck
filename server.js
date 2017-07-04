@@ -106,7 +106,7 @@ app.post('/addPerson', function (req, res) {
           // code_id: 11,
           // updateby: 46825
     }
-    // if (payload.unite_id != null) {
+    if (payload.unite_id != null) {
         dbConnection.beginTransaction(function(err) {
         if (err) { console.log('error at line 111!', err) }
         dbConnection.query(addMemberdata, memberTableData, function(err, result) {
@@ -133,9 +133,9 @@ app.post('/addPerson', function (req, res) {
           })
         })
       })
-    // } else {
-    //   console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-    // }
+    } else {
+      console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
+    }
 })
 
 
@@ -170,7 +170,7 @@ app.post('/changePerson', function (req, res) {
         // code_id: 11,
         // updateby: 46825
   }
-  // if (payload.unite_id != null) {
+  if (payload.unite_id != null) {
 
     dbConnection.beginTransaction(function(err) {
       if (err) { throw err }
@@ -199,9 +199,9 @@ app.post('/changePerson', function (req, res) {
       })
     })
   })
-  // } else {
-  //   console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-  // }
+  } else {
+    console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
+  }
 })
 
 
