@@ -39,7 +39,7 @@ var sock_options = {
   pass: pass
 }
 
-var sockConn = new SocksConnection(remote_options, sock_options)
+var sockConn = SocksConnection.connect(remote_options, sock_options, connect_handler)
 
 var dbConnection = mysql.createConnection({
 user: process.env.DB_USER,
@@ -48,15 +48,18 @@ password: process.env.DB_PASSWORD,
 stream: sockConn
 })
 
+// var sock = new SocksConnection(remote_options, sock_options);
+// var sock = SocksConnection.connect(remote_options, sock_options, connect_handler);
+
 console.log("up, running, ready and awaiting...")
 
 
-// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log('Result: ', rows);
+dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log('Result: ', rows);
     // dbConnection.end();
-// });
+});
 
 
 
