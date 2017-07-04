@@ -42,11 +42,10 @@ var sock_options = {
 
 var sockConn = new SocksConnection(remote_options, sock_options)
 
-var dbConnection = mysql.createConnection
-({
-  connectionLimit: 100,
-  queueLimit: 30,
-  acquireTimeout: 1000000,
+var dbConnection = mysql.createPool({
+connectionLimit: 100,
+queueLimit: 30,
+acquireTimeout: 1000000,
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
