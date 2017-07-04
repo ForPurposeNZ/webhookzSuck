@@ -39,7 +39,10 @@ var sock_options = {
   pass: pass
 }
 
+console.log("proxy.hostname! -->", proxy.hostname)
+
 var sockConn = new SocksConnection(remote_options, sock_options)
+
 var dbConnection = mysql.createConnection({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
