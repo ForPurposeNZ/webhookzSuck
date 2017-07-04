@@ -42,14 +42,14 @@ var sock_options = {
 
 var sockConn = new SocksConnection(remote_options, sock_options)
 
-var dbConnection = mysql.createConnection({
+var dbConnection = mysql.createPool({
+  connectionLimit: 100,
+  queueLimit: 30,
+  acquireTimeout: 1000000,
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
-stream: sockConn,
-connectionLimit: 15,
-queueLimit: 30,
-acquireTimeout: 1000000
+stream: sockConn
 })
 
 
@@ -119,7 +119,6 @@ app.post('/addPerson', function (req, res) {
               throw err
             })
           }
-
           dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
             if (err) {
               dbConnection.rollback(function() {
@@ -207,7 +206,6 @@ app.post('/changePerson', function (req, res) {
   } else {
     console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
   }
-
 })
 
 
