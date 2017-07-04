@@ -42,14 +42,13 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 var dbConnection = mysql.createConnection({
-connectTimeout: 2000000,
-user: process.env.DB_USER,
-database: process.env.DB_DATABASE,
-password: process.env.DB_PASSWORD,
-stream: sockConn
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  stream: sockConn,
+  connectTimeout: 2000000
 })
 
-dbConnection.connect()
 
 // dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 //     console.log('Result: ', rows);
