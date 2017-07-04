@@ -134,7 +134,6 @@ app.post('/addPerson', function (req, res) {
         })
       })
     } else {
-      throw err
       console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
     }
 })
@@ -171,7 +170,7 @@ app.post('/changePerson', function (req, res) {
         // code_id: 11,
         // updateby: 46825
   }
-  if (payload.unite_id != null) {
+  if (payload.first_name != null) {
 
     dbConnection.beginTransaction(function(err) {
       if (err) { throw err }
