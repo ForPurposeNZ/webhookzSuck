@@ -33,7 +33,7 @@ var username = auth.split(":")[0]
 var pass = auth.split(":")[1]
 
 var sock_options = {
-  // host: proxy.hostname,
+  host: proxy.hostname,
   port: 1080,
   user: username,
   pass: pass
@@ -46,7 +46,7 @@ var dbConnection = mysql.createConnection({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
-stream: sockConn
+// stream: sockConn
 })
 
 console.log("up, running, ready and awaiting...")
