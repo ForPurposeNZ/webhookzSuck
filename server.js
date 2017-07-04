@@ -48,17 +48,17 @@ database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
 stream: sockConn,
 connectionLimit: 10,
-acquireTimeout: 30000 //30 secs
+acquireTimeout: 60000 //60 secs
 })
 
 
 
-// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-//     if (err) throw err;
-//
-//     console.log('Result: ', rows);
-//     // dbConnection.end();
-// });
+dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log('Result: ', rows);
+    // dbConnection.end();
+});
 
 
 console.log("up, running, ready and awaiting...")
