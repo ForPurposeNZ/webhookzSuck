@@ -137,7 +137,7 @@ app.post('/addPerson', function (req, res) {
           })
         })
       })
-    } // else {
+    //} else {
     //   console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
     // }
 })
