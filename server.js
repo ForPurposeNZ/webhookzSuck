@@ -54,9 +54,6 @@ acquireTimeout: 60000 //60 secs
 
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    if (err.code === 'ETIMEDOUT') {
-    console.log('My dish error: ', util.inspect(err, { showHidden: true, depth: 2 }));
-}
     console.log('Result: ', rows);
     // dbConnection.end();
 });
@@ -112,7 +109,7 @@ app.post('/addPerson', function (req, res) {
           code_id: 11,
           updateby: 46825
     }
-    if (payload.unite_id != null) {
+    // if (payload.unite_id != null) {
         dbConnection.beginTransaction(function(err) {
         if (err) { console.log('error at line 111!', err) }
         dbConnection.query(addMemberdata, memberTableData, function(err, result) {
