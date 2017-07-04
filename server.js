@@ -53,10 +53,10 @@ console.log("up, running, ready and awaiting...")
 
 // dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
 //     if (err) throw err;
-// 
+//
 //     console.log('Result: ', rows);
     // dbConnection.end();
-});
+// });
 
 
 
@@ -99,12 +99,12 @@ app.post('/addPerson', function (req, res) {
     var memberNotesData = {
           last_status_change: new Date().toString(),
           member_id: payload.unite_id,
-          worksite_id: payload.employer
+          worksite_id: payload.employer,
           // note_text: "signed up with Nationbuilder",
           // note_id: AUTO_INCREMENT,
           // auto_note: 1,
           // code_id: 11,
-          // added_by: 46825
+          updateby: 46825
     }
     if (payload.unite_id != null) {
         dbConnection.beginTransaction(function(err) {
@@ -164,12 +164,12 @@ app.post('/changePerson', function (req, res) {
   var memberNotesData = {
         last_status_change: new Date().toString(),
         member_id: payload.unite_id,
-        worksite_id: payload.employer
+        worksite_id: payload.employer,
         // note_text: "signed up with Nationbuilder",
         // note_id: AUTO_INCREMENT,
         // auto_note: 1,
         // code_id: 11,
-        // added_by: 46825
+         updateby: 46825
   }
   if (payload.unite_id != null) {
 
@@ -207,7 +207,6 @@ app.post('/changePerson', function (req, res) {
 })
 
 
-//http://www.codediesel.com/nodejs/mysql-transactions-in-nodejs/
 
 
 
