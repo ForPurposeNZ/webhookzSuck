@@ -34,18 +34,14 @@ var pass = auth.split(":")[1]
 
 var sock_options = {
   host: proxy.hostname,
-  port: process.env.PORT,
+  port: 1080,
   user: username,
   pass: pass
 }
 
-
 var sockConn = new SocksConnection(remote_options, sock_options)
 
-var dbConnection = mysql.createPool({
-connectionLimit: 100,
-queueLimit: 30,
-acquireTimeout: 1000000,
+var dbConnection = mysql.createConnection({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
