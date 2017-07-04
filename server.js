@@ -24,7 +24,7 @@ var SocksConnection = require('socksjs')
 
 var remote_options = {
   host:'50.23.215.146',
-  port: 3306
+  port: 1433
 };
 
 var proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL)
@@ -39,17 +39,13 @@ var sock_options = {
   pass: pass
 }
 
-var sockConn = SocksConnection.connect(remote_options, sock_options, connect_handler)
-
+var sockConn = new SocksConnection(remote_options, sock_options)
 var dbConnection = mysql.createConnection({
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
 stream: sockConn
 })
-
-// var sock = new SocksConnection(remote_options, sock_options);
-// var sock = SocksConnection.connect(remote_options, sock_options, connect_handler);
 
 console.log("up, running, ready and awaiting...")
 
