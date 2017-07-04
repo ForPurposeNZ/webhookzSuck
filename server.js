@@ -57,7 +57,7 @@ console.log("up, running, ready and awaiting...")
 //
 //     console.log('Result: ', rows);
     // dbConnection.end();
-});
+// });
 
 
 
