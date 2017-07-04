@@ -34,7 +34,7 @@ var pass = auth.split(":")[1]
 
 var sock_options = {
   host: proxy.hostname,
-  port: 1080,
+  port: process.env.PORT,
   user: username,
   pass: pass
 }
@@ -47,8 +47,9 @@ user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
 stream: sockConn,
-connectionLimit: 10,
-acquireTimeout: 60000 //60 secs
+connectionLimit: 15,
+queueLimit: 30,
+acquireTimeout: 1000000
 })
 
 
