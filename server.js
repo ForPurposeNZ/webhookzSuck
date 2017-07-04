@@ -106,7 +106,7 @@ app.post('/addPerson', function (req, res) {
           // note_text: "signed up with Nationbuilder",
           // note_id: AUTO_INCREMENT,
           // auto_note: 1,
-          // code_id: 11,
+          code_id: 11,
           updateby: 46825
     }
     if (payload.unite_id != null) {
@@ -132,7 +132,7 @@ app.post('/addPerson', function (req, res) {
                 })
               }
               console.log('Transaction Complete, person added');
-              // dbConnection.end()
+              dbConnection.end()
             })
           })
         })
