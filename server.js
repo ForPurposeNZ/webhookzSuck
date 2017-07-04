@@ -60,6 +60,7 @@ stream: sockConn
 
 
 console.log("up, running, ready and awaiting...")
+console.log('process.env.PORT  ->>', process.env.PORT)
 
 
 // TODO:
