@@ -106,36 +106,72 @@ app.post('/addPerson', function (req, res) {
           // code_id: 11,
           // updateby: 46825
     }
-    if (payload.unite_id != null) {
-        dbConnection.beginTransaction(function(err) {
-        if (err) { console.log('error at line 111!', err) }
-        dbConnection.query(addMemberdata, memberTableData, function(err, result) {
-          if (err) {
-            dbConnection.rollback(function() {
-              throw err
-            })
-          }
-          dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
-            if (err) {
-              dbConnection.rollback(function() {
-                throw err
-              });
-            }
-            dbConnection.commit(function(err) {
-              if (err) {
-                dbConnection.rollback(function() {
-                  throw err
-                })
-              }
-              console.log('Transaction Complete, person added');
-              // dbConnection.end()
-            })
-          })
-        })
-      })
-    } else {
-      console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-    }
+
+
+    dbConnection.beginTransaction(function(err) {
+       if (err) { throw err }
+       dbConnection.query(addMemberdata, memberTableData, function(err, result) {
+         if (err) {
+           dbConnection.rollback(function() {
+             throw err
+           })
+         }
+
+         dbConnection.query(addMemberNotesData, memberNotesData, function(err, result) {
+           if (err) {
+             dbConnection.rollback(function() {
+               throw err
+             });
+           }
+           dbConnection.commit(function(err) {
+             if (err) {
+               dbConnection.rollback(function() {
+                 throw err
+               })
+             }
+             console.log('Transaction Complete, person added');
+            //  dbConnection.end()
+           })
+         })
+       })
+     })
+
+
+
+
+
+
+
+    // if (payload.unite_id != null) {
+    //     dbConnection.beginTransaction(function(err) {
+    //     if (err) { console.log('error at line 111!', err) }
+    //     dbConnection.query(addMemberdata, memberTableData, function(err, result) {
+    //       if (err) {
+    //         dbConnection.rollback(function() {
+    //           throw err
+    //         })
+    //       }
+    //       dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
+    //         if (err) {
+    //           dbConnection.rollback(function() {
+    //             throw err
+    //           });
+    //         }
+    //         dbConnection.commit(function(err) {
+    //           if (err) {
+    //             dbConnection.rollback(function() {
+    //               throw err
+    //             })
+    //           }
+    //           console.log('Transaction Complete, person added');
+    //           // dbConnection.end()
+    //         })
+    //       })
+    //     })
+    //   })
+    // } else {
+    //   console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
+    // }
 })
 
 
