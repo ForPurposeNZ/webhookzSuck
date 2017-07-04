@@ -111,15 +111,15 @@ app.post('/addPerson', function (req, res) {
         if (err) { console.log('error at line 111!', err) }
         dbConnection.query(addMemberdata, memberTableData, function(err, result) {
           if (err) {
-            // dbConnection.rollback(function() {
+            dbConnection.rollback(function() {
               throw err
-            // })
+            })
           }
           dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
             if (err) {
-              // dbConnection.rollback(function() {
+              dbConnection.rollback(function() {
                 throw err
-              // });
+              });
             }
             dbConnection.commit(function(err) {
               if (err) {
