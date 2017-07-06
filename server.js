@@ -34,9 +34,9 @@ var pass = auth.split(":")[1]
 
 var sock_options = {
   host: proxy.hostname,
-  port: process.env.PORT,
-  user: username,
-  pass: pass
+  port: process.env.PORT
+  // user: username,
+  // pass: pass
 }
 
 var sockConn = new SocksConnection(remote_options, sock_options)
@@ -116,22 +116,17 @@ app.post('/addPerson', function (req, res) {
         if (err) { console.log('error at line 111!', err) }
         dbConnection.query(addMemberdata, memberTableData, function(err, result) {
           if (err) {
-            dbConnection.rollback(function() {
-              throw err
-            })
+            throw err
           }
 
           dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
             if (err) {
-              dbConnection.rollback(function() {
-                throw err
-              });
+              throw err
             }
+
             dbConnection.commit(function(err) {
               if (err) {
-                dbConnection.rollback(function() {
-                  throw err
-                })
+                throw err
               }
               console.log('Transaction Complete, person added');
               // dbConnection.end()
@@ -143,6 +138,14 @@ app.post('/addPerson', function (req, res) {
       console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
     }
 })
+
+
+//lines 119, 126, 130, 132
+// if (err) {
+//   dbConnection.rollback(function() {
+//     throw err
+//   })
+// }
 
 
 /////***** Update Contact *****/////
