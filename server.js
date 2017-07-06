@@ -42,7 +42,7 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 var dbConnection = mysql.createConnection({
-  host:'50.23.215.146',
+  // host:'50.23.215.146',
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
