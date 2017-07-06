@@ -52,7 +52,7 @@ stream: sockConn
 
 
 
-dbconnection.connect(function(err) {
+dbConnection.connect(function(err) {
   if (err) {
     console.error('error connecting: ' + err.stack);
     return;
