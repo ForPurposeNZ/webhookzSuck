@@ -48,7 +48,6 @@ password: process.env.DB_PASSWORD,
 stream: sockConn
 })
 
-console.log("up, running, ready and awaiting...")
 
 
 dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
@@ -58,7 +57,7 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     // dbConnection.end();
 });
 
-
+console.log("hello there...")
 
 // TODO:
 //Figure out pooling / connection open-close.
@@ -99,7 +98,7 @@ app.post('/addPerson', function (req, res) {
     var memberNotesData = {
           last_status_change: new Date().toString(),
           member_id: payload.unite_id,
-          worksite_id: payload.employer
+          worksite_id: payload.employer,
           // note_text: "signed up with Nationbuilder",
           // note_id: AUTO_INCREMENT,
           // auto_note: 1,
@@ -164,7 +163,7 @@ app.post('/changePerson', function (req, res) {
   var memberNotesData = {
         last_status_change: new Date().toString(),
         member_id: payload.unite_id,
-        worksite_id: payload.employer
+        worksite_id: payload.employer,
         // note_text: "signed up with Nationbuilder",
         // note_id: AUTO_INCREMENT,
         // auto_note: 1,
