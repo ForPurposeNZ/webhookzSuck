@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
 
-var mysql = require('mysql2')
+var mysql = require('mysql')
 var url = require("url")
 var SocksConnection = require('socksjs')
 
