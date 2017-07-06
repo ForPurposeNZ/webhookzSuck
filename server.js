@@ -42,6 +42,7 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 var dbConnection = mysql.createConnection({
+  host:'50.23.215.146',
 user: process.env.DB_USER,
 database: process.env.DB_DATABASE,
 password: process.env.DB_PASSWORD,
@@ -51,12 +52,16 @@ stream: sockConn
 
 
 
-dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-    if (err) throw err;
+dbconnection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }
 
-    console.log('Result: ', rows);
-    // dbConnection.end();
-});
+  console.log('connected as id ' + connection.threadId);
+})
+
+
 
 console.log("proxy.hostname -->", proxy.hostname, "proxy.port--->", proxy.port)
 
