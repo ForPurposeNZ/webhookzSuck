@@ -34,7 +34,7 @@ var pass = auth.split(":")[1]
 
 var sock_options = {
   host: proxy.hostname,
-  port: 8080,
+  port: proxy.port,
   user: username,
   pass: pass
 }
@@ -57,7 +57,7 @@ dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
     // dbConnection.end();
 });
 
-console.log("hello there...")
+console.log("proxy.hostname -->", proxy.hostname, "proxy.port--->", proxy.port)
 
 // TODO:
 //Figure out pooling / connection open-close.
