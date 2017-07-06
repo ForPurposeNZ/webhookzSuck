@@ -34,7 +34,7 @@ var pass = auth.split(":")[1]
 
 var sock_options = {
   host: proxy.hostname,
-  port: proxy.port,
+  port: process.env.PORT,
   user: username,
   pass: pass
 }
@@ -54,7 +54,7 @@ stream: sockConn
 
 dbConnection.connect(function(err) {
   if (err) {
-    console.error('error connecting: ' + err.stack);
+    console.error('error connecting-->: ' + err.stack);
     return;
   }
 
