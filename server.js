@@ -34,7 +34,7 @@ var pass = auth.split(":")[1]
 
 var sock_options = {
   host: proxy.hostname,
-  port: process.env.PORT,
+  port: 1080,
   user: username,
   pass: pass
 }
@@ -42,22 +42,22 @@ var sock_options = {
 var sockConn = new SocksConnection(remote_options, sock_options)
 
 var dbConnection = mysql.createConnection({
-  user: process.env.DB_USER,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  stream: sockConn,
-  connectTimeout: 2000000
+user: process.env.DB_USER,
+database: process.env.DB_DATABASE,
+password: process.env.DB_PASSWORD,
+stream: sockConn
 })
 
-
-// dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
-//     console.log('Result: ', rows);
-//     // dbConnection.end();
-// });
-
-
 console.log("up, running, ready and awaiting...")
-console.log('process.env.PORT  ->>', process.env.PORT)
+
+
+dbConnection.query('SELECT 1+1 as test1;', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log('Result: ', rows);
+    // dbConnection.end();
+});
+
 
 
 // TODO:
@@ -99,7 +99,7 @@ app.post('/addPerson', function (req, res) {
     var memberNotesData = {
           last_status_change: new Date().toString(),
           member_id: payload.unite_id,
-          worksite_id: payload.employer,
+          worksite_id: payload.employer
           // note_text: "signed up with Nationbuilder",
           // note_id: AUTO_INCREMENT,
           // auto_note: 1,
@@ -115,6 +115,7 @@ app.post('/addPerson', function (req, res) {
               throw err
             })
           }
+
           dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
             if (err) {
               dbConnection.rollback(function() {
@@ -133,6 +134,8 @@ app.post('/addPerson', function (req, res) {
           })
         })
       })
+    } else {
+      console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
     }
 })
 
@@ -161,14 +164,14 @@ app.post('/changePerson', function (req, res) {
   var memberNotesData = {
         last_status_change: new Date().toString(),
         member_id: payload.unite_id,
-        worksite_id: payload.employer,
+        worksite_id: payload.employer
         // note_text: "signed up with Nationbuilder",
         // note_id: AUTO_INCREMENT,
         // auto_note: 1,
         code_id: 11,
         updateby: 46825
   }
-  if (payload.first_name != null) {
+  if (payload.unite_id != null) {
 
     dbConnection.beginTransaction(function(err) {
       if (err) { throw err }
@@ -200,6 +203,7 @@ app.post('/changePerson', function (req, res) {
   } else {
     console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
   }
+
 })
 
 
