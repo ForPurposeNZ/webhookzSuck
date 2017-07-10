@@ -157,7 +157,7 @@ app.post('/addPerson', function (req, res) {
 
 app.post('/changePerson', function (req, res) {
 
-  console.log('connecting IP:', req.connection.remoteAddress)
+  console.log('connection:', req.connection)
 
   var payload = req.body.payload.person
   console.log('req...firstname! -->', payload.first_name)
