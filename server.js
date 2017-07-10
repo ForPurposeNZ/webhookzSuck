@@ -158,7 +158,7 @@ app.post('/addPerson', function (req, res) {
 app.post('/changePerson', function (req, res) {
 
   var payload = req.body.person
-  console.log('payload! -->', req.body)
+  console.log('req.body.person! -->', req.body.person)
   var updateMemberData = 'UPDATE ' + membersTable + ' SET ? WHERE member_id= '+ payload.unite_id
   var updateMemberNotes = 'UPDATE ' + extInfoUniteTable + ' SET ? WHERE member_id= '+ payload.unite_id
 
