@@ -84,63 +84,63 @@ var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
 //*** Add New Contact ***\\\
 
 
-app.post('/addPerson', function (req, res) {
+// app.post('/addPerson', function (req, res) {
 
-    var payload = req.body.payload.person
-
-    var memberTableData = {
-        member_id: payload.unite_id,
-        firstname_primary: payload.first_name,
-        lastname_primary: payload.last_name,
-        // addr1: payload.primary_address.address1,
-        // addr2:payload.primary_address.address2,
-        // city: payload.primary_address.city,
-        // postcode: payload.primary_address.zip,
-        email: payload.email,
-        phone_mobile: payload.mobile,
-        phone_home: payload.phone
-    }
-
-    var memberNotesData = {
-          last_status_change: new Date().toString(),
-          member_id: payload.unite_id,
-          worksite_id: payload.employer,
-          // note_text: "signed up with Nationbuilder",
-          // note_id: AUTO_INCREMENT,
-          // auto_note: 1,
-          code_id: 11,
-          updateby: 46825
-    }
-    if (payload.full_name != null) {
-        dbConnection.beginTransaction(function(err) {
-          if (err) {
-            //console.log('error at line 116!', err)
-            throw err
-          }
-          dbConnection.query(addMemberdata, memberTableData, function(err, result) {
-            if (err) {
-              throw err
-            }
-
-            dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
-              if (err) {
-                throw err
-              }
-
-              dbConnection.commit(function(err) {
-                if (err) {
-                  throw err
-                }
-                console.log('Transaction Complete, person added');
-                // dbConnection.end()
-              })
-            })
-          })
-        })
-    } else {
-      console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-    }
-})
+//     var payload = req.body.payload.person
+//
+//     var memberTableData = {
+//         member_id: payload.unite_id,
+//         firstname_primary: payload.first_name,
+//         lastname_primary: payload.last_name,
+//         // addr1: payload.primary_address.address1,
+//         // addr2:payload.primary_address.address2,
+//         // city: payload.primary_address.city,
+//         // postcode: payload.primary_address.zip,
+//         email: payload.email,
+//         phone_mobile: payload.mobile,
+//         phone_home: payload.phone
+//     }
+//
+//     var memberNotesData = {
+//           last_status_change: new Date().toString(),
+//           member_id: payload.unite_id,
+//           worksite_id: payload.employer,
+//           // note_text: "signed up with Nationbuilder",
+//           // note_id: AUTO_INCREMENT,
+//           // auto_note: 1,
+//           code_id: 11,
+//           updateby: 46825
+//     }
+//     if (payload.full_name != null) {
+//         dbConnection.beginTransaction(function(err) {
+//           if (err) {
+//             //console.log('error at line 116!', err)
+//             throw err
+//           }
+//           dbConnection.query(addMemberdata, memberTableData, function(err, result) {
+//             if (err) {
+//               throw err
+//             }
+//
+//             dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
+//               if (err) {
+//                 throw err
+//               }
+//
+//               dbConnection.commit(function(err) {
+//                 if (err) {
+//                   throw err
+//                 }
+//                 console.log('Transaction Complete, person added');
+//                 // dbConnection.end()
+//               })
+//             })
+//           })
+//         })
+//     } else {
+//       console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
+//     }
+// })
 
 
 //lines 119, 126, 130, 132
