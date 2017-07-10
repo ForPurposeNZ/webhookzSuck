@@ -71,7 +71,7 @@ console.log("proxy.hostname -->", proxy.hostname, "proxy.port--->", proxy.port)
 //suss correspondence_contact
 
 
-
+//TONIGHT: go back to pre transaction(in a separate branch) connection and see if it makes a difference
 
 /////***** Relevant Variables and Functions *****/////
 
@@ -111,7 +111,7 @@ app.post('/addPerson', function (req, res) {
           code_id: 11,
           updateby: 46825
     }
-    if (payload.unite_id != null) {
+    if (payload.full_name != null) {
         dbConnection.beginTransaction(function(err) {
         if (err) { console.log('error at line 111!', err) }
         dbConnection.query(addMemberdata, memberTableData, function(err, result) {
