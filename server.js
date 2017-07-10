@@ -41,9 +41,10 @@ var sock_options = {
 
 var sockConn = new SocksConnection(remote_options, sock_options)
 
-console.log(process.env)
+// console.log(process.env)
 
-var dbConnection = mysql.createPool({
+// var dbConnection = mysql.createPool({
+var pool = mysql.createPool({
     // host:'50.23.215.146',
   connectionLimit : 10,
   user: process.env.DB_USER,
@@ -193,33 +194,39 @@ app.post('/changePerson', function (req, res) {
   }
   if (payload.first_name != null) {
 
-    dbConnection.beginTransaction(function(err) {
-      if (err) { throw err }
-    dbConnection.query(updateMemberData, memberTableData, function(err, result) {
-      if (err) {
-        dbConnection.rollback(function() {
-          throw err
-        })
-      }
 
-      dbConnection.query(updateMemberNotes, memberNotesData, function(err, result) {
-        if (err) {
-          dbConnection.rollback(function() {
-            throw err
-          });
-        }
-        dbConnection.commit(function(err) {
+    pool.getConnection(function(err, dbConnection) {
+      // connected! (unless `err` is set)
+      console.log('Got DB connection')
+      dbConnection.beginTransaction(function(err) {
+        if (err) { throw err }
+        dbConnection.query(updateMemberData, memberTableData, function(err, result) {
           if (err) {
             dbConnection.rollback(function() {
               throw err
             })
           }
-          console.log('Transaction Complete, person updated.');
-          // dbConnection.end()
+
+          dbConnection.query(updateMemberNotes, memberNotesData, function(err, result) {
+            if (err) {
+              dbConnection.rollback(function() {
+                throw err
+              });
+            }
+
+            dbConnection.commit(function(err) {
+              if (err) {
+                dbConnection.rollback(function() {
+                  throw err
+                })
+              }
+              console.log('Transaction Complete, person updated.');
+            // dbConnection.end()
+            })
+          })
         })
       })
-    })
-  })
+    });
   } else {
     console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
       throw (err)
