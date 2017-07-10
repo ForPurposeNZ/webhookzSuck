@@ -268,16 +268,16 @@ app.post('/changePerson', function (req, res) {
 
             console.log("ext_info result:", result)
 
-            let selectMemberData = `SELECT * FROM members WHERE member_id = 12431`
-            let selectMemberNotes = `SELECT * FROM ext_info_unite WHERE member_id = 2425`
-            dbConnection.query(selectMemberData, (err, res) => {
-              if (err) { console.log(`WARNING: unexpected query error: ${err}`) }
-              console.log('member data: ', res)
-              dbConnection.query(selectMemberNotes, (err, res) => {
-                if (err) { console.log(`WARNING: unexpected query error: ${err}`) }
-                console.log('member notes:', res)
-              })
-            })
+            // let selectMemberData = `SELECT * FROM members WHERE member_id = 12431`
+            // let selectMemberNotes = `SELECT * FROM ext_info_unite WHERE member_id = 2425`
+            // dbConnection.query(selectMemberData, (err, res) => {
+            //   if (err) { console.log(`WARNING: unexpected query error: ${err}`) }
+            //   console.log('member data: ', res)
+            //   dbConnection.query(selectMemberNotes, (err, res) => {
+            //     if (err) { console.log(`WARNING: unexpected query error: ${err}`) }
+            //     console.log('member notes:', res)
+            //   })
+            // })
 
             dbConnection.commit(function(err) {
               if (err) {
