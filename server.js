@@ -159,7 +159,7 @@ app.post('/addPerson', function (req, res) {
       added_by: 46825,
       date_time: new Date().toString(),
       auto_note: 1,
-      code_id: 10,
+      code_id: 11,
       worksite_id: payload.employer
   }
 
