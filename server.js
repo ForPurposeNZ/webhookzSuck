@@ -282,6 +282,7 @@ app.post('/changePerson', function (req, res) {
                   throw err
                 });
               }
+            }
 
             console.log("ext_info result:", result)
 
