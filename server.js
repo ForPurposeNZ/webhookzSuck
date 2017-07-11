@@ -363,7 +363,7 @@ app.post('/changePerson', function (req, res) {
               }
               console.log('Transaction Complete, person updated.')
               return res.status(200)
-              // getConnection.end()
+              getConnection.end()
               })
             })
           })
