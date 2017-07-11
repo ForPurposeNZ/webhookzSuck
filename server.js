@@ -250,6 +250,7 @@ app.post('/changePerson', function (req, res) {
       // console.log('Got DB connection: ', dbConnection)
       dbConnection.beginTransaction(function(err) {
         if (err) { throw err }
+
         let updateMemberData =
           `UPDATE ${membersTable} SET ? WHERE member_id = ${payload.unite_id}`
         console.log("updateMemberData", updateMemberData)
@@ -270,7 +271,7 @@ app.post('/changePerson', function (req, res) {
             if (err) {
               dbConnection.rollback(function() {
                 throw err
-              });
+              })
             }
 
 
@@ -280,9 +281,9 @@ app.post('/changePerson', function (req, res) {
               if (err) {
                 dbConnection.rollback(function() {
                   throw err
-                });
+                })
               }
-            }
+
 
             console.log("ext_info result:", result)
 
