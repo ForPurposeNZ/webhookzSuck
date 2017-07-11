@@ -305,9 +305,7 @@ app.post('/changePerson', function (req, res) {
       // console.log('Got DB connection: ', dbConnection)
 
       dbConnection.beginTransaction(function(err) {
-        // if (err) { throw err }
-
-        console.log("heroku?")
+        if (err) { console.log("error", err) }
 
         let updateMemberData =
           `UPDATE ${membersTable} SET ? WHERE member_id = ${payload.unite_id}`
