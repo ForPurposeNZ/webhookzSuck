@@ -186,7 +186,7 @@ app.post('/addPerson', function (req, res) {
         if (err) { throw err }
 
         let updateMemberData =
-          `INSERT ${membersTable} SET ? WHERE member_id = ${payload.unite_id}`
+          `INSERT ${membersTable} SET ?`
         console.log("updateMemberData", updateMemberData)
         // console.log("memberTableData", memberTableData)
         dbConnection.query(updateMemberData, memberTableData, function(err, result) {
@@ -199,7 +199,7 @@ app.post('/addPerson', function (req, res) {
           console.log("member data result:", result)
 
           let updateExtInfo =
-            `INSERT ${extInfoUniteTable} SET ? WHERE member_id = ${payload.unite_id}`
+            `INSERT ${extInfoUniteTable} SET ?`
           dbConnection.query(updateExtInfo, extInfoData, function(err, result) {
           // dbConnection.query(updateExtInfo, function(err, result) {
             if (err) {
@@ -210,7 +210,7 @@ app.post('/addPerson', function (req, res) {
 
 
             let updateMembersNotes =
-              `INSERT ${membersNotes} SET ? WHERE member_id = ${payload.unite_id}`
+              `INSERT ${membersNotes} SET ?`
               console.log("updateMemberNotes", updateMembersNotes)
             dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
               if (err) {
