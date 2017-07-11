@@ -285,7 +285,8 @@ app.post('/changePerson', function (req, res) {
                   throw err
                 })
               }
-              console.log('Transaction Complete, person updated.');
+              console.log('Transaction Complete, person updated.')
+              return res.status(200)
             // dbConnection.end()
             })
           })
@@ -299,7 +300,7 @@ app.post('/changePerson', function (req, res) {
 
 })
 
-
+//return http status ok
 
 
 
