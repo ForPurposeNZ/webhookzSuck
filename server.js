@@ -308,6 +308,8 @@ app.post('/changePerson', function (req, res) {
       dbConnection.beginTransaction(function(err) {
         // if (err) { throw err }
 
+        console.log("heroku?")
+
         let updateMemberData =
           `UPDATE ${membersTable} SET ? WHERE member_id = ${payload.unite_id}`
         console.log("updateMemberData", updateMemberData)
@@ -375,8 +377,7 @@ app.post('/changePerson', function (req, res) {
     console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
       throw (err)
     }
-  }
-})
+  })
 
 //return http status ok
 
