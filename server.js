@@ -276,7 +276,7 @@ app.post('/changePerson', function (req, res) {
 
 
             let updateMembersNotes =
-              `UPDATE ${member_notes} SET ? WHERE member_id = ${payload.unite_id}`
+              `UPDATE ${membersNotes} SET ? WHERE member_id = ${payload.unite_id}`
               console.log("updateMemberNotes", updateMembersNotes)
             dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
               if (err) {
