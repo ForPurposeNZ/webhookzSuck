@@ -248,7 +248,7 @@ app.post('/changePerson', function (req, res) {
     pool.getConnection(function(err, dbConnection) {
       // connected! (unless `err` is set)
       // console.log('Got DB connection: ', dbConnection)
-      dbConnection.beginTransaction(function(err) {
+      dbConnection.BeginTransaction(function(err) {
         if (err) { throw err }
 
         let updateMemberData =
