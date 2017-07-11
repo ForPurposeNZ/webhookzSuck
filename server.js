@@ -128,9 +128,7 @@ console.log("proxy.hostname -->", proxy.hostname, "proxy.port--->", proxy.port)
 
 var membersTable = 'members'
 var extInfoUniteTable = 'ext_info_unite'
-
-var addMemberdata = 'INSERT INTO ' + membersTable + ' SET ?'
-var addMemberNotes = 'INSERT INTO ' + extInfoUniteTable + ' SET ?'
+var membersNotes = 'member_notes'
 
 //*** Add New Contact ***\\\
 
@@ -227,15 +225,24 @@ app.post('/changePerson', function (req, res) {
       updateby: 46825
   }
 
-  var  extInfoData = { // memberNotesData
-        last_status_change: new Date().toString(),
-        member_id: payload.unite_id,
-        worksite_id: payload.employer
-        // note_text: "signed up with Nationbuilder",
-        // note_id: AUTO_INCREMENT,
-        // auto_note: 1,
-        // code_id: 11
+  var membersNotesData = {
+      note_id: AUTO_INCREMENT,
+      member_id: payload.unite_id,
+      note_text: "signed up with Nationbuilder",
+      added_by: 46825,
+      date_time: new Date().toString(),
+      auto_note: 1,
+      code_id: 10,
+      worksite_id: payload.employer
   }
+
+  var extInfoData = {
+      last_status_change: new Date().toString(),
+      member_id: payload.unite_id,
+      worksite_id: payload.employer,
+      date_entered: new Date().toString()
+  }
+
   if (payload.first_name != null) {
 
     pool.getConnection(function(err, dbConnection) {
@@ -266,6 +273,16 @@ app.post('/changePerson', function (req, res) {
               });
             }
 
+
+            let updateMembersNotes =
+              `UPDATE ${member_notes} SET ? WHERE member_id = ${payload.unite_id}`
+            dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
+              if (err) {
+                dbConnection.rollback(function() {
+                  throw err
+                });
+              }
+
             console.log("ext_info result:", result)
 
             // let selectMemberData = `SELECT * FROM members WHERE member_id = 12431`
@@ -287,7 +304,7 @@ app.post('/changePerson', function (req, res) {
               }
               console.log('Transaction Complete, person updated.')
               return res.status(200)
-             getConnection.end()
+              getConnection.end()
             })
           })
         })
