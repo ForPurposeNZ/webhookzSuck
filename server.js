@@ -135,8 +135,6 @@ var membersNotes = 'member_notes'
 
 app.post('/addPerson', function (req, res) {
 
-  console.log("adding person!")
-
   var payload = req.body.payload.person
   console.log('req...firstname! -->', payload.first_name)
 
