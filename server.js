@@ -287,7 +287,7 @@ app.post('/changePerson', function (req, res) {
               }
               console.log('Transaction Complete, person updated.')
               return res.status(200)
-            // dbConnection.end()
+             getConnection.end()
             })
           })
         })
