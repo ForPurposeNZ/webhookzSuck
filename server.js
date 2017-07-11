@@ -135,71 +135,125 @@ var membersNotes = 'member_notes'
 
 app.post('/addPerson', function (req, res) {
 
-  console.log("hey! I was called!")
+  console.log("adding person!")
 
-//     var payload = req.body.payload.person
-//
-//     var memberTableData = {
-//         member_id: payload.unite_id,
-//         firstname_primary: payload.first_name,
-//         lastname_primary: payload.last_name,
-//         // addr1: payload.primary_address.address1,
-//         // addr2:payload.primary_address.address2,
-//         // city: payload.primary_address.city,
-//         // postcode: payload.primary_address.zip,
-//         email: payload.email,
-//         phone_mobile: payload.mobile,
-//         phone_home: payload.phone
-//     }
-//
-//     var memberNotesData = {
-//           last_status_change: new Date().toString(),
-//           member_id: payload.unite_id,
-//           worksite_id: payload.employer,
-//           // note_text: "signed up with Nationbuilder",
-//           // note_id: AUTO_INCREMENT,
-//           // auto_note: 1,
-//           code_id: 11,
-//           updateby: 46825
-//     }
-//     if (payload.full_name != null) {
-//         dbConnection.beginTransaction(function(err) {
-//           if (err) {
-//             //console.log('error at line 116!', err)
-//             throw err
-//           }
-//           dbConnection.query(addMemberdata, memberTableData, function(err, result) {
-//             if (err) {
-//               throw err
-//             }
-//
-//             dbConnection.query(addMemberNotes, memberNotesData, function(err, result) {
-//               if (err) {
-//                 throw err
-//               }
-//
-//               dbConnection.commit(function(err) {
-//                 if (err) {
-//                   throw err
-//                 }
-//                 console.log('Transaction Complete, person added');
-//                 // dbConnection.end()
-//               })
-//             })
-//           })
-//         })
-//     } else {
-//       console.log('ERROR trying to ADD person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-//     }
+  var payload = req.body.payload.person
+  console.log('req...firstname! -->', payload.first_name)
+
+  var memberTableData = {
+      member_id: payload.unite_id,
+      firstname_primary: payload.first_name,
+      lastname_primary: payload.last_name,
+      // addr1: payload.primary_address.address1,
+      // addr2:payload.primary_address.address2,
+      // city: payload.primary_address.city,
+      // postcode: payload.primary_address.zip,
+      email: payload.email,
+      phone_mobile: payload.mobile,
+      phone_home: payload.phone,
+      updateby: 46825
+  }
+
+  var membersNotesData = {
+      // note_id: AUTO_INCREMENT,
+      member_id: payload.unite_id,
+      note_text: "signed up with Nationbuilder",
+      added_by: 46825,
+      date_time: new Date().toString(),
+      auto_note: 1,
+      code_id: 10,
+      worksite_id: payload.employer
+  }
+
+  var extInfoData = {
+      last_status_change: new Date().toString(),
+      member_id: payload.unite_id,
+      worksite_id: payload.employer,
+      date_entered: new Date().toString()
+  }
+
+  if (payload.first_name != null) {
+
+    pool.getConnection(function(err, dbConnection) {
+
+      // return pool.query('START TRANSACTION')
+      //   if (err) { throw err }
+
+      // connected! (unless `err` is set)
+      // console.log('Got DB connection: ', dbConnection)
+
+      dbConnection.beginTransaction(function(err) {
+        if (err) { throw err }
+
+        let updateMemberData =
+          `INSERT ${membersTable} SET ? WHERE member_id = ${payload.unite_id}`
+        console.log("updateMemberData", updateMemberData)
+        // console.log("memberTableData", memberTableData)
+        dbConnection.query(updateMemberData, memberTableData, function(err, result) {
+          if (err) {
+            dbConnection.rollback(function() {
+              throw err
+            })
+          }
+
+          console.log("member data result:", result)
+
+          let updateExtInfo =
+            `INSERT ${extInfoUniteTable} SET ? WHERE member_id = ${payload.unite_id}`
+          dbConnection.query(updateExtInfo, extInfoData, function(err, result) {
+          // dbConnection.query(updateExtInfo, function(err, result) {
+            if (err) {
+              dbConnection.rollback(function() {
+                throw err
+              })
+            }
+
+
+            let updateMembersNotes =
+              `INSERT ${membersNotes} SET ? WHERE member_id = ${payload.unite_id}`
+              console.log("updateMemberNotes", updateMembersNotes)
+            dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
+              if (err) {
+                dbConnection.rollback(function() {
+                  throw err
+                })
+              }
+
+
+            console.log("ext_info result:", result)
+
+            // let selectMemberData = `SELECT * FROM members WHERE member_id = 12431`
+            // let selectMemberNotes = `SELECT * FROM ext_info_unite WHERE member_id = 2425`
+            // dbConnection.query(selectMemberData, (err, res) => {
+            //   if (err) { console.log(`WARNING: unexpected query error: ${err}`) }
+            //   console.log('member data: ', res)
+            //   dbConnection.query(selectMemberNotes, (err, res) => {
+            //     if (err) { console.log(`WARNING: unexpected query error: ${err}`) }
+            //     console.log('member notes:', res)
+            //   })
+            // })
+
+            dbConnection.commit(function(err) {
+              if (err) {
+                dbConnection.rollback(function() {
+                  throw err
+                })
+              }
+              console.log('Transaction Complete, person added to SQL db.')
+              return res.status(200)
+              getConnection.end()
+              })
+            })
+          })
+        })
+      })
+    });
+  } else {
+    console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
+      throw (err)
+  }
 })
 
-
-//lines 119, 126, 130, 132
-// if (err) {
-//   dbConnection.rollback(function() {
-//     throw err
-//   })
-// }
 
 
 /////***** Update Contact *****/////
