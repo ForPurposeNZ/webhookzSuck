@@ -247,13 +247,14 @@ app.post('/changePerson', function (req, res) {
 
     pool.getConnection(function(err, dbConnection) {
 
-      return pool.query('START TRANSACTION')
-        if (err) { throw err }
+      // return pool.query('START TRANSACTION')
+      //   if (err) { throw err }
 
       // connected! (unless `err` is set)
       // console.log('Got DB connection: ', dbConnection)
-      // pool.beginTransaction(function(err) {
-      //   if (err) { throw err }
+
+      dbConnection.beginTransaction(function(err) {
+        if (err) { throw err }
 
         let updateMemberData =
           `UPDATE ${membersTable} SET ? WHERE member_id = ${payload.unite_id}`
@@ -316,7 +317,7 @@ app.post('/changePerson', function (req, res) {
             })
           })
         })
-      // })
+      })
     });
   } else {
     console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
