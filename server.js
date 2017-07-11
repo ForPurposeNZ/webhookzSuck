@@ -275,14 +275,14 @@ app.post('/changePerson', function (req, res) {
             }
 
 
-            let updateMembersNotes =
-              `UPDATE ${member_notes} SET ? WHERE member_id = ${payload.unite_id}`
-            dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
-              if (err) {
-                dbConnection.rollback(function() {
-                  throw err
-                })
-              }
+            // let updateMembersNotes =
+            //   `UPDATE ${member_notes} SET ? WHERE member_id = ${payload.unite_id}`
+            // dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
+            //   if (err) {
+            //     dbConnection.rollback(function() {
+            //       throw err
+            //     })
+            //   }
 
 
             console.log("ext_info result:", result)
