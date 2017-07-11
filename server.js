@@ -248,7 +248,6 @@ app.post('/addPerson', function (req, res) {
     });
   } else {
     console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-      throw (err)
   }
 })
 
@@ -375,7 +374,6 @@ app.post('/changePerson', function (req, res) {
     });
   } else {
     console.log('ERROR trying to UPDATE person: ' + payload.full_name + ' is not a unite Member or has not been assigned Unite Member I.D.')
-      throw (err)
     }
   })
 
