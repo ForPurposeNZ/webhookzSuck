@@ -277,6 +277,7 @@ app.post('/changePerson', function (req, res) {
 
             let updateMembersNotes =
               `UPDATE ${member_notes} SET ? WHERE member_id = ${payload.unite_id}`
+              console.log("updateMemberNotes", updateMembersNotes)
             dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
               if (err) {
                 dbConnection.rollback(function() {
@@ -307,6 +308,7 @@ app.post('/changePerson', function (req, res) {
               console.log('Transaction Complete, person updated.')
               return res.status(200)
               getConnection.end()
+              })
             })
           })
         })
