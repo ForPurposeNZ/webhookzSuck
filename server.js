@@ -226,7 +226,7 @@ app.post('/changePerson', function (req, res) {
   }
 
   var membersNotesData = {
-      note_id: AUTO_INCREMENT,
+      // note_id: AUTO_INCREMENT,
       member_id: payload.unite_id,
       note_text: "signed up with Nationbuilder",
       added_by: 46825,
@@ -275,14 +275,14 @@ app.post('/changePerson', function (req, res) {
             }
 
 
-            // let updateMembersNotes =
-            //   `UPDATE ${member_notes} SET ? WHERE member_id = ${payload.unite_id}`
-            // dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
-            //   if (err) {
-            //     dbConnection.rollback(function() {
-            //       throw err
-            //     })
-            //   }
+            let updateMembersNotes =
+              `UPDATE ${member_notes} SET ? WHERE member_id = ${payload.unite_id}`
+            dbConnection.query(updateMembersNotes, membersNotesData, function(err, result) {
+              if (err) {
+                dbConnection.rollback(function() {
+                  throw err
+                })
+              }
 
 
             console.log("ext_info result:", result)
