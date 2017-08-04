@@ -17,41 +17,6 @@ app.get('/', function (req, res) {
 })
 
 
-// http = require("http");
-// url = require("url");
-//
-// proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
-// target  = url.parse("http://google.com");
-
-
-// var username = auth.split(":")[0]
-// var pass = auth.split(":")[1]
-//
-// var sock_options = {
-//   host: proxy.hostname,
-//   port: 1080,
-//   user: username,
-//   pass: pass
-
-
-// console.log("proxy: ", process.env.QUOTAGUARDSTATIC_URL, proxy)
-// console.log(target.hostname)
-// console.log("Basic " + (new Buffer(proxy.auth).toString("base64")))
-// //
-// options = {
-//   hostname: proxy.hostname,
-//   port: proxy.port || 80,
-//   path: target.href,
-//   headers: {
-//     "Proxy-Authorization": "Basic " + (new Buffer(proxy.auth).toString("base64")),
-//     "Host" : target.hostname
-//   }
-// };
-//
-// http.get(options, function(res) {
-//   res.pipe(process.stdout);
-//   return console.log("status code", res.statusCode);
-// });
 
 
 ////**** QuotaGuardStatic mySQL connection ****\\\\
@@ -116,13 +81,6 @@ pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
 
 console.log("proxy.hostname -->", proxy.hostname, "proxy.port--->", proxy.port)
 
-// TODO:
-//Figure out pooling / connection open-close.
-//error handling
-//suss correspondence_contact
-
-
-//TONIGHT: go back to pre transaction(in a separate branch) connection and see if it makes a difference
 
 /////***** Relevant Variables and Functions *****/////
 
@@ -140,8 +98,8 @@ app.post('/addPerson', function (req, res) {
 
   var memberTableData = {
       member_id: payload.unite_id,
-      firstname_primary: payload.first_name,
-      lastname_primary: payload.last_name,
+      firstname: payload.first_name,
+      lastname: payload.last_name,
       // addr1: payload.primary_address.address1,
       // addr2:payload.primary_address.address2,
       // city: payload.primary_address.city,
@@ -264,8 +222,8 @@ app.post('/changePerson', function (req, res) {
 
   var memberTableData = {
       member_id: payload.unite_id,
-      firstname_primary: payload.first_name,
-      lastname_primary: payload.last_name,
+      firstname: payload.first_name,
+      lastname: payload.last_name,
       // addr1: payload.primary_address.address1,
       // addr2:payload.primary_address.address2,
       // city: payload.primary_address.city,
